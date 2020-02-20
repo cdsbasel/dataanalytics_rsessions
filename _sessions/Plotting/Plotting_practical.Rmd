@@ -6,13 +6,13 @@ author: "<table style='table-layout:fixed;width:100%;border:0;padding:0;margin:0
       <a href='https://cdsbasel.github.io/dataanalytics/menu/materials.html'>
         <i class='fas fa-clock' style='font-size:.9em;' ></i>
       </a>
-      <a href='https://therbootcamp.github.io'>
+      <a href='https://cdsbasel.github.io/dataanalytics/'>
         <i class='fas fa-home' style='font-size:.9em;'></i>
       </a>
-      <a href='mailto:therbootcamp@gmail.com'>
+      <a href='mailto:rui.mata@unibas.ch'>
         <i class='fas fa-envelope' style='font-size: .9em;'></i>
       </a>
-      <a href='https://therbootcamp.github.io'>
+      <a href='https://cdsbasel.github.io/dataanalytics/'>
         <font style='font-style:normal'>Data Analytics for Psychology and Business</font>
       </a>
     </td>
