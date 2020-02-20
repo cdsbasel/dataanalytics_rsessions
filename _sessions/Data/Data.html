@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
   <head>
     <title>Data</title>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <meta name="author" content="R for Data Science   Basel R Bootcamp" />
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link rel="stylesheet" href="baselrbootcamp.css" type="text/css" />
@@ -152,10 +152,10 @@ reg_results$coefficients
 
 
 ```
-##               Estimate  t value
-## (Intercept) 164.171266 499.5339
-## sexmale      13.993699  66.4724
-## age          -0.003753  -0.5819
+##              Estimate t value
+## (Intercept) 1.637e+02 154.102
+## sexmale     1.480e+01  21.536
+## age         5.978e-03   0.288
 ```
 
 ]
@@ -205,22 +205,22 @@ baselers
 ```
 
 ```
-## # A tibble: 10,000 x 20
+## # A tibble: 1,000 x 20
 ##      id sex     age height weight income
 ##   &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
-## 1     1 male     44   174.  113.    6300
-## 2     2 male     65   180.   75.2  10900
-## 3     3 fema…    31   168.   55.5   5100
-## 4     4 male     27   209    93.8   4200
-## 5     5 male     24   177.   NA     4000
+## 1     1 male     31   181.   82.5   7200
+## 2     2 fema…    41   162.   63.1   6100
+## 3     3 male     41   168.   98     8800
+## 4     4 fema…    52   166.   60     9600
+## 5     5 fema…    30   172.   62.4   7000
 ##   education confession children
 ##   &lt;chr&gt;     &lt;chr&gt;         &lt;dbl&gt;
-## 1 SEK_III   catholic          2
-## 2 obligato… confessio…        2
-## 3 SEK_III   &lt;NA&gt;              2
-## 4 SEK_III   catholic          2
-## 5 SEK_III   catholic          1
-## # … with 9,995 more rows, and 11 more
+## 1 SEK_III   confessio…        1
+## 2 SEK_III   catholic          1
+## 3 SEK_III   confessio…        2
+## 4 SEK_III   confessio…        1
+## 5 SEK_III   confessio…        2
+## # … with 995 more rows, and 11 more
 ## #   variables
 ```
 ]
@@ -264,8 +264,8 @@ baselers$age
 
 
 ```
-##  [1] 44 65 31 27 24 63 71 41 43 31 42 31
-## [13] 38 49 39 54 78 62 88 74
+##  [1] 31 41 41 52 30 65 52 25 60 44 31 63
+## [13] 26 31 54 27 43 84 41 49
 ```
 
 
@@ -276,16 +276,11 @@ baselers$education
 
 
 ```
-##  [1] "SEK_III"          
-##  [2] "obligatory_school"
-##  [3] "SEK_III"          
-##  [4] "SEK_III"          
-##  [5] "SEK_III"          
-##  [6] "SEK_III"          
-##  [7] "SEK_III"          
-##  [8] "SEK_III"          
-##  [9] "apprenticeship"   
-## [10] "SEK_II"
+##  [1] "SEK_III"        "SEK_III"       
+##  [3] "SEK_III"        "SEK_III"       
+##  [5] "SEK_III"        "apprenticeship"
+##  [7] "SEK_III"        "SEK_III"       
+##  [9] "SEK_III"        "apprenticeship"
 ```
 
 ]
@@ -311,22 +306,22 @@ baselers
 ```
 
 ```
-## # A tibble: 10,000 x 20
+## # A tibble: 1,000 x 20
 ##      id sex     age height weight income
 ##   &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
-## 1     1 male     44   174.  113.     6.3
-## 2     2 male     65   180.   75.2   10.9
-## 3     3 fema…    31   168.   55.5    5.1
-## 4     4 male     27   209    93.8    4.2
-## 5     5 male     24   177.   NA      4  
+## 1     1 male     31   181.   82.5    7.2
+## 2     2 fema…    41   162.   63.1    6.1
+## 3     3 male     41   168.   98      8.8
+## 4     4 fema…    52   166.   60      9.6
+## 5     5 fema…    30   172.   62.4    7  
 ##   education confession children
 ##   &lt;chr&gt;     &lt;chr&gt;         &lt;dbl&gt;
-## 1 SEK_III   catholic          2
-## 2 obligato… confessio…        2
-## 3 SEK_III   &lt;NA&gt;              2
-## 4 SEK_III   catholic          2
-## 5 SEK_III   catholic          1
-## # … with 9,995 more rows, and 11 more
+## 1 SEK_III   confessio…        1
+## 2 SEK_III   catholic          1
+## 3 SEK_III   confessio…        2
+## 4 SEK_III   confessio…        1
+## 5 SEK_III   confessio…        2
+## # … with 995 more rows, and 11 more
 ## #   variables
 ```
 
@@ -377,7 +372,7 @@ age
 
 
 ```
-## [1] 44 65 31 27 24 63 71 41 43
+## [1] 31 41 41 52 30 65 52 25 60
 ```
 
 
@@ -387,7 +382,7 @@ age[2]
 ```
 
 ```
-## [1] 65
+## [1] 41
 ```
 
 
@@ -399,7 +394,7 @@ age
 
 
 ```
-## [1]  44 100  31  27  24  63  71  41  43
+## [1]  31 100  41  52  30  65  52  25  60
 ```
 
 &lt;br&gt;
@@ -427,7 +422,7 @@ baselers$age
 
 
 ```
-## [1] 44 65 31 27 24 63 71 41 43
+## [1] 31 41 41 52 30 65 52 25 60
 ```
 
 
@@ -473,8 +468,8 @@ baselers$sex
 
 
 ```
-## [1] "male"   "male"   "female" "male"  
-## [5] "male"   "male"   "male"   "female"
+## [1] "male"   "female" "male"   "female"
+## [5] "female" "female" "male"   "male"
 ```
 
 
@@ -484,9 +479,7 @@ baselers$education
 
 
 ```
-## [1] "SEK_III"          
-## [2] "obligatory_school"
-## [3] "SEK_III"          
+## [1] "SEK_III" "SEK_III" "SEK_III"
 ## [4] "SEK_III"
 ```
 
@@ -515,7 +508,7 @@ baselers$age
 
 
 ```
-## [1] 44 65 31 27 24 63 71 41
+## [1] 31 41 41 52 30 65 52 25
 ```
 
 
@@ -526,8 +519,8 @@ as.character(baselers$age)
 
 
 ```
-## [1] "44" "65" "31" "27" "24" "63" "71"
-## [8] "41" "43"
+## [1] "31" "41" "41" "52" "30" "65" "52"
+## [8] "25" "60"
 ```
 
 ]
@@ -553,8 +546,8 @@ baselers$sex == "male"
 
 
 ```
-## [1]  TRUE  TRUE FALSE  TRUE  TRUE  TRUE
-## [7]  TRUE FALSE
+## [1]  TRUE FALSE  TRUE FALSE FALSE FALSE
+## [7]  TRUE  TRUE
 ```
 
 
@@ -565,8 +558,8 @@ baselers$age &lt; 30
 
 
 ```
-## [1] FALSE FALSE FALSE  TRUE  TRUE FALSE
-## [7] FALSE FALSE FALSE
+## [1] FALSE FALSE FALSE FALSE FALSE FALSE
+## [7] FALSE  TRUE FALSE
 ```
 
 ]
@@ -818,22 +811,22 @@ read_csv(file = "1_Data/baselers.csv")
 ```
 
 ```
-## # A tibble: 10,000 x 20
+## # A tibble: 1,000 x 20
 ##      id sex     age height weight income
 ##   &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
-## 1     1 male     44   174.  113.    6300
-## 2     2 male     65   180.   75.2  10900
-## 3     3 fema…    31   168.   55.5   5100
-## 4     4 male     27   209    93.8   4200
-## 5     5 male     24   177.   NA     4000
+## 1     1 male     31   181.   82.5   7200
+## 2     2 fema…    41   162.   63.1   6100
+## 3     3 male     41   168.   98     8800
+## 4     4 fema…    52   166.   60     9600
+## 5     5 fema…    30   172.   62.4   7000
 ##   education confession children
 ##   &lt;chr&gt;     &lt;chr&gt;         &lt;dbl&gt;
-## 1 SEK_III   catholic          2
-## 2 obligato… confessio…        2
-## 3 SEK_III   &lt;NA&gt;              2
-## 4 SEK_III   catholic          2
-## 5 SEK_III   catholic          1
-## # … with 9,995 more rows, and 11 more
+## 1 SEK_III   confessio…        1
+## 2 SEK_III   catholic          1
+## 3 SEK_III   confessio…        2
+## 4 SEK_III   confessio…        1
+## 5 SEK_III   confessio…        2
+## # … with 995 more rows, and 11 more
 ## #   variables
 ```
 
@@ -938,6 +931,7 @@ class: middle, center
 
 &lt;h1&gt;&lt;a href="https://therbootcamp.github.io/R4DS_2019Feb/_sessions/Data/Data_practical.html"&gt;Practical&lt;/a&gt;&lt;/h1&gt;
     </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
 "highlightStyle": "github",
@@ -948,16 +942,57 @@ class: middle, center
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));
 });
-(function() {
-  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
   if (!r) return;
   s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
   d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
 })();</script>
 
 <script>
 (function() {
-  var i, text, code, codes = document.getElementsByTagName('code');
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
   for (i = 0; i < codes.length;) {
     code = codes[i];
     if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
@@ -971,7 +1006,8 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     }
     i++;
   }
-})();
+};
+slideshow._releaseMath(document);
 </script>
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

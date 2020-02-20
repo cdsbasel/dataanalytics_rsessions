@@ -1,22 +1,17 @@
 ---
 title: "Plotting"
-author: "R for Data Science<br>
-  <a href='https://therbootcamp.github.io'>
-    Basel R Bootcamp
+author: "<a href='https://cdsbasel.github.io/dataanalytics/'>
+    Data Analytics for Psychology and Business
   </a>
   <br>
-  <a href='https://therbootcamp.github.io/R4DS_2019Feb/'>
+  <a href='https://cdsbasel.github.io/dataanalytics/menu/materials.html'>
     <i class='fas fa-clock' style='font-size:.9em;'></i>
   </a>&#8239; 
-  <a href='https://therbootcamp.github.io'>
+  <a href='https://cdsbasel.github.io/dataanalytics/'>
     <i class='fas fa-home' style='font-size:.9em;' ></i>
   </a>&#8239;
-  <a href='mailto:therbootcamp@gmail.com'>
-    <i class='fas fa-envelope' style='font-size: .9em;'></i>
-  </a>&#8239;
-  <a href='https://www.linkedin.com/company/basel-r-bootcamp/'>
-    <i class='fab fa-linkedin' style='font-size: .9em;'></i>
-  </a>"
+  <a href='mailto:rui.mata@unibas.ch'>
+    <i class='fas fa-envelope' style='font-size: .9em;'></i>"
 date: "February 2019"
 output:
   xaringan::moon_reader:
@@ -36,16 +31,16 @@ layout: true
     <span> 
       <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png" height=14 style="vertical-align: middle"/>
     </span>
-    <a href="https://therbootcamp.github.io/">
+    <a href="https://cdsbasel.github.io/dataanalytics/">
       <span style="padding-left:82px"> 
         <font color="#7E7E7E">
-          www.therbootcamp.com
+          cdsbasel.github.io/dataanalytics/
         </font>
       </span>
     </a>
-    <a href="https://therbootcamp.github.io/">
+    <a href="https://cdsbasel.github.io/dataanalytics/">
       <font color="#7E7E7E">
-       R For Data Science | February 2019
+       Data Analytics for Psychology and Business | February 2019
       </font>
     </a>
     </span>
@@ -56,7 +51,7 @@ layout: true
 
 ```{r, eval = TRUE, echo = FALSE, warning=F,message=F}
 # Code to knit slides
-baselers <- readr::read_csv("../../1_Data/baselers.csv")
+baselers <- readr::read_csv("1_Data/basel.csv")
 ```
 
 
@@ -75,46 +70,40 @@ options(digits = 4)
 knitr::opts_chunk$set(comment=NA, fig.width=6, fig.height=6, echo = TRUE, eval = TRUE, 
                       message = FALSE, warning = FALSE, fig.align = 'center', dpi = 200)
 library(tidyverse)
-library(baselers)
 library(ggthemes)
+basel = read_csv('1_Data/basel.csv')
 ```
 
 
-.pull-left4[
-<br><br><br>
-> ### As good as R is for statistics, it's as good if not better for data visualisation
-> ### Nathaniel D. Phillips
-]
-
-.pull-right6[
+<p align="center">
 <br>
-```{r, echo = FALSE, out.width="100%", fig.align = 'center'}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/ggplotgallery.png")
-```
+<img src="image/plots.png" height="540px">
+<br>
+<font style="font-size:10px">from <a href="http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html">r-statistics.co</a></font>
+</p>
 
-]
+
 
 ---
 
 
-.pull-left45[
+.pull-left4[
 
-# Base R Plotting
+# `base` Plotting
 
-The <high>classic framework</high> of plotting.
-
-Contains separate <high>function for each 'type'</high> of plot.
-
-E.g. `barplot()` for a bar plot, `boxplot()` for a box plot, and `plot()` for a scatterplot. 
+<ul>
+  <li class="m1"><span>The <high>traditional</high> approach for plotting.</span></li>
+  <li class="m2"><span><high>Separate functons</high> for different plots</span></li>
+</ul>
 
 <br>
 
 ```{r, eval = FALSE}
 # Histogram in base R
-hist(x = baselers$age,
-     xlab = "Age",
-     ylab = "Frequency",
-     main = "Baselers Age")
+hist(x = basel$alter,
+     xlab = "Alter",
+     ylab = "Häufigkeit",
+     main = "Histogramm Alter")
 ```
 
 ]
@@ -123,10 +112,10 @@ hist(x = baselers$age,
 <br><br><br>
 ```{r, echo = F}
 # Histogram in base R
-hist(x = baselers$age,
-     xlab = "Age",
-     ylab = "Frequency",
-     main = "Baselers Age")
+hist(x = basel$alter,
+     xlab = "Alter",
+     ylab = "Häufigkeit",
+     main = "Histogramm Alter")
 ```
 
 ]
@@ -136,39 +125,39 @@ hist(x = baselers$age,
 ---
 
 
-.pull-left45[
+.pull-left4[
 
-# Base R Plotting
+# `base` Plotting
 
-The <high>classic framework</high> of plotting.
-
-Contains separate <high>function for each 'type'</high> of plot.
-
-E.g. `barplot()` for a bar plot, `boxplot()` for a box plot, and `plot()` for a scatterplot. 
+<ul>
+  <li class="m1"><span>The <high>traditional</high> approach for plotting.</span></li>
+  <li class="m2"><span><high>Separate functons</high> for different plots</span></li>
+</ul>
 
 <br>
 
 
+
 ```{r, eval = F}
 # Boxplot in base R
-boxplot(formula = height ~ sex,
-        data = baselers,
-        xlab = "Sex",
-        ylab = "Height",
-        main = "Box plot")
+boxplot(formula = groesse ~ geschlecht,
+        data = basel,
+        xlab = "Geschlecht",
+        ylab = "Groesse",
+        main = "Box plot Groesse")
 ```
 
 ]
 
-.pull-right45[
+.pull-right5[
 <br><br><br>
 ```{r, echo = F}
 # Boxplot in base R
-boxplot(formula = height ~ sex,
-        data = baselers,
-        xlab = "Sex",
-        ylab = "Height",
-        main = "Box plot")
+boxplot(formula = groesse ~ geschlecht,
+        data = basel,
+        xlab = "Geschlecht",
+        ylab = "Groesse",
+        main = "Box plot Groesse")
 ```
 
 ]
@@ -176,39 +165,39 @@ boxplot(formula = height ~ sex,
 ---
 
 
-.pull-left45[
+.pull-left4[
 
-# Base R Plotting
+# `base` Plotting
 
-The <high>classic framework</high> of plotting.
-
-Contains separate <high>function for each 'type'</high> of plot.
-
-E.g. `barplot()` for a bar plot, `boxplot()` for a box plot, and `plot()` for a scatterplot. 
+<ul>
+  <li class="m1"><span>The <high>traditional</high> approach for plotting.</span></li>
+  <li class="m2"><span><high>Separate functons</high> for different plots</span></li>
+</ul>
 
 <br>
 
 
+
 ```{r, eval = F}
 # Scatterplot in base R
-plot(x = baselers$height,
-     y = baselers$income,
+plot(x = basel$groesse,
+     y = basel$einkommen,
      xlab = "Height",
-     ylab = "Income",
-     main = "Scatterplot")
+     ylab = "Einkommen",
+     main = "Scatterplot Groesse x Einkommen")
 ```
 
 ]
 
-.pull-right45[
+.pull-right5[
 <br><br><br>
 ```{r, echo = F}
 # Scatterplot in base R
-plot(x = baselers$height,
-     y = baselers$income,
-     xlab = "Height",
-     ylab = "Income",
-     main = "Scatterplot")
+plot(x = baselers$groesse,
+     y = baselers$einkommen,
+     xlab = "Groesse",
+     ylab = "Einkommen",
+     main = "Scatterplot Groesse x Einkommen")
 ```
 
 ]
@@ -216,62 +205,91 @@ plot(x = baselers$height,
 
 ---
 
-# Problems with Base R plotting
+# Probleme mit Base R plotting
 
-.pull-left35[
+.pull-left4[
 
-- Default plots look pretty <high>outdated</high>.<br>
-
-- Plots can quickly require a <high>LOT of code</high>.<br>
-
-- Can't store plots as <high>objects</high> to reference and update later<br>
-
-<p align="center"><high>Solution: `ggplot2` </high></p>
-
-```{r, echo = FALSE, out.width = "45%"}
-knitr::include_graphics("https://www.r-graph-gallery.com/wp-content/uploads/2014/09/ggplot_hex.jpg")
-```
-
-
-
+<ul>
+  <li class="m1"><span><high>Aesthetics</high> are outdated.</span></li>
+  <li class="m2"><span>Pretty plots = <high>lots of code.</high></span></li>
+  <li class="m3"><span>Relatively <high>inflexible</high>.</span></li>
+</ul>
 ]
 
-.pull-right55[
+.pull-right5[
 
-This plot would take <high>a lot of code in Base R</high> but <high>just 10 lines of code</high>, 5 of which controlling the labels, in `ggplot2`.
-
-```{r, echo = FALSE, fig.width=7, fig.height = 4.5}
-# Add a regression line for all classes
-ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = class)) +
-  geom_point(size = 3, alpha = .9) + 
-  geom_smooth(col = "blue", method = "lm")+
-  labs(x = "Engine Displacement in Liters",
-       y = "Highway miles per gallon",
-       title = "MPG data",
-       subtitle = "Cars with higher engine displacement tend to have lower highway mpg",
-       caption = "Source: mpg data in ggplot2") + theme_bw()
-
-```
-
+<p align="center">
+<br>
+<img src="image/outdated.jpeg">
+<br>
+<font style="font-size:10px">from <a href="https://www.healthhosts.com/4-signs-your-website-is-outdated/">healthhosts.com</a></font>
+</p>
 
 ]
 
 ---
 
-# Grammar of Graphics in `ggplot2`
+# The mighty `tidyverse`
+
+The [`tidyverse`](https://www.tidyverse.org/) is a collection of high-performing, user-friendly R packages, created explicitly for efficient data analytics. 
+1. <high><mono>`ggplot2`</mono> for graphics</high>.
+2. dplyr for data wrangling.
+3. tidyr for data wrangling.
+4. `readr` for data I/O.
+5. `purrr` for function programming.
+6. `tibble` for modern `data.frame`s.
+<br><br>
+
+<table style="cellspacing:0; cellpadding:0; border:none;">
+  <col width="15%">
+  <col width="15%">
+  <col width="15%">
+  <col width="15%">
+  <col width="15%">
+  <col width="15%">
+  <tr>
+    <td bgcolor="white">
+    <img src="image/hex-ggplot2.png" height=160px></img>
+    </td>
+        <td bgcolor="white">
+    <img src="image/hex-dplyr.png"height=160px style="opacity:.2"></img>
+    </td>
+    <td bgcolor="white">
+    <img src="image/hex-tidyr.png"height=160px style="opacity:.2"></img>
+    </td>
+    <td bgcolor="white">
+    <img src="image/hex-readr.png"height=160px style="opacity:.2"></img>
+    </td>
+    <td bgcolor="white">
+    <img src="image/hex-purrr.png"height=160px style="opacity:.2"></img>
+    </td>
+    <td bgcolor="white">
+    <img src="image/hex-tibble.png"height=160px style="opacity:.2"></img>
+    </td>
+  </tr>
+</table>
+
+
+
+---
+
+# Modular graphics in <mono>ggplot2</mono>
 
 .pull-left45[
 
-The <high>Grammar of graphics</high> breaks down plots into several key pieces:
-
-| Aesthetics| Description|
-|:------|:----|
-| Data| What dataframe contains the data?|
-| axes| What does the x-axis, y-axis, color (etc) represent?|
-| color| What does color represent? |
-| size | What does size represent? |
-| geometries| What kind of geometric object do you want to plot?|
-| facets| Should there be groups of plots?|
+<ul>
+  <li class="m1"><span><high>data</high>: The dataset</span></li>
+  <li class="m2"><span><high>mapping</high>: The structure of the plot</span></li>
+  <ul class="level">
+    <li><span>What should axes represent?</span></li>
+    <li><span>What should color/size represent?</span></li>
+  </ul>
+  <li class="m3"><span><high>geoms</high>: Objects drawn within plot</high></span></li>
+  <li class="m4"><span><high>labs</high>: Plot annotation</high></span></li>
+  <li class="m5"><span><high>themes</high>: Aesthetic design</high></span></li>
+  <li class="m6"><span><high>facets</high>: Plot facets </high></span></li>
+  <li class="m7"><span><high>scales</high>: Scaling of axes</high></span></li>
+</ul>
 
 ]
 
@@ -279,16 +297,16 @@ The <high>Grammar of graphics</high> breaks down plots into several key pieces:
 .pull-right45[
 
 ```{r, echo = FALSE, fig.width = 7, fig.height = 5.5}
-# Add a regression line for all classes
-ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = class)) +
+goal = ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = class)) +
   geom_point(size = 3, alpha = .9) + 
   geom_smooth(col = "blue", method = "lm")+
-  labs(x = "Engine Displacement in Liters",
+  labs(x = "Engine displacement in liters",
        y = "Highway miles per gallon",
-       title = "MPG data",
-       subtitle = "Cars with higher engine displacement tend to have lower highway mpg",
-       caption = "Source: mpg data in ggplot2") + theme_bw()
-
+       title = "MPG dataset",
+       subtitle = "Cars with higher engline displacement drive fewer miles per gallon",
+       caption = "Source: MPG dataset in ggplot2") + 
+  theme_bw()
+goal
 ```
 
 ]
@@ -296,29 +314,36 @@ ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = class)) +
 
 ---
 
-# Our goal: Create this plot
+# Part 1: Wir kreieren diesen Plot
 
 .pull-left45[
 
-<high>Data</high>
-
-- Use the `mpg` tibble
-
-<high>Aesthetics</high>
-
-- Engine displacement (`disp`) on the x axis
-- Highway miles per gallon (`hwy`) on the y-axis
-- Color plotting elements by the `class` of car
-
-<high>Geometric objects</high>
-
-- Show data as points
-- Add a regression line
-
-<high>Labels and themes</high>
-
-- Add plotting labels
-- Use a black and white plotting theme
+<ul>
+  <li class="m1"><span><high>data</high></span></li>
+  <ul class="level">
+    <li><span>The <mono>mpg</mono> dataset</span></li>
+  </ul>
+  <li class="m2"><span><high>mapping</high></span></li>
+  <ul class="level">
+    <li><span>Engine displacement onto x-axis</span></li>
+    <li><span>Miles per gallon onto y-axis</span></li>
+    <li><span>Color according to vehicle class</span></li>
+  </ul>
+  <li class="m3"><span><high>geoms</high></span></li>
+  <ul class="level">
+    <li><span>Plot data as points</span></li>
+    <li><span>Add regression line</span></li>
+  </ul>
+  <li class="m4"><span><high>labs</high></span></li>
+  <ul class="level">
+    <li><span>Annotation of axes and titles</span></li>
+  </ul>
+  <li class="m5"><span><high>themes</high></span></li>
+  <ul class="level">
+    <li><span>black-white aesthetics</span></li>
+  </ul>
+  
+</ul>
 
 ]
 
@@ -326,18 +351,7 @@ ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = class)) +
 .pull-right45[
 
 ```{r, echo = FALSE, fig.width = 7, fig.height = 5.5}
-# Add a regression line for all classes
-
-ggplot(data = mpg, 
-       mapping = aes(x = displ, y = hwy, color = class)) +
-  geom_point(size = 3, alpha = .9) + 
-  geom_smooth(col = "blue", method = "lm")+
-  labs(x = "Engine Displacement in Liters",
-       y = "Highway miles per gallon",
-       title = "MPG data",
-       subtitle = "Cars with higher engine displacement tend to have lower highway mpg",
-       caption = "Source: mpg data in ggplot2") + theme_bw()
-
+goal
 ```
 
 
@@ -351,13 +365,15 @@ ggplot(data = mpg,
 
 .pull-left45[
 
-To <high>create a ggplot2 object</high>, use the `ggplot()` function
-
-`ggplot()` has two main arguments:
-
-- `data` - A data frame (aka `tibble`)
-- `mapping` - A call to `aes()`
-
+<ul>
+  <li class="m1"><span>All plots start with <highm>ggplot()</highm></span></li>
+  <li class="m2"><span>2 central arguments</span></li>
+  <ul class="level">
+    <li><span><mono>data</mono> | The dataset (<mono>tibble</mono>)</span></li>
+    <li><span><mono>mapping</mono> | The plot structure defined using <mono>aes()</mono>
+  </ul>
+  </span></li>
+</ul>
 ]
 
 
@@ -372,24 +388,22 @@ ggplot(data = mpg)
 
 ---
 
-# `ggplot()`
+# `aes()`
 
 
 .pull-left45[
 
-An <high>aesthetic mapping</high> is a visual property of the objects in your plot. 
-
-Use `aes()` to assign columns in your dataframe to properties in your plot.
-
-Common aesthetics are...
-
-| aesthetics| Description|
-|:------|:----|
-|     `x`, `y`|    Data mapped to coordinates|
-|     `color`, `fill`|    Border and fill colors|
-|     `alpha`| Transparency|
-|    `size`|  Size|
-|    `shape`|  Shape|
+<ul>
+  <li class="m1"><span><highm>aes()</highm> defines the structure for the <mono>mapping</mono> argument</span></li>
+  <li class="m2"><span>Central arguments:</span></li>
+  <ul class="level">
+    <li><span><mono>x,y</mono> | Defines axes</span></li>
+    <li><span><mono>color,fill</mono> | Defines colors</span></li>
+    <li><span><mono>alpha</mono> | Defines transparency</span></li>
+    <li><span><mono>size</mono> | Defines size</span></li>
+    <li><span><mono>shape</mono> | Defines object sbapes (e.g. circles or squares)</span></li>
+  </ul>
+</ul>
 
 ]
 
@@ -404,19 +418,23 @@ ggplot(data = mpg,
 
 ---
 
-# Adding elements to plots with `+`
+# <mono>+</mono>
 
 .pull-left45[
 
-Once you have specified the `data` argument, and global aesthetics with `mapping = aes()`, <high>add additional elements to the plot with `+`</high>.
+<ul>
+  <li class="m1"><span>The <highm>+</highm> operator extents plots with additional modules.</span></li>
+</ul>
 
-The `+` operator works just like the pipe `%>%` in `dplyr`. <high>It just means "and then..."</high>
+<br>
 
 ```{r, eval = FALSE, fig.width = 5, fig.height = 4, out.width = "90%"}
 ggplot(data = mpg,
        mapping = aes(x = displ,
-                     y = hwy)) + #and then
-       geom_point() 
+                     y = hwy)) + 
+  
+  # Plotte Daten als Punkte
+  geom_point() 
 ```
 
 ]
@@ -437,24 +455,21 @@ ggplot(data = mpg,
 
 ---
 
-# Geometric objects (`geom`)
+# `geom_*()`
 
+.pull-left45[
 
-.pull-left4[
-
-A <high>`geom`</high> is a geometric object in a plot that represents data
-
-To add a geom to a plot, just include ` + geom_X()` where X is the type of geom.
-
-Common geoms are...
-
-| geom| output|
-|:------|:----|
-|     `geom_point()`|    Points|
-|     `geom_bar()`|    Bar|
-|     `geom_boxplot()`| Boxplot
-|     `geom_count()`| Points with size reflecting frequency|
-|     `geom_smooth()`|  Smoothed line|
+<ul>
+  <li class="m1"><span><highm>geom_*()</highm> functions define the geometric objects used to represent the data.</span></li>
+  <li class="m2"><span>Some common <mono>geoms</mono>:</span></li>
+  <ul class="level">
+    <li><span><mono>geom_point()</mono> | for points</span></li>
+    <li><span><mono>geom_bar()</mono> | for bars</span></li>
+    <li><span><mono>geom_boxplot()</mono> | for box-plots </span></li>
+    <li><span><mono>geom_count()</mono> | for points scaled according to frequency</span></li>
+    <li><span><mono>geom_smooth()</mono> | for curves</span></li>
+  </ul>
+</ul>
 
 ]
 
@@ -473,6 +488,41 @@ ggplot(data = mpg,
 
 ---
 
+
+.pull-left45[
+
+<br>
+## `geom_count()`
+<br>
+
+```{r, out.width= "100%", echo = TRUE, fig.width = 6, fig.height = 4}
+ggplot(data = mpg,
+  mapping = aes(x = displ, y = hwy)) + 
+  geom_count()
+```
+
+
+
+
+]
+
+.pull-right45[
+
+<br>
+## `geom_bar()`
+<br>
+
+```{r, out.width= "100%", echo = TRUE, fig.width = 6, fig.height = 4}
+ggplot(data = mpg,
+  mapping = aes(x = class)) + 
+  geom_bar()
+```
+
+]
+
+
+
+---
 
 .pull-left45[
 
@@ -487,8 +537,8 @@ ggplot(data = mpg,
   geom_boxplot()
 ```
 
-
 ]
+
 
 .pull-right45[
 
@@ -503,43 +553,32 @@ ggplot(data = mpg,
   geom_violin()
 ```
 
-
 ]
-
-
 
 ---
 
+# What's missing?
+
 .pull-left45[
 
-<br>
-## `geom_bar()`
-<br>
-
-```{r, out.width= "100%", echo = TRUE, fig.width = 6, fig.height = 4}
+```{r, fig.width = 7, fig.height = 5.5, echo = F}
 ggplot(data = mpg,
-  mapping = aes(x = class)) + 
-  geom_bar()
+       mapping = aes(x = displ, 
+                     y = hwy)) + 
+  geom_point()
 ```
-
 
 ]
 
 
 .pull-right45[
 
-<br>
-## `geom_count()`
-<br>
-
-```{r, out.width= "100%", echo = TRUE, fig.width = 6, fig.height = 4}
-ggplot(data = mpg,
-  mapping = aes(x = displ,
-                y = hwy)) + 
-  geom_count()
+```{r, fig.width = 7, fig.height = 5.5, echo = FALSE}
+goal
 ```
 
 ]
+
 
 
 
@@ -547,22 +586,27 @@ ggplot(data = mpg,
 
 # `aes()`
 
+
 .pull-left45[
 
-<high>`color`</high> geoms according to a variable. 
+<ul>
+  <li class="m1"><span><highm>aes()</highm> defines the structure for the <mono>mapping</mono> argument</span></li>
+  <li class="m2"><span>2 arguments:</span></li>
+  <ul class="level">
+    <li><span><mono>x,y</mono> | Defines axes</span></li>
+    <li><span><mono>color,fill</mono> | Defines colors</span></li>
+  </ul>
+</ul>
 
-```{r, fig.width = 7, fig.height = 5.5, eval = FALSE}
+
+```{r, fig.width = 6, fig.height = 4.5, eval = F}
 ggplot(data = mpg,
-       mapping = aes(x = displ,
+       mapping = aes(x = displ, 
                      y = hwy,
-                     color = class)) + 
+                     
+                     # Farbe gemäss Klasse
+                     color = class)) +
   geom_point()
-```
-
-
-<p align="center"> `mpg`</p>
-```{r, echo = FALSE, eval = TRUE}
-knitr::kable(mpg %>% sample_n(5) %>% select(displ, hwy, class, year), format = "markdown")
 ```
 
 
@@ -570,31 +614,31 @@ knitr::kable(mpg %>% sample_n(5) %>% select(displ, hwy, class, year), format = "
 
 .pull-right45[
 
-<br>
-```{r, fig.width = 7, fig.height = 5.5, echo = FALSE}
+```{r, fig.width = 7, fig.height = 5.5, echo = F}
 ggplot(data = mpg,
-       mapping = aes(x = displ, y = hwy, color = class)) + 
+       mapping = aes(x = displ, 
+                     y = hwy,
+                     
+                     # Farbe gemäss Klasse
+                     color = class)) +
   geom_point()
 ```
-
 
 ]
 
 ---
 
-
-# What's next?
+# What's missing?
 
 .pull-left45[
 
 ```{r, fig.width = 7, fig.height = 5.5, echo = F}
 ggplot(data = mpg,
        mapping = aes(x = displ, 
-                     y = hwy, 
-                     col = class)) + 
+                     y = hwy,
+                     color = class)) + 
   geom_point()
 ```
-
 
 ]
 
@@ -602,22 +646,10 @@ ggplot(data = mpg,
 .pull-right45[
 
 ```{r, fig.width = 7, fig.height = 5.5, echo = FALSE}
-# Add a regression line for all classes
-
-ggplot(data = mpg, 
-       mapping = aes(x = displ, y = hwy, color = class)) +
-  geom_point(size = 3, alpha = .9) + 
-  geom_smooth(col = "blue", method = "lm")+
-  labs(x = "Engine Displacement in Liters",
-       y = "Highway miles per gallon",
-       title = "MPG data",
-       subtitle = "Cars with higher engine displacement tend to have lower highway mpg",
-       caption = "Source: mpg data in ggplot2") + theme_bw()
-
+goal
 ```
 
 ]
-
 
 ---
 
@@ -625,18 +657,22 @@ ggplot(data = mpg,
 
 .pull-left45[
 
-`geom_smooth()` adds a <high>smoothed line</high>.
+<ul>
+  <li class="m1"><span><highm>geom_smooth()</highm> fits curves to the data and adds them to the plot.</span></li>
+  <li class="m2"><span>Central arguments:</span></li>
+  <ul class="level">
+    <li><span><mono>method</mono> | Type of model fitted to data</span></li>
+    <li><span><mono>color</mono> | Color</high></span></li>
+  </ul>
+</ul>
 
-Change how the line is created with `method` (e.g., `method = "lm"`).
-
-Color the line with `col`.
-
-<br>
 ```{r, fig.width = 7, fig.height = 5.5, eval = F}
 ggplot(data = mpg, 
        mapping = aes(x = displ, y = hwy,
                      col = class)) +
   geom_point() + 
+  
+  # Add curve
   geom_smooth(col = "blue")
 ```
 
@@ -661,18 +697,22 @@ ggplot(data = mpg,
 
 .pull-left45[
 
-`geom_smooth()` adds a <high>smoothed line</high>.
+<ul>
+  <li class="m1"><span><highm>geom_smooth()</highm> fits curves to the data and adds them to the plot.</span></li>
+  <li class="m2"><span>Central arguments:</span></li>
+  <ul class="level">
+    <li><span><mono>method</mono> | Type of model fitted to data</span></li>
+    <li><span><mono>color</mono> | Color</high></span></li>
+  </ul>
+</ul>
 
-Change how the line is created with `method` (e.g., `method = "lm"`).
-
-Color the line with `col`.
-
-<br>
 ```{r, fig.width = 7, fig.height = 5.5, eval = F}
 ggplot(data = mpg, 
        mapping = aes(x = displ, y = hwy,
                      col = class)) +
   geom_point() + 
+  
+  # Add curve
   geom_smooth(col = "blue",
               method = "lm")
 ```
@@ -694,21 +734,54 @@ ggplot(data = mpg,
 
 ---
 
-# Overriding aesthetics
+# Inheritance
 
 .pull-left45[
 
-If you add additional plotting aesthetics, they will <high>override</high> the general plotting aesthetics.
+<ul>
+  <li class="m1"><span><highm>geom</highm>s inherit their settings from <mono>mapping</mono>.</span></li>
+  <li class="m2"><span>Vererbte Settings can be <high>overruled</high> using the <mono>geom</mono>s own arguments.</span></li>
+</ul>
 
-This is what happens, when you don't override...
 
-<br>
 ```{r, fig.width = 7, fig.height = 5.5, eval = F}
 ggplot(data = mpg, 
        mapping = aes(x = displ, y = hwy,
                      col = class)) +
   geom_point() + 
-  geom_smooth() # no overriding
+  geom_smooth() 
+```
+
+]
+
+.pull-right45[
+
+<p align="center">
+<br>
+<img src="image/question.png" height=280px>
+<br>
+<font style="font-size:10px">from <a href="http://catchingfire.ca/the-power-of-a-question-mark/">catchingfire.ca</a></font>
+</p>
+]
+
+---
+
+# Inheritance
+
+.pull-left45[
+
+<ul>
+  <li class="m1"><span><highm>geom</highm>s inherit their settings from <mono>mapping</mono>.</span></li>
+  <li class="m2"><span>Vererbte Settings can be <high>overruled</high> using the <mono>geom</mono>s own arguments.</span></li>
+</ul>
+
+
+```{r, fig.width = 7, fig.height = 5.5, eval = F}
+ggplot(data = mpg, 
+       mapping = aes(x = displ, y = hwy,
+                     col = class)) +
+  geom_point() + 
+  geom_smooth() 
 ```
 
 ]
@@ -725,14 +798,13 @@ ggplot(data = mpg,
 
 ]
 
-
 ---
 
-# What's next?
+# What's missing?
 
 .pull-left45[
 
-```{r, fig.width = 7, fig.height = 5.5, echo = FALSE}
+```{r, fig.width = 7, fig.height = 5.5, echo = F}
 ggplot(data = mpg, 
        mapping = aes(x = displ, y = hwy, col = class)) +
   geom_point() + 
@@ -745,23 +817,11 @@ ggplot(data = mpg,
 
 .pull-right45[
 
-```{r, fig.width = 7, fig.height = 5.5, echo = F}
-# Add a regression line for all classes
-
-ggplot(data = mpg, 
-       mapping = aes(x = displ, y = hwy, color = class)) +
-  geom_point(size = 3, alpha = .9) + 
-  geom_smooth(col = "blue", method = "lm")+
-  labs(x = "Engine Displacement in Liters",
-       y = "Highway miles per gallon",
-       title = "MPG data",
-       subtitle = "Cars with higher engine displacement tend to have lower highway mpg",
-       caption = "Source: mpg data in ggplot2") + theme_bw()
-
+```{r, fig.width = 7, fig.height = 5.5, echo = FALSE}
+goal
 ```
 
 ]
-
 
 ---
 
@@ -769,22 +829,23 @@ ggplot(data = mpg,
 
 .pull-left45[
 
-You can add <high>labels</high> to a plot with the `labs()` function
-
-`labs()` arguments are ...
-
-- `title` - Main title
-- `subtitle` - Subtitle
-- `caption` - Caption below
-
+<ul>
+  <li class="m1"><span><highm>labs()</highm> defines all annotation of the plot.</span></li>
+  <li class="m2"><span>Central arguments:</span></li>
+  <ul class="level">
+    <li><span><mono>x,y</mono> | annotation of axes</span></li>
+    <li><span><mono>title, subtitle</mono> | title and subtitle</high></span></li>
+    <li><span><mono>caption</mono> | caption</high></span></li>
+  </ul>
+</ul>
 
 ```{r, echo = TRUE, eval = FALSE}
 ggplot(...) +
-  labs(x = "Engine Displ...",
-       y = "Highway miles...",
-       title = "MPG data",
-       subtitle = "Cars with ...",
-       caption = "Source...")
+  labs(x = "Engine displacement in liters",
+       y = "Highway miles per gallon",
+       title = "MPG dataset",
+       subtitle = "Cars with higher Eng...",
+       caption = "Source: MPG dataset...")
 ```
 
 ]
@@ -793,372 +854,269 @@ ggplot(...) +
 .pull-right45[
 
 ```{r, echo = FALSE, fig.width = 7, fig.height = 5.5}
-
-ggplot(data = mpg, 
-       mapping = aes(x = displ, y = hwy, 
-                     col = class)) +
-  geom_point() + 
-  geom_smooth(col = "blue", method = "lm") +
-  labs(x = "Engine Displacement in Liters",
-       y = "Highway miles per gallon",
-       title = "MPG data",
-       subtitle = "Cars with higher engine displacement tend to have lower highway mpg",
-       caption = "Source: mpg data in ggplot2")
-```
-
-]
-
-
----
-
-# What's next?
-
-.pull-left45[
-
-```{r, fig.width = 7, fig.height = 5.5, echo = FALSE}
-ggplot(data = mpg, 
-       mapping = aes(x = displ, y = hwy, 
-                     col = class)) +
-  geom_point() + 
-  geom_smooth(col = "blue", method = "lm") +
-  labs(x = "Engine Displacement in Liters",
-       y = "Highway miles per gallon",
-       title = "MPG data",
-       subtitle = "Cars with higher engine displacement tend to have lower highway mpg",
-       caption = "Source: mpg data in ggplot2")
-```
-
-]
-
-
-.pull-right45[
-
-```{r, echo = FALSE, fig.width = 7, fig.height = 5.5}
-# Add a regression line for all classes
-
-ggplot(data = mpg, 
-       mapping = aes(x = displ, y = hwy, color = class)) +
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = class)) +
   geom_point(size = 3, alpha = .9) + 
-  geom_smooth(col = "blue", method = "lm")+
-  labs(x = "Engine Displacement in Liters",
+  geom_smooth(col = "blue", method = "lm") +
+  labs(x = "Engine displacement in liters",
        y = "Highway miles per gallon",
-       title = "MPG data",
-       subtitle = "Cars with higher engine displacement tend to have lower highway mpg",
-       caption = "Source: mpg data in ggplot2") + theme_bw()
-
+       title = "MPG dataset",
+       subtitle = "Cars with higher engline displacement drive fewer miles per gallon",
+       caption = "Source: MPG dataset in ggplot2") 
 ```
 
 ]
 
 
-
 ---
 
-# Themes with `theme_XX()`
+# What's missing?
 
 .pull-left45[
 
-A plotting <high>theme</high> controls many aspects of its <high>overall look</high>, from the background, to the grid lines, to the label font to the spacing between plot labels and the plotting space.
+```{r, fig.width = 7, fig.height = 5.5, echo = F}
+ggplot(data = mpg, 
+       mapping = aes(x = displ, y = hwy, col = class)) +
+  geom_point() + 
+  geom_smooth(col = "blue",
+              method = "lm") +
+  labs(x = "Engine displacement in liters",
+       y = "Highway miles per gallon",
+       title = "MPG dataset",
+       subtitle = "Cars with higher engline displacement drive fewer miles per gallon",
+       caption = "Source: MPG dataset in ggplot2") 
+```
 
-Themes built into `ggplot2`
+]
 
-`theme_bw()`<br>
-`theme_minimal()`<br>
-`theme_classic()`<br>
-`theme_light()`<br>
-`theme_void()`
 
-Themes from the `ggthemes` package
+.pull-right45[
 
-`theme_excel()`<br>
-`theme_economist()`<br>
-etc.
+```{r, fig.width = 7, fig.height = 5.5, echo = FALSE}
+goal
+```
+
+]
+
+---
+
+# Formatierung mit `theme_*()`
+
+.pull-left45[
+
+<ul>
+  <li class="m1"><span>Mit <highm>theme()</highm> können alle Aspekte eines Plots mit einem vorgefertigten Satz an Einstellungen ästhetisch formatiert werden.</span></li>
+  <li class="m2"><span>Einige <mono>theme</mono>s:</span></li>
+  <ul class="level">
+    <li><span><mono>theme_gray()</mono></span></li>
+    <li><span><mono>theme_classic()</mono></span></li>
+    <li><span><mono>theme_void()</mono></span></li>
+    <li><span><mono>theme_excel() (<mono>ggthemes</mono>)</mono></span></li>
+    <li><span><mono>theme_economist() (<mono>ggthemes</mono>)</mono></span></li>
+    <li><span><mono>theme_bw()</mono></span></li>
+  </ul>
+</ul>
 
 ]
 
 .pull-right45[
 
 ```{r, eval = F}
-ggplot(...) + 
-  theme_gray() # The Default theme
+ggplot(...) + theme_gray()
 ```
 
 ```{r, fig.width = 7, fig.height = 5.5, echo = FALSE}
-ggplot(data = mpg, 
-       mapping = aes(x = displ, y = hwy, 
-                     col = class)) +
-  geom_point() + 
-  geom_smooth(col = "blue", method = "lm") +
-  labs(x = "Engine Displ...",
-       y = "Highway miles...",
-       title = "MPG data",
-       subtitle = "Cars with ...",
-       caption = "Source...") + theme_gray()
+goal + theme_gray()
 ```
 
 ]
 
 ---
 
-# Themes with `theme_XX()`
+# Formatierung mit `theme_*()`
 
 .pull-left45[
 
-A plotting <high>theme</high> controls many aspects of its <high>overall look</high>, from the background, to the grid lines, to the label font to the spacing between plot labels and the plotting space.
-
-Themes built into `ggplot2`
-
-`theme_bw()`<br>
-`theme_minimal()`<br>
-`theme_classic()`<br>
-`theme_light()`<br>
-`theme_void()`
-
-Themes from the `ggthemes` package
-
-`theme_excel()`<br>
-`theme_economist()`<br>
-etc.
-
-
+<ul>
+  <li class="m1"><span>Mit <highm>theme()</highm> können alle Aspekte eines Plots mit einem vorgefertigten Satz an Einstellungen ästhetisch formatiert werden.</span></li>
+  <li class="m2"><span>Einige <mono>theme</mono>s:</span></li>
+  <ul class="level">
+    <li><span><mono>theme_gray()</mono></span></li>
+    <li><span><mono>theme_classic()</mono></span></li>
+    <li><span><mono>theme_void()</mono></span></li>
+    <li><span><mono>theme_excel() (<mono>ggthemes</mono>)</mono></span></li>
+    <li><span><mono>theme_economist() (<mono>ggthemes</mono>)</mono></span></li>
+    <li><span><mono>theme_bw()</mono></span></li>
+  </ul>
+</ul>
 
 ]
 
 .pull-right45[
 
 ```{r, eval = F}
-ggplot(...) + 
-  theme_light()
+ggplot(...) + theme_classic()
 ```
 
 ```{r, fig.width = 7, fig.height = 5.5, echo = FALSE}
-ggplot(data = mpg, 
-       mapping = aes(x = displ, y = hwy, 
-                     col = class)) +
-  geom_point() + 
-  geom_smooth(col = "blue", method = "lm") +
-  labs(x = "Engine Displ...",
-       y = "Highway miles...",
-       title = "MPG data",
-       subtitle = "Cars with ...",
-       caption = "Source...") + theme_light()
+goal + theme_classic()
 ```
 
 ]
 
 ---
 
-# Themes with `theme_XX()`
+# Formatierung mit `theme_*()`
 
 .pull-left45[
 
-A plotting <high>theme</high> controls many aspects of its <high>overall look</high>, from the background, to the grid lines, to the label font to the spacing between plot labels and the plotting space.
-
-Themes built into `ggplot2`
-
-`theme_bw()`<br>
-`theme_minimal()`<br>
-`theme_classic()`<br>
-`theme_light()`<br>
-`theme_void()`
-
-Themes from the `ggthemes` package
-
-`theme_excel()`<br>
-`theme_economist()`<br>
-etc.
-
-
+<ul>
+  <li class="m1"><span>Mit <highm>theme()</highm> können alle Aspekte eines Plots mit einem vorgefertigten Satz an Einstellungen ästhetisch formatiert werden.</span></li>
+  <li class="m2"><span>Einige <mono>theme</mono>s:</span></li>
+  <ul class="level">
+    <li><span><mono>theme_gray()</mono></span></li>
+    <li><span><mono>theme_classic()</mono></span></li>
+    <li><span><mono>theme_void()</mono></span></li>
+    <li><span><mono>theme_excel() (<mono>ggthemes</mono>)</mono></span></li>
+    <li><span><mono>theme_economist() (<mono>ggthemes</mono>)</mono></span></li>
+    <li><span><mono>theme_bw()</mono></span></li>
+  </ul>
+</ul>
 
 ]
 
 .pull-right45[
 
 ```{r, eval = F}
-ggplot(...) + 
-  theme_void()
+ggplot(...) + theme_void()
 ```
 
 ```{r, fig.width = 7, fig.height = 5.5, echo = FALSE}
-ggplot(data = mpg, 
-       mapping = aes(x = displ, y = hwy, 
-                     col = class)) +
-  geom_point() + 
-  geom_smooth(col = "blue", method = "lm") +
-  labs(x = "Engine Displ...",
-       y = "Highway miles...",
-       title = "MPG data",
-       subtitle = "Cars with ...",
-       caption = "Source...") + theme_void()
+goal + theme_void()
 ```
 
 ]
 
 ---
 
-# Themes with `theme_XX()`
+# Formatierung mit `theme_*()`
 
 .pull-left45[
 
-A plotting <high>theme</high> controls many aspects of its <high>overall look</high>, from the background, to the grid lines, to the label font to the spacing between plot labels and the plotting space.
-
-Themes built into `ggplot2`
-
-`theme_bw()`<br>
-`theme_minimal()`<br>
-`theme_classic()`<br>
-`theme_light()`<br>
-`theme_void()`
-
-Themes from the `ggthemes` package
-
-`theme_excel()`<br>
-`theme_economist()`<br>
-etc.
-
-
-
-]
-
-.pull-right45[
-
-
-```{r, eval = F}
-ggplot(...) + 
-  theme_excel()
-```
-
-```{r, fig.width = 7, fig.height = 5.5, echo = FALSE}
-ggplot(data = mpg, 
-       mapping = aes(x = displ, y = hwy, 
-                     col = class)) +
-  geom_point() + 
-  geom_smooth(col = "blue", method = "lm") +
-  labs(x = "Engine Displ...",
-       y = "Highway miles...",
-       title = "MPG data",
-       subtitle = "Cars with ...",
-       caption = "Source...") + theme_excel()
-```
-
-]
-
-
----
-
-# Themes with `theme_XX()`
-
-.pull-left45[
-
-A plotting <high>theme</high> controls many aspects of its <high>overall look</high>, from the background, to the grid lines, to the label font to the spacing between plot labels and the plotting space.
-
-Themes built into `ggplot2`:
-
-`theme_bw()`<br>
-`theme_minimal()`<br>
-`theme_classic()`<br>
-`theme_light()`<br>
-`theme_void()`
-
-Themes from the `ggthemes` package
-
-`theme_excel()`<br>
-`theme_economist()`<br>
-etc.
-
+<ul>
+  <li class="m1"><span>Mit <highm>theme()</highm> können alle Aspekte eines Plots mit einem vorgefertigten Satz an Einstellungen ästhetisch formatiert werden.</span></li>
+  <li class="m2"><span>Einige <mono>theme</mono>s:</span></li>
+  <ul class="level">
+    <li><span><mono>theme_gray()</mono></span></li>
+    <li><span><mono>theme_classic()</mono></span></li>
+    <li><span><mono>theme_void()</mono></span></li>
+    <li><span><mono>theme_excel() (<mono>ggthemes</mono>)</mono></span></li>
+    <li><span><mono>theme_economist() (<mono>ggthemes</mono>)</mono></span></li>
+    <li><span><mono>theme_bw()</mono></span></li>
+  </ul>
+</ul>
 
 ]
 
 .pull-right45[
 
 ```{r, eval = F}
-ggplot(...) + 
-  theme_economist()
+ggplot(...) + theme_excel()
 ```
 
 ```{r, fig.width = 7, fig.height = 5.5, echo = FALSE}
-ggplot(data = mpg, 
-       mapping = aes(x = displ, y = hwy, 
-                     col = class)) +
-  geom_point() + 
-  geom_smooth(col = "blue", method = "lm") +
-  labs(x = "Engine Displ...",
-       y = "Highway miles...",
-       title = "MPG data",
-       subtitle = "Cars with ...",
-       caption = "Source...") + theme_economist()
+goal + theme_excel()
 ```
 
 ]
 
-
 ---
 
-# Themes with `theme_XX()`
+# Formatierung mit `theme_*()`
 
 .pull-left45[
 
-A plotting <high>theme</high> controls many aspects of its <high>overall look</high>, from the background, to the grid lines, to the label font to the spacing between plot labels and the plotting space.
-
-Themes built into `ggplot2`:
-
-`theme_bw()`<br>
-`theme_minimal()`<br>
-`theme_classic()`<br>
-`theme_light()`<br>
-`theme_void()`
-
-Themes from the `ggthemes` package
-
-`theme_excel()`<br>
-`theme_economist()`<br>
-etc.
-
+<ul>
+  <li class="m1"><span>Mit <highm>theme()</highm> können alle Aspekte eines Plots mit einem vorgefertigten Satz an Einstellungen ästhetisch formatiert werden.</span></li>
+  <li class="m2"><span>Einige <mono>theme</mono>s:</span></li>
+  <ul class="level">
+    <li><span><mono>theme_gray()</mono></span></li>
+    <li><span><mono>theme_classic()</mono></span></li>
+    <li><span><mono>theme_void()</mono></span></li>
+    <li><span><mono>theme_excel() (<mono>ggthemes</mono>)</mono></span></li>
+    <li><span><mono>theme_economist() (<mono>ggthemes</mono>)</mono></span></li>
+    <li><span><mono>theme_bw()</mono></span></li>
+  </ul>
+</ul>
 
 ]
 
 .pull-right45[
 
 ```{r, eval = F}
-ggplot(...) + 
-  theme_bw()
+ggplot(...) + theme_economist()
 ```
 
 ```{r, fig.width = 7, fig.height = 5.5, echo = FALSE}
-ggplot(data = mpg, 
-       mapping = aes(x = displ, y = hwy, 
-                     col = class)) +
-  geom_point() + 
-  geom_smooth(col = "blue", method = "lm") +
-  labs(x = "Engine Displ...",
-       y = "Highway miles...",
-       title = "MPG data",
-       subtitle = "Cars with ...",
-       caption = "Source...") + theme_bw()
+goal + theme_economist()
 ```
 
 ]
 
 ---
 
-# Final result!
+# Formatierung mit `theme_*()`
 
+.pull-left45[
+
+<ul>
+  <li class="m1"><span>Mit <highm>theme()</highm> können alle Aspekte eines Plots mit einem vorgefertigten Satz an Einstellungen ästhetisch formatiert werden.</span></li>
+  <li class="m2"><span>Einige <mono>theme</mono>s:
+  <br><br>
+  <ul class="level">
+    <li><span><mono>theme_gray()</mono></span></li>
+    <li><span><mono>theme_classic()</mono></span></li>
+    <li><span><mono>theme_void()</mono></span></li>
+    <li><span><mono>theme_excel() (<mono>ggthemes</mono>)</mono></span></li>
+    <li><span><mono>theme_economist() (<mono>ggthemes</mono>)</mono></span></li>
+    <li><span><mono>theme_bw()</mono></span></li>
+  </ul>
+  </span></li>
+</ul>
+
+]
+
+.pull-right45[
+
+```{r, eval = F}
+ggplot(...) + theme_bw()
+```
+
+```{r, fig.width = 7, fig.height = 5.5, echo = FALSE}
+goal + theme_bw()
+```
+
+]
+
+
+---
+
+# Et voila!
 
 .pull-left45[
 
 ```{r, fig.width = 7, fig.height = 5.5, eval = F, echo = TRUE}
 ggplot(data = mpg, 
-       mapping = aes(x = displ, 
-                     y = hwy, 
+       mapping = aes(x = displ, y = hwy, 
                      col = class)) +
   geom_point() + 
   geom_smooth(col = "blue", 
               method = "lm")+
-  labs(x = "Engine Displ. in Liters",
-       y = "Highway miles per gallon",
-       title = "MPG data",
-       subtitle = "Cars with higher...",
-       caption = "Source: mpg data...") + 
+  labs(
+    x = "Engine displacement in liters",
+    y = "Highway miles per gallon",
+    title = "MPG dataset",
+    subtitle = "Cars with higher Eng...",
+    caption = "Source: MPG dataset...") + 
   theme_bw()
 
 ```
@@ -1169,18 +1127,67 @@ ggplot(data = mpg,
 .pull-right45[
 
 ```{r, fig.width = 7, fig.height = 5.5, echo = FALSE}
-ggplot(data = mpg, 
-       mapping = aes(x = displ, 
-                     y = hwy, col = class)) +
-  geom_point() + 
-  geom_smooth(col = "blue", method = "lm")+
-  labs(x = "Engine Displacement in Liters",
-       y = "Highway miles per gallon",
-       title = "MPG data",
-       subtitle = "Cars with higher engine displacement tend to have lower highway mpg",
-       caption = "Source: mpg data in ggplot2") + 
-  theme_bw()
+goal
+```
 
+]
+
+---
+
+# Part 2: Going crazy
+
+.pull-left45[
+
+<ul>
+  <li class="m1"><span>Create and alter a <highm>gg</highm> -object.</span></li>
+  <li class="m2"><span>Split plot in <highm>facet</highm>s</span></li>
+  <li class="m3"><span>Use <highm>theme</highm>s to alter all aesthetics aspects of your plot</span></li>
+  <li class="m4"><span>Create your own <highm>theme</highm>s.</span></li>
+  <li class="m5"><span>Save your plot as <highm>.pdf</highm> or <highm>.png</highm>.</span></li>
+</ul>
+
+]
+
+
+.pull-right45[
+
+<p align="center">
+<img src="image/button.jpeg" height="420px"><br>
+<font style="font-size:10px">from <a href="http://www.lonniemillsap.com/?p=1779">lonniemillsap.com</a></font>
+</p>
+
+]
+
+
+
+---
+
+# The <mono>gg</mono> object
+
+.pull-left45[
+
+<ul>
+  <li class="m1"><span>The <mono>ggplot</mono> function generates a <high><mono>gg</mono> object</high> that can be assigned</span></li>
+  <li class="m2"><span><mono>gg</mono> objects can be <high>altered or extended</high> using <mono>+</mono>.</span></li>
+  <li class="m3"><span>Running the object generates the plot.</span></li>
+</ul>
+
+```{r, fig.width = 8}
+# Assign plot
+my_plot <- ggplot(data = mpg,
+                    aes(x = displ,y = hwy)) + 
+  geom_point() + theme_bw()
+
+# Show class
+class(my_plot)
+```
+
+]
+
+.pull-right45[
+
+```{r, fig.width = 7, fig.height = 5.5}
+my_plot 
 ```
 
 ]
@@ -1191,37 +1198,20 @@ ggplot(data = mpg,
 
 .pull-left45[
 
-<b>1</b> ggplot returns an object of the class `gg`.<br>
-<b>2</b> You can assign the result of `ggplot` to an <high>object</high>.<br>
-<b>3</b> Evaluating the object will show the plot.<br>
-<b>4</b> You can even edit existing <high>`ggplot` objects</high>.<br>
+<ul>
+  <li class="m1"><span>The <mono>ggplot</mono> function generates a <high><mono>gg</mono> object</high> that can be assigned</span></li>
+  <li class="m2"><span><mono>gg</mono> objects can be <high>altered or extended</high> using <mono>+</mono>.</span></li>
+  <li class="m3"><span>Running the object generates the plot.</span></li>
+</ul>
 
-```{r, fig.width = 8, eval = F}
-# Create myplot
-myplot <- ggplot(data = mpg, 
-       mapping = aes(x = displ,y = hwy, 
-                     col = class)) +
-  geom_point() + 
-  labs(x = "Engine Displacement in ...",
-       y = "Highway miles per gallon",
-       title = "MPG data",
-       subtitle = "Cars with higher ...",
-       caption = "Source: mpg data ...") + 
-  theme_bw()
-```
+```{r, fig.width = 8}
+# Assign plot
+my_plot <- ggplot(data = mpg,
+                    aes(x = displ,y = hwy)) + 
+  geom_point() + theme_bw()
 
-```{r, fig.width = 8, echo = F}
-# Create myplot
-myplot <- ggplot(data = mpg, 
-       mapping = aes(x = displ,y = hwy, 
-                     col = class)) +
-  geom_point() + 
-  labs(x = "Engine Displacement in Liters",
-       y = "Highway miles per gallon",
-       title = "MPG data",
-       subtitle = "Cars with higher engine displacement tend to have lower highway mpg",
-       caption = "Source: mpg data in ggplot2") + 
-  theme_bw()
+# show class
+class(my_plot)
 ```
 
 ]
@@ -1229,63 +1219,33 @@ myplot <- ggplot(data = mpg,
 .pull-right45[
 
 ```{r, fig.width = 7, fig.height = 5.5}
-# Evaluate myplot
-myplot
+my_plot + geom_smooth()
 ```
 
 ]
+
 
 ---
 
-# The <mono>gg</mono> object
+# `facet_*()`
 
 .pull-left45[
 
-<b>1</b> ggplot returns an object of the class `gg`.<br>
-<b>2</b> You can assign the result of `ggplot` to an <high>object</high>.<br>
-<b>3</b> Evaluating the object will show the plot.<br>
-<b>4</b> You can even edit existing <high>`ggplot` objects</high>.<br>
-
-```{r, fig.width = 8, eval = F}
-# Create myplot
-myplot <- ggplot(data = mpg, 
-       mapping = aes(x = displ,y = hwy, 
-                     col = class)) +
-  geom_point() + 
-  labs(x = "Engine Displacement in ...",
-       y = "Highway miles per gallon",
-       title = "MPG data",
-       subtitle = "Cars with higher ...",
-       caption = "Source: mpg data ...") + 
-  theme_bw()
-```
-
-]
-
-.pull-right45[
-
-```{r, fig.width = 7, fig.height = 5.5}
-myplot + # add geom
-  geom_smooth(col = "blue", method = "lm") 
-```
-
-]
-
----
-
-# `facet_wrap()`
-
-.pull-left45[
-
-Faceting = <high>same plot for different groups</high>.
-
-To facet plots, use, e.g., `facet_wrap()`.
+<ul>
+  <li class="m1"><span>Facetting creates the <high>same plot for groups</high> defined by a third variable.</span></li>
+  <li class="m2"><span>Facet functions:</span></li>
+  <ul class="level">
+    <li><span><mono>facet_wrap()</mono></span></li>
+    <li><span><mono>facet_grid()</mono></span></li>
+  </ul>
+</ul>
 
 ```{r, fig.width = 7, fig.height = 5.5, echo = TRUE, eval = F}
-# Without faceting
-myplot + 
-  geom_smooth(col = "blue", 
-              method = "lm") 
+# Without facetting
+ggplot(data = mpg, 
+       mapping = aes(x = displ, 
+                     y = hwy)) + 
+  geom_point() + theme_bw()
 ```
 
 ]
@@ -1293,10 +1253,11 @@ myplot +
 .pull-right45[
 
 ```{r, fig.width = 7, fig.height = 5.5, echo = FALSE}
-# Without faceting
-myplot +
-  geom_smooth(col = "blue", 
-              method = "lm") 
+# Without facetting
+ggplot(data = mpg, 
+       mapping = aes(x = displ, 
+                     y = hwy)) + 
+  geom_point() + theme_bw()
 ```
 
 ]
@@ -1307,18 +1268,23 @@ myplot +
 
 .pull-left45[
 
-Faceting = <high>same plot for different groups</high>.
+<ul>
+  <li class="m1"><span>Facetting creates the <high>same plot for groups</high> defined by a third variable.</span></li>
+  <li class="m2"><span>Facet functions:</span></li>
+  <ul class="level">
+    <li><span><mono>facet_wrap()</mono></span></li>
+    <li><span><mono>facet_grid()</mono></span></li>
+  </ul>
+</ul>
 
-To facet plots, use, e.g., `facet_wrap()`.
-
-```{r, fig.width = 7, fig.height = 5.5, echo = TRUE, eval = FALSE}
-# With faceting
-myplot +
-  geom_smooth(col = "blue", 
-              method = "lm")  +
-  facet_wrap(~ class)  # Tilde first
+```{r, fig.width = 7, fig.height = 5.5, echo = TRUE, eval = F}
+# Without facetting
+ggplot(data = mpg, 
+       mapping = aes(x = displ, 
+                     y = hwy)) + 
+  geom_point() + theme_bw() +
+  facet_wrap(~ class)
 ```
-
 
 ]
 
@@ -1326,10 +1292,940 @@ myplot +
 
 ```{r, fig.width = 7, fig.height = 5.5, echo = FALSE}
 # With faceting
-myplot +
-  geom_smooth(col = "blue", 
-              method = "lm")  +
-  facet_wrap(~ class)  # Tilde first!
+ggplot(data = mpg, 
+       mapping = aes(x = displ, 
+                     y = hwy)) + 
+  geom_point() + theme_bw() +
+  facet_wrap(~ class)
+```
+
+]
+
+---
+
+# `facet_grid()`
+
+.pull-left45[
+
+<ul>
+  <li class="m1"><span>Facetting creates the <high>same plot for groups</high> defined by a third variable.</span></li>
+  <li class="m2"><span>Facet functions:</span></li>
+  <ul class="level">
+    <li><span><mono>facet_wrap()</mono></span></li>
+    <li><span><mono>facet_grid()</mono></span></li>
+  </ul>
+</ul>
+
+```{r, fig.width = 7, fig.height = 5.5, echo = TRUE, eval = F}
+# Without facetting
+ggplot(data = mpg, 
+       mapping = aes(x = displ, 
+                     y = hwy)) + 
+  geom_point() + theme_bw() +
+  facet_grid(drv ~ class) 
+```
+
+]
+
+.pull-right45[
+
+```{r, fig.width = 7, fig.height = 5.5, echo = FALSE}
+# With facetting
+ggplot(data = mpg, 
+       mapping = aes(x = displ, 
+                     y = hwy)) + 
+  geom_point() + theme_bw() +
+  facet_grid(drv ~ class) 
+```
+
+]
+
+
+---
+
+# `theme()`
+
+.pull-left45[
+
+<ul>
+  <li class="m1"><span><high>87 arguments in <mono>theme()</mono></high> can be used to alter all aesthetic aspects of a plot.</span></li>
+  <li class="m2"><span>Requires helper functions:</span></li>
+  <ul class="level">
+    <li><span><mono>element_rect()</mono> | for areas</span></li>
+    <li><span><mono>element_line()</mono> | for lines</span></li>
+    <li><span><mono>element_text()</mono> | for text</span></li>
+    <li><span><mono>element_blank()</mono> | for removals</span></li>
+  </ul>
+</ul>
+
+```{r, eval = F}
+# Use theme
+my_plot + 
+  theme(argument = element_*(), 
+        argument = element_*(),
+        ...)
+```
+
+]
+
+
+.pull-right45[
+
+<p align="center">
+<img src="image/theme.png">
+</p>
+]
+
+---
+
+# Background
+
+.pull-left45[
+
+<ul>
+  <li class="m1"><span>Arguments for the background:</span></li>
+  <ul class="level">
+    <li><span><mono>panel.background</mono> | for the inner background</span></li>
+    <li><span><mono>plot.background</mono> | for the outer background</span></li>
+  </ul>
+</ul>
+
+```{r, eval = F}
+# Change background
+my_plot + 
+  theme(
+    panel.background = 
+      element_rect(fill = 'tomato'), 
+    plot.background = 
+      element_rect(fill = 'burlywood'))
+```
+
+]
+
+
+.pull-right45[
+
+```{r, fig.width = 7, fig.height = 5.5, echo = FALSE}
+# Change background
+my_plot = my_plot + 
+  theme(
+    panel.background = element_rect(fill = 'tomato'), 
+    plot.background = element_rect(fill = 'burlywood'))
+my_plot
+```
+
+]
+
+---
+
+# Grid
+
+.pull-left45[
+
+<ul>
+  <li class="m1"><span>Arbguments for the grid:</span></li>
+  <ul class="level">
+    <li><span><mono>panel.grid.major</mono> | larger grid lines</span></li>
+    <li><span><mono>panel.grid.minor</mono> | smaller grid lines</span></li>
+  </ul>
+</ul>
+
+```{r, eval = F}
+# Change grid
+my_plot + 
+  theme(
+    panel.grid.major = 
+      element_line(colour = "salmon"),
+    panel.grid.minor = 
+      element_line(colour = "seagreen"))
+```
+
+]
+
+
+.pull-right45[
+
+```{r, fig.width = 7, fig.height = 5.5, echo = FALSE}
+# Change grid
+my_plot = my_plot + 
+  theme(
+    panel.grid.major = 
+      element_line(colour = "salmon"),
+    panel.grid.minor = 
+      element_line(colour = "seagreen")
+    )
+my_plot
+```
+
+]
+
+---
+
+# Raster
+
+.pull-left45[
+
+<ul>
+  <li class="m1"><span>Arbguments for the grid:</span></li>
+  <ul class="level">
+    <li><span><mono>panel.grid.major</mono> | larger grid lines</span></li>
+    <li><span><mono>panel.grid.minor</mono> | smaller grid lines</span></li>
+  </ul>
+</ul>
+
+```{r, eval = F}
+# Change grid
+my_plot + 
+  theme(
+    panel.grid.major = 
+      element_line(colour = "salmon",
+                   size = 3),
+    panel.grid.minor = 
+      element_line(colour = "seagreen",
+                   size = 1.5))
+
+```
+
+]
+
+
+.pull-right45[
+
+```{r, fig.width = 7, fig.height = 5.5, echo = FALSE}
+# Change grid
+my_plot = my_plot + 
+  theme(
+    panel.grid.major = 
+      element_line(colour = "salmon",
+                   size = 3),
+    panel.grid.minor = 
+      element_line(colour = "seagreen",
+                   size = 1.5)
+    )
+my_plot
+```
+
+]
+
+---
+
+# Axes
+
+.pull-left45[
+
+<ul>
+  <li class="m1"><span>Arguments for axes:</span></li>
+  <ul class="level">
+    <li><span><mono>axis.line.x</mono> | x-axis</span></li>
+    <li><span><mono>axis.line.y</mono> | y-axis</span></li>
+    <li><span><mono>axis.title.x</mono> | x-axis title</span></li>
+    <li><span><mono>axis.title.y</mono> | y-axis title</span></li>
+  </ul>
+</ul>
+
+```{r, eval = F}
+# Change axes
+my_plot + 
+  theme(
+    axis.line.x = 
+      element_line(colour = "deeppink", 
+                   size = 3.5, 
+                   lineend = "butt"),
+    axis.line.y = 
+      element_line(colour = "deeppink", 
+                   size = 3.5))
+
+```
+
+]
+
+
+.pull-right45[
+
+```{r, fig.width = 7, fig.height = 5.5, echo = FALSE}
+# Change axes
+my_plot = my_plot + 
+  theme(
+    axis.line.x = 
+      element_line(colour = "deeppink", 
+                   size = 3.5, 
+                   lineend = "butt"),
+    axis.line.y = 
+      element_line(colour = "deeppink", 
+                   size = 3.5)
+    )
+my_plot
+```
+
+]
+
+---
+
+# Axes
+
+.pull-left45[
+
+<ul>
+  <li class="m1"><span>Arguments for axes:</span></li>
+  <ul class="level">
+    <li><span><mono>axis.line.x</mono> | x-axis</span></li>
+    <li><span><mono>axis.line.y</mono> | y-axis</span></li>
+    <li><span><mono>axis.title.x</mono> | x-axis title</span></li>
+    <li><span><mono>axis.title.y</mono> | y-axis title</span></li>
+  </ul>
+</ul>
+
+```{r, eval = F}
+# Change axes titles
+my_plot + 
+  theme(
+    axis.title.x = 
+      element_text(family = "Comic Sans MS", 
+                   size = 30),
+    axis.title.y = 
+      element_text(family = "Comic Sans MS", 
+                   size = 30))
+
+```
+
+]
+
+.pull-right45[
+
+```{r, fig.width = 7, fig.height = 5.5, echo = FALSE}
+# Change axes titles
+my_plot = my_plot + 
+  theme(
+    axis.line.x = 
+      element_line(colour = "deeppink", 
+                   size = 3.5, 
+                   lineend = "butt"),
+    axis.line.y = 
+      element_line(colour = "deeppink", 
+                   size = 3.5),
+    axis.title.x = 
+      element_text(
+                   family = "Comic Sans MS", 
+                   size = 30),
+    axis.title.y = 
+      element_text(family = "Comic Sans MS", 
+                   size = 30)
+    )
+my_plot
+```
+
+]
+
+
+---
+
+.pull-left45[
+
+# Further arguments <font style="font-size:16px"> (incomplete)</font>
+
+<u><mono>theme()</mono></u>
+
+<table style="width:100%">
+  <tr>
+    <td> <b>Argument</b> </td>
+    <td> <b>Description</b> </td>
+  </tr>
+  <tr>
+    <td> <mono>axis.title.*</mono> </td>
+    <td> Everything concerning axes titles </td>
+  </tr>
+  <tr>
+    <td> <mono>axis.ticks.*</mono> </td>
+    <td> Everything concerning axes tick marks </td>
+  </tr>
+  <tr>
+    <td> <mono>axis.line.*</mono> </td>
+    <td> Everything concerning axis lines </td>
+  </tr>
+  <tr>
+    <td> <mono>legend.*</mono> </td>
+    <td> Everything concerning legends </td>
+  </tr>
+  <tr>
+    <td> <mono>panel.*</mono> </td>
+    <td> Everything concerning the inner plot region </td>
+  </tr>
+  <tr>
+    <td> <mono>plot.*</mono> </td>
+    <td> Everything concerning the outer plot region </td>
+  </tr>
+  <tr>
+    <td> <mono>strip.*</mono> </td>
+    <td> Everything concerning the facet headers </td>
+  </tr>
+</table>
+
+]
+
+.pull-right45[
+
+<br>
+
+<u><mono>element_rect()</mono></u>
+
+<table style="width:100%">
+  <tr>
+    <td> <b>Argument</b> </td>
+    <td> <b>Description</b> </td>
+  </tr>
+  <tr>
+    <td> <mono>fill</mono> </td>
+    <td> Color for filling areas </td>
+  </tr>
+  <tr>
+    <td> <mono>colour</mono> </td>
+    <td> Color for borders </td>
+  </tr>
+</table>
+
+<u><mono>element_line()</mono></u>
+
+<table style="width:100%">
+  <tr>
+    <td> <b>Argument</b> </td>
+    <td> <b>Description</b> </td>
+  </tr>
+  <tr>
+    <td> <mono>size</mono> </td>
+    <td> Line sizes </td>
+  </tr>
+  <tr>
+    <td> <mono>linetype</mono> </td>
+    <td> Type of line </td>
+  </tr>
+</table>
+
+<u><mono>element_text()</mono></u>
+
+<table style="width:100%">
+  <tr>
+    <td> <b>Argument</b> </td>
+    <td> <b>Description</b> </td>
+  </tr>
+  <tr>
+    <td> <mono>face</mono> </td>
+    <td> Font type (e.g., italic or bold) </td>
+  </tr>
+  <tr>
+    <td> <mono>colour</mono> </td>
+    <td> Font color  </td>
+  </tr>
+</table>
+
+]
+
+
+---
+
+# Own themes
+
+.pull-left45[
+
+```{r}
+my_theme <- theme(
+  panel.background = 
+    element_rect(fill = 'tomato'), 
+  plot.background = 
+    element_rect(fill = 'burlywood'),
+  panel.grid.major = element_line(
+    colour = "salmon", size = 3),
+  panel.grid.minor = element_line(
+    colour = "seagreen", size = 1.5),
+  axis.line.x = element_line(
+    colour = "deeppink", size = 3.5, 
+    lineend = "butt"),
+  axis.line.y = element_line(
+    colour = "deeppink", size = 3.5),
+  axis.title.x = element_text(
+    family = "Comic Sans MS", size = 30),
+  axis.title.y = element_text(
+    family = "Comic Sans MS", size = 30))
+```
+
+]
+
+.pull-right45[
+
+```{r, echo = F}
+my_plot <- ggplot(data = mpg,
+                 aes(x = displ,
+                     y = hwy)) + 
+              geom_point() + 
+              theme_bw()
+```
+
+```{r, fig.width = 7, fig.height = 5.5, echo = TRUE}
+my_plot
+```
+
+]
+
+---
+
+# Own themes
+
+.pull-left45[
+
+```{r}
+my_theme <- theme(
+  panel.background = 
+    element_rect(fill = 'tomato'), 
+  plot.background = 
+    element_rect(fill = 'burlywood'),
+  panel.grid.major = element_line(
+    colour = "salmon", size = 3),
+  panel.grid.minor = element_line(
+    colour = "seagreen", size = 1.5),
+  axis.line.x = element_line(
+    colour = "deeppink", size = 3.5, 
+    lineend = "butt"),
+  axis.line.y = element_line(
+    colour = "deeppink", size = 3.5),
+  axis.title.x = element_text(
+    family = "Comic Sans MS", size = 30),
+  axis.title.y = element_text(
+    family = "Comic Sans MS", size = 30))
+```
+
+]
+
+.pull-right45[
+
+```{r, echo = F}
+my_plot <- ggplot(data = mpg,
+                 aes(x = displ,
+                     y = hwy)) + 
+              geom_point() + 
+              theme_bw()
+```
+
+```{r, fig.width = 7, fig.height = 5.5, echo = TRUE}
+my_plot + my_theme
+```
+
+]
+
+---
+
+# `scale_*()`
+
+.pull-left45[
+
+<ul>
+  <li class="m1"><span><mono>scale_*()</mono> funcgions adjust all sizes and lengths.</span></li>
+  <li class="m2"><span>Types of <mono>scale_*()</mono> functions:</span></li>
+  <ul class="level">
+    <li><span><mono>scale_xy_*</mono> | Scale axes</span></li>
+    <li><span><mono>scale_color_*, scale_color_*</mono> | Scale colors</span></li>
+    <li><span><mono>scale_size_*</mono> | Scale sizes</span></li>
+    <li><span><mono>scale_alpha_*</mono> | Scale transparency</span></li>
+    <li><span>...</span></li>
+  </ul>
+</ul>
+
+]
+
+.pull-right45[
+
+```{r, echo = F}
+# orginal plot
+my_plot <- ggplot(data = mpg,
+       aes(x = displ, y = hwy,
+           size = cyl, color = class)) + 
+  geom_point() + theme_bw()
+```
+
+```{r, fig.width = 7, fig.height = 5.5, echo = TRUE}
+my_plot
+```
+
+
+]
+
+---
+
+# `scale_x_continuous()`
+
+.pull-left45[
+
+<ul>
+  <li class="m1"><span><mono>scale_*()</mono> funcgions adjust all sizes and lengths.</span></li>
+  <li class="m2"><span>Types of <mono>scale_*()</mono> functions:</span></li>
+  <ul class="level">
+    <li><span><mono>scale_xy_*</mono> | Scale axes</span></li>
+    <li><span><mono>scale_color_*, scale_color_*</mono> | Scale colors</span></li>
+    <li><span><mono>scale_size_*</mono> | Scale sizes</span></li>
+    <li><span><mono>scale_alpha_*</mono> | Scale transparency</span></li>
+    <li><span>...</span></li>
+  </ul>
+</ul>
+
+]
+
+.pull-right45[
+
+```{r, echo = F}
+# orginal plot
+my_plot <- ggplot(data = mpg,
+       aes(x = displ, y = hwy,
+           size = cyl, color = class)) + 
+  geom_point() + theme_bw()
+```
+
+```{r, fig.width = 7, fig.height = 5.5, echo = TRUE}
+my_plot + 
+  scale_x_continuous(limits = c(1, 30))
+```
+
+]
+
+---
+
+# `scale_x_reverse()`
+
+.pull-left45[
+
+<ul>
+  <li class="m1"><span><mono>scale_*()</mono> funcgions adjust all sizes and lengths.</span></li>
+  <li class="m2"><span>Types of <mono>scale_*()</mono> functions:</span></li>
+  <ul class="level">
+    <li><span><mono>scale_xy_*</mono> | Scale axes</span></li>
+    <li><span><mono>scale_color_*, scale_color_*</mono> | Scale colors</span></li>
+    <li><span><mono>scale_size_*</mono> | Scale sizes</span></li>
+    <li><span><mono>scale_alpha_*</mono> | Scale transparency</span></li>
+    <li><span>...</span></li>
+  </ul>
+</ul>
+
+]
+
+.pull-right45[
+
+```{r, echo = F}
+# orginal plot
+my_plot <- ggplot(data = mpg,
+       aes(x = displ, y = hwy,
+           size = cyl, color = class)) + 
+  geom_point() + theme_bw()
+```
+
+```{r, fig.width = 7, fig.height = 5.5, echo = TRUE}
+my_plot + 
+  scale_x_reverse()
+```
+
+]
+
+---
+
+# `scale_color_hue()`
+
+.pull-left45[
+
+<ul>
+  <li class="m1"><span><mono>scale_*()</mono> funcgions adjust all sizes and lengths.</span></li>
+  <li class="m2"><span>Types of <mono>scale_*()</mono> functions:</span></li>
+  <ul class="level">
+    <li><span><mono>scale_xy_*</mono> | Scale axes</span></li>
+    <li><span><mono>scale_color_*, scale_color_*</mono> | Scale colors</span></li>
+    <li><span><mono>scale_size_*</mono> | Scale sizes</span></li>
+    <li><span><mono>scale_alpha_*</mono> | Scale transparency</span></li>
+    <li><span>...</span></li>
+  </ul>
+</ul>
+
+]
+
+.pull-right45[
+
+```{r, echo = F}
+# orginal plot
+my_plot <- ggplot(data = mpg,
+       aes(x = displ, y = hwy,
+           size = cyl, color = class)) + 
+  geom_point() + theme_bw()
+```
+
+```{r, fig.width = 7, fig.height = 5.5, echo = TRUE}
+my_plot + 
+  scale_colour_hue(h = c(160, 260))
+```
+
+]
+
+---
+
+# `scale_size()`
+
+.pull-left45[
+
+<ul>
+  <li class="m1"><span><mono>scale_*()</mono> funcgions adjust all sizes and lengths.</span></li>
+  <li class="m2"><span>Types of <mono>scale_*()</mono> functions:</span></li>
+  <ul class="level">
+    <li><span><mono>scale_xy_*</mono> | Scale axes</span></li>
+    <li><span><mono>scale_color_*, scale_color_*</mono> | Scale colors</span></li>
+    <li><span><mono>scale_size_*</mono> | Scale sizes</span></li>
+    <li><span><mono>scale_alpha_*</mono> | Scale transparency</span></li>
+    <li><span>...</span></li>
+  </ul>
+</ul>
+
+]
+
+.pull-right45[
+
+```{r, echo = F}
+# orginal plot
+my_plot <- ggplot(data = mpg,
+       aes(x = displ, y = hwy,
+           size = cyl, color = class)) + 
+  geom_point() + theme_bw()
+```
+
+```{r, fig.width = 7, fig.height = 5.5, echo = TRUE}
+my_plot + 
+  scale_size(range = c(1, 15))
+```
+
+]
+
+
+
+---
+
+# Multiple plots
+
+.pull-left45[
+
+<ul>
+  <li class="m1"><span>The <mono>patchwork</mono> package delivers a novel Syntax to  join multiple plots in a single one.</span></li>
+  <li class="m2"><span><mono>patchwork</mono> syntax:</span></li>
+  <ul class="level">
+    <li><span><mono>+</mono> | join plots</span></li>
+    <li><span><mono>|</mono> | join horizontally</span></li>
+    <li><span><mono>/</mono> | join vertically</span></li>
+    <li><span><mono>()</mono> | bind plots</span></li>
+    <li><span><mono>&</mono> | apply to all</span></li>
+  </ul>
+</ul>
+
+```{r, echo = F}
+my_plot <- ggplot(data = mpg,
+                 aes(x = displ,
+                     y = hwy)) + 
+              geom_point() + 
+              theme_bw()
+
+require(patchwork)
+```
+
+<br>
+
+```{r, fig.width = 7, fig.height = 5.5, echo = TRUE}
+# Speichere plots
+pretty <- my_plot
+ugly <- my_plot + my_theme
+```
+
+]
+
+.pull-right45[
+
+```{r, fig.width = 7, fig.height = 5.5, echo = TRUE}
+pretty + ugly
+```
+
+]
+
+---
+
+# Multiple plots
+
+.pull-left45[
+
+<ul>
+  <li class="m1"><span>The <mono>patchwork</mono> package delivers a novel Syntax to  join multiple plots in a single one.</span></li>
+  <li class="m2"><span><mono>patchwork</mono> syntax:</span></li>
+  <ul class="level">
+    <li><span><mono>+</mono> | join plots</span></li>
+    <li><span><mono>|</mono> | join horizontally</span></li>
+    <li><span><mono>/</mono> | join vertically</span></li>
+    <li><span><mono>()</mono> | bind plots</span></li>
+    <li><span><mono>&</mono> | apply to all</span></li>
+  </ul>
+</ul>
+
+```{r, echo = F}
+my_plot <- ggplot(data = mpg,
+                 aes(x = displ,
+                     y = hwy)) + 
+              geom_point() + 
+              theme_bw()
+
+require(patchwork)
+```
+
+<br>
+
+```{r, fig.width = 7, fig.height = 5.5, echo = TRUE}
+# Speichere plots
+pretty <- my_plot
+ugly <- my_plot + my_theme
+```
+
+]
+
+.pull-right45[
+
+```{r, fig.width = 7, fig.height = 5.5, echo = TRUE}
+pretty | ugly + pretty
+```
+
+]
+
+---
+
+# Multiple plots
+
+.pull-left45[
+
+<ul>
+  <li class="m1"><span>The <mono>patchwork</mono> package delivers a novel Syntax to  join multiple plots in a single one.</span></li>
+  <li class="m2"><span><mono>patchwork</mono> syntax:</span></li>
+  <ul class="level">
+    <li><span><mono>+</mono> | join plots</span></li>
+    <li><span><mono>|</mono> | join horizontally</span></li>
+    <li><span><mono>/</mono> | join vertically</span></li>
+    <li><span><mono>()</mono> | bind plots</span></li>
+    <li><span><mono>&</mono> | apply to all</span></li>
+  </ul>
+</ul>
+
+```{r, echo = F}
+my_plot <- ggplot(data = mpg,
+                 aes(x = displ,
+                     y = hwy)) + 
+              geom_point() + 
+              theme_bw()
+
+require(patchwork)
+```
+
+<br>
+
+```{r, fig.width = 7, fig.height = 5.5, echo = TRUE}
+# Speichere plots
+pretty <- my_plot
+ugly <- my_plot + my_theme
+```
+
+]
+
+.pull-right45[
+
+```{r, fig.width = 7, fig.height = 5.5, echo = TRUE}
+(pretty+pretty) / (pretty+pretty)
+```
+
+]
+
+---
+
+# Multiple plots
+
+.pull-left45[
+
+<ul>
+  <li class="m1"><span>The <mono>patchwork</mono> package delivers a novel Syntax to  join multiple plots in a single one.</span></li>
+  <li class="m2"><span><mono>patchwork</mono> syntax:</span></li>
+  <ul class="level">
+    <li><span><mono>+</mono> | join plots</span></li>
+    <li><span><mono>|</mono> | join horizontally</span></li>
+    <li><span><mono>/</mono> | join vertically</span></li>
+    <li><span><mono>()</mono> | bind plots</span></li>
+    <li><span><mono>&</mono> | apply to all</span></li>
+  </ul>
+</ul>
+
+```{r, echo = F}
+my_plot <- ggplot(data = mpg,
+                 aes(x = displ,
+                     y = hwy)) + 
+              geom_point() + 
+              theme_bw()
+
+require(patchwork)
+```
+
+<br>
+
+```{r, fig.width = 7, fig.height = 5.5, echo = TRUE}
+# Speichere plots
+pretty <- my_plot
+ugly <- my_plot + my_theme
+```
+
+]
+
+.pull-right45[
+
+```{r, fig.width = 7, fig.height = 5.5, echo = TRUE}
+(pretty+pretty) / (pretty+pretty) &
+  my_theme
+```
+
+]
+
+---
+
+# Multiple plots
+
+.pull-left45[
+
+<ul>
+  <li class="m1"><span>The <mono>patchwork</mono> package delivers a novel Syntax to  join multiple plots in a single one.</span></li>
+  <li class="m2"><span><mono>patchwork</mono> syntax:</span></li>
+  <ul class="level">
+    <li><span><mono>+</mono> | join plots</span></li>
+    <li><span><mono>|</mono> | join horizontally</span></li>
+    <li><span><mono>/</mono> | join vertically</span></li>
+    <li><span><mono>()</mono> | bind plots</span></li>
+    <li><span><mono>&</mono> | apply to all</span></li>
+  </ul>
+</ul>
+
+```{r, echo = F}
+my_plot <- ggplot(data = mpg,
+                 aes(x = displ,
+                     y = hwy)) + 
+              geom_point() + 
+              theme_bw()
+
+require(patchwork)
+```
+
+<br>
+
+```{r, fig.width = 7, fig.height = 5.5, echo = TRUE}
+# Speichere plots
+pretty <- my_plot
+ugly <- my_plot + my_theme
+```
+
+]
+
+.pull-right45[
+
+```{r, fig.width = 7, fig.height = 5.5, echo = TRUE}
+(pretty+pretty) / (pretty+pretty) +
+  plot_annotation(tag_levels = "A") & 
+  theme(legend.position = "none") 
 ```
 
 ]
@@ -1340,47 +2236,34 @@ myplot +
 
 .pull-left45[
 
-To create an <high>image file</high> of a plot (e.g., `.jpg`, `.pdf`, `.png`), use the `ggsave()` function.
-
-<u>Arguments</u>
-
-<table style="width:100%">
-  <tr>
-    <td> <b>Argument</b> </td>
-    <td> <b>Description</b> </td>
-  </tr>
-  <tr>
-    <td> <mono>filename</mono> </td>
-    <td> Name of the to-be-created file (including extension) </td>
-  </tr>
-  <tr>
-    <td> <mono>device</mono> </td>
-    <td> File type (e.g.; "pdf", "jpeg", "png") </td>
-  </tr>
-  <tr>
-    <td> <mono>path</mono> </td>
-    <td> Folder to store image in </td>
-  </tr>
-  <tr>
-    <td> <mono>width</mono>, <mono>height</mono>  </td>
-    <td> Plot width, height (e.g., inches) </td>
-  </tr>
-</table>
+<ul>
+  <li class="m1"><span>Create <high>graphic files</high> with <mono>ggsave()</mono>.</span></li>
+  <li class="m2"><span><mono>ggsave</mono> arguments:</span></li>
+  <ul class="level">
+    <li><span><mono>filename</mono> | name of file</span></li>
+    <li><span><mono>device</mono> | z.B. <mono>".pdf"</mono> or <mono>".png"</mono></span></li>
+    <li><span><mono>path</mono> | path to folder</span></li>
+    <li><span><mono>height, width</mono> | height, width</span></li>
+    <li><span><mono>unit</mono> | Unit for height, width</span></li>
+    <li><span><mono>dpi</mono> | Resolution per unit</span></li>
+  </ul>
+</ul>
 
 ]
 
 
-.pull-right5[
+.pull-right45[
 
 ```{r, eval = FALSE}
-# Create myplot object
-myplot <- myplot +
-  geom_smooth(col = "blue", method = "lm") +
-  facet_wrap(~ class)
+# Create plot
+my_plot <- ggplot(data = mpg,
+                 aes(x = displ, y = hwy)) + 
+            geom_point() + 
+            mytheme
 
-# Create "myplot.pdf", from myplot
-ggsave(filename = "myplot.pdf",
-       plot = myplot,
+# Save "my_plot.pdf"
+ggsave(filename = "my_plot",
+       plot = my_plot,
        device = "pdf",
        path = "figures",
        width = 6, 
@@ -1395,47 +2278,34 @@ ggsave(filename = "myplot.pdf",
 
 .pull-left45[
 
-To create an <high>image file</high> of a plot (e.g., `.jpg`, `.pdf`, `.png`), use the `ggsave()` function.
-
-<u>Arguments</u>
-
-<table style="width:100%">
-  <tr>
-    <td> <b>Argument</b> </td>
-    <td> <b>Description</b> </td>
-  </tr>
-  <tr>
-    <td> <mono>filename</mono> </td>
-    <td> Name of the to-be-created file (including extension) </td>
-  </tr>
-  <tr>
-    <td> <mono>device</mono> </td>
-    <td> File type (e.g.; "pdf", "jpeg", "png") </td>
-  </tr>
-  <tr>
-    <td> <mono>path</mono> </td>
-    <td> Folder to store image in </td>
-  </tr>
-  <tr>
-    <td> <mono>width</mono>, <mono>height</mono>  </td>
-    <td> Plot width, height (e.g., inches) </td>
-  </tr>
-</table>
+<ul>
+  <li class="m1"><span>Create <high>graphic files</high> with <mono>ggsave()</mono>.</span></li>
+  <li class="m2"><span><mono>ggsave</mono> arguments:</span></li>
+  <ul class="level">
+    <li><span><mono>filename</mono> | name of file</span></li>
+    <li><span><mono>device</mono> | z.B. <mono>".pdf"</mono> or <mono>".png"</mono></span></li>
+    <li><span><mono>path</mono> | path to folder</span></li>
+    <li><span><mono>height, width</mono> | height, width</span></li>
+    <li><span><mono>unit</mono> | Unit for height, width</span></li>
+    <li><span><mono>dpi</mono> | Resolution per unit</span></li>
+  </ul>
+</ul>
 
 ]
 
 
-.pull-right5[
+.pull-right45[
 
 ```{r, eval = FALSE}
-# Create myplot object
-myplot <- myplot +
-  geom_smooth(col = "blue", method = "lm") +
-  facet_wrap(~ class)
+# Create plot
+my_plot <- ggplot(data = mpg,
+                 aes(x = displ, y = hwy)) + 
+            geom_point() + 
+            mytheme
 
-# Create "myplot.png", from myplot
-ggsave(filename = "myplot.png",
-       plot = myplot,
+# Save "my_plot.pdf"
+ggsave(filename = "my_plot",
+       plot = my_plot,
        device = "png",
        path = "figures",
        width = 6, 
@@ -1446,11 +2316,14 @@ ggsave(filename = "myplot.png",
 
 
 
+
+
+
 ---
 
 class: middle, center
 
-<h1><a href="https://therbootcamp.github.io/R4DS_2019Feb/_sessions/Plotting/Plotting_practical.html">Practical</a></h1>
+<h1><a href="https://therbootcamp.github.io/EDA_2020Feb/_sessions/Plotting/Plotting_practical.html">Practical</a></h1>
 
 
 

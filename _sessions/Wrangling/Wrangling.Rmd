@@ -1,22 +1,17 @@
 ---
 title: "Wrangling"
-author: "R for Data Science<br>
-  <a href='https://therbootcamp.github.io'>
-    Basel R Bootcamp
+author: "<a href='https://cdsbasel.github.io/dataanalytics/'>
+    Data Analytics for Psychology and Business
   </a>
   <br>
-  <a href='https://therbootcamp.github.io/R4DS_2019Feb/'>
+  <a href='https://cdsbasel.github.io/dataanalytics/menu/materials.html'>
     <i class='fas fa-clock' style='font-size:.9em;'></i>
   </a>&#8239; 
-  <a href='https://therbootcamp.github.io'>
+  <a href='https://cdsbasel.github.io/dataanalytics/'>
     <i class='fas fa-home' style='font-size:.9em;' ></i>
   </a>&#8239;
-  <a href='mailto:therbootcamp@gmail.com'>
-    <i class='fas fa-envelope' style='font-size: .9em;'></i>
-  </a>&#8239;
-  <a href='https://www.linkedin.com/company/basel-r-bootcamp/'>
-    <i class='fab fa-linkedin' style='font-size: .9em;'></i>
-  </a>"
+  <a href='mailto:rui.mata@unibas.ch'>
+    <i class='fas fa-envelope' style='font-size: .9em;'></i>"
 date: "February 2019"
 output:
   xaringan::moon_reader:
@@ -36,16 +31,16 @@ layout: true
     <span> 
       <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png" height=14 style="vertical-align: middle"/>
     </span>
-    <a href="https://therbootcamp.github.io/">
+    <a href="https://cdsbasel.github.io/dataanalytics/">
       <span style="padding-left:82px"> 
         <font color="#7E7E7E">
-          www.therbootcamp.com
+          cdsbasel.github.io/dataanalytics/
         </font>
       </span>
     </a>
-    <a href="https://therbootcamp.github.io/">
+    <a href="https://cdsbasel.github.io/dataanalytics/">
       <font color="#7E7E7E">
-       R For Data Science | February 2019
+       Data Analytics for Psychology and Business | February 2019
       </font>
     </a>
     </span>
@@ -70,7 +65,283 @@ baselers <- read_csv("https://raw.githubusercontent.com/therbootcamp/baselers/ma
 ```
 
 
-# What is wrangling?
+
+# Datentypen ausserhalb von R
+
+<table class="tg"  style="cellspacing:0; cellpadding:0; border:none;" width="95%">
+<col width=30%>
+<col width=30%>
+<col width=30%>
+<tr>
+  <td bgcolor = 'white' style='vertical-align:top'>
+    <ul>
+      <li class="m1"><span><high>Structured data</high>
+        <ul class="level">
+        <li><span>Delimiter separated: <mono>.csv</mono>, <mono>.txt</mono>, etc.</span></li>
+        <li><span>Relational databases: <mono>SQL</mono></span></li>
+        </ul>
+        <br><img src="image/structured.png" height=250px>
+        </span></li>
+      </ul>
+    </td>
+  <td bgcolor = 'white' style='vertical-align:top'>
+    <ul>
+      <li class="m2"><span><high>Semi-structured data</high>
+        <ul class="level">
+        <li><span>Markup: <mono>.xml</mono>, <mono>.xls</mono>, <mono>.html</mono> etc.</span></li>
+        <li><span>Non markup: <mono>JSON</mono>, <mono>MongoDB</mono></span></li>
+        </ul>
+        <br><img src="image/html.png" height=250px>
+        </span></li>
+      </ul>
+    </td>
+  <td bgcolor = 'white' style='vertical-align:top'>
+    <ul>
+      <li class="m3"><span><high>Unstructued data</high>
+        <ul class="level">
+        <li><span>z.B. Text</span></li>
+        </ul>
+        <br><br><br><br><br2><img src="image/text.png" height=250px>
+        </span></li>
+      </ul>
+    </td>
+  </tr>
+</table>
+
+
+
+---
+
+# Delimiter separated data 
+
+.pull-left45[
+
+<ul>
+  <li class="m1"><span><high>Delimiter</high> separates columns.</span></li>
+  <li class="m2"><span>Typically available as <high>local text file</high>.</span></li>
+  <li class="m3"><span><high>data types</high> are inferred.</span></li>
+</ul>
+
+<br>
+<p align="center">
+  <img src="image/readr.png" height=200>
+</p>
+
+]
+
+.pull-right45[
+
+<p align="center">
+  <img src="image/structured.png" height=400>
+</p>
+
+]
+
+---
+
+# Delimiter separated data 
+
+.pull-left45[
+
+<ul>
+  <li class="m1"><span><high>Delimiter</high> separates columns.</span></li>
+  <li class="m2"><span>Typically available as <high>local text file</high>.</span></li>
+  <li class="m3"><span><high>data types</high> are inferred.</span></li>
+</ul>
+
+<br>
+<p align="center">
+  <img src="image/readr.png" height=200>
+</p>
+
+]
+
+.pull-right45[
+
+```{r, echo = F, message=F}
+require(tibble)
+options(tibble.width = 35, tibble.max_extra_cols = 0, tibble.print_max = 3,
+        tibble.print_min = 5)
+```
+
+
+```{r, message = F}
+# Lese Basel Datensatz ein
+basel <- read_csv("1_Data/basel.csv")
+
+# Benutze expliziten Delimiter
+basel <- read_delim("1_Data/basel.csv",
+                   delim = ",")
+basel
+
+```
+
+]
+
+---
+
+# Identify file path 
+
+.pull-left45[
+
+<ul>
+  <li class="m1"><span>Identify file path using RStudio's <high>auto-complete</high>.</span></li>
+  <li class="m2"><span>Place cursor between quotation marks and press <highm>tab</highm>.</span></li>
+</ul>
+
+<p align="center">
+  <img src="image/tab.png" height="150px"></img>
+</p>
+
+] 
+
+.pull-right45[
+
+<p align="center">
+  <img src="image/auto_complete_1.png"></img>
+</p>
+
+]
+
+---
+
+# Den Filepath finden
+
+.pull-left45[
+
+<ul>
+  <li class="m1"><span>Identify file path using RStudio's <high>auto-complete</high>.</span></li>
+  <li class="m2"><span>Place cursor between quotation marks and press <highm>tab</highm>.</span></li>
+</ul>
+
+<p align="center">
+  <img src="image/tab.png" height="150px"></img>
+</p>
+
+] 
+
+.pull-right45[
+
+<p align="center">
+  <img src="image/auto_complete_2.png"></img>
+</p>
+
+]
+
+---
+
+# Inferred data types 
+
+.pull-left45[
+
+
+```{r}
+# Read basel data set
+basel <- read_csv("1_Data/basel.csv")
+```
+
+]
+
+.pull-right45[
+
+<img src="image/structured.png"></image>
+
+]
+
+---
+
+# Inferred data types 
+
+.pull-left45[
+
+<ul>
+  <li class="m1"><span>Sometimes <mono>readr</mono> needs a little help to <high>correctly identify data types</high>.</span></li>
+</ul>
+
+
+```{r, eval = F}
+# Explicitly define missing values
+basel <- read_csv("1_Data/basel.csv",
+                  na = c('NA'))
+
+# Re-infer data types
+basel <- type_convert(basel)
+```
+]
+
+.pull-right45[
+
+<img src="image/structured.png"></image>
+
+]
+
+---
+
+# Semi-structured data <font style="font-size: 16px">mit <a href="https://github.com/r-lib/xml2"><mono>xml2</mono></a> und <a href="https://github.com/hadley/rvest"><mono>rvest</mono></a></font> 
+
+```{r, echo = F, message=F}
+library(xml2) ; library(rvest) ; library(tibble)
+options(max.print=100, width=220,tibble.width = 90,tibble.print_min = 10)
+```
+
+```{r, message=F}
+# Load table from Wikipedia (with xml2 and rvest)
+read_html("https://en.wikipedia.org/wiki/R_(programming_language)") %>%
+  html_node(xpath = '//*[@id="mw-content-text"]/div/table[2]') %>%
+  html_table() %>% as_tibble()
+```
+
+
+---
+
+# Other data <font style="font-size: 16px">siehe <a href="https://cran.r-project.org/web/packages/rio/vignettes/rio.html">rio</a></font>
+
+.pull-left45[
+### `readr` <img src="image/readr.png" width="50", align="right"> 
+```{r, eval = F}
+# read fixed width files (can be fast)
+data <- read_fwf(file, ...)
+
+# read Apache style log files
+data <- read_log(file, ...)
+
+```
+
+### `haven` <img src="image/haven.png" width="50" align="right">
+```{r, eval = F}
+# read SAS's .sas7bat and sas7bcat files
+data <- read_sas(file, ...)
+
+# read SPSS's .sav files
+data <- read_sav(file, ...)
+
+# etc
+```
+]
+
+.pull-right45[
+### `readxl` <img src="image/readxl.png" width="50" align="right">
+```{r, eval = F}
+# read Excel's .xls and xlsx files
+data <- read_excel(file, ...)
+```
+<br>
+### Other
+```{r, eval = F}
+# Read Matlab .mat files
+data <- R.matlab::readMat(file, ...)
+
+# Read and wrangle .xml and .html
+data <- XML::xmlParseParse(file, ...)
+
+# from package jsonlite: read .json files
+data <- jsonlite::read_json(file, ...)
+```
+]
+
+---
+
+# What is Wrangling?
 
 <p align = "center">
 <img src="image/wrangling.jpeg" height=450px><br>
@@ -82,27 +353,29 @@ baselers <- read_csv("https://raw.githubusercontent.com/therbootcamp/baselers/ma
 
 .pull-left45[
 
-# This is wrangling!
+# This is Wrangling!
 
-<div style="padding-bottom:10px"></div>
-
-#### <high>Transform</high>
-
-Change variable names
-
-Add new variables
-
-#### <high>Organise</high></font>
-
-Sort data by variables
-
-Merging data from two separate dataframes
-
-Move data between variables and rows
-
-#### <high>Aggregate and summarise</high></font>
-
-Group data and calculate and summary stats
+<ul>
+  <li class="m1"><span><high>Transform</high>
+  <br><br>
+  <ul class="level">
+    <li><span>Rename columns names</span></li>
+    <li><span>Create new variables</span></li>
+  </ul></span></li>
+  <li class="m2"><span><high>Organize</high>
+  <br><br>
+  <ul class="level">
+    <li><span>Sort</span></li>
+    <li><span>Join data sets</span></li>
+    <li><span>Flip columns and rows</span></li>
+  </ul></span></li>
+  <li class="m3"><span><high>Aggregate</high>
+  <br><br>
+  <ul class="level">
+    <li><span>Create groups</span></li>
+    <li><span>Calculate statistics for groups</span></li>
+  </ul></span></li>
+</ul>
 
 
 
@@ -111,131 +384,7 @@ Group data and calculate and summary stats
 .pull-right5[
 <br>
 <p align="center">
-<img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/organise_transform_aggregate.png" height = "530px">
-</p>
-
-]
-
----
-
-
-# `dplyr` + `tidyr`
-
-.pull-left5[
-
-To wrangle data in R, we will use the <high><mono>dplyr</mono></high> and <high><mono>tidyr</mono></high> packages, which are part of the <high><mono>tidyverse</mono></high>.
-
-| Package | Function| Function|
-|:-------------|:----|
-|<b>dplyr</b> | Transformation | `rename()`, `mutate()`, `case_when()`, `*_join()`  |
-|<b>dplyr</b> | Organisation | `arrange()`, `slice()`, `filter()`, `select()`  |
-|<b>tidyr</b> | Organisation | `gather()`, `spread()` |
-|<b>dplyr</b> | Aggregation | `group_by()`, `summarise()` |
-
-]
- 
-.pull-right4[
-
-<p align = "center">
-<img src="image/packages.png" height=320px>
-</p>
-
-
-]
-
----
-
-# The Pipe!  <high>`%>%`</high>
-
-.pull-left4[
-
-`dplyr` makes extensive use of a new operator called the <high><i>Pipe</i> `%>%`</high><br>
-
-Read the <high><i>Pipe</i> `%>%`</high> as "And Then..."
-
-<br>
-
-```{r, eval = FALSE, echo = TRUE}
-# Start with data
-data %>% # AND THEN...
-  
-DO_SOMETHING %>% # AND THEN...
-  
-DO_SOMETHING %>% # AND THEN...
-  
-DO_SOMETHING %>% # AND THEN...
-
-```
-
-]
-
-.pull-right55[
-
-<p align="center">
-  <img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/b9/MagrittePipe.jpg/300px-MagrittePipe.jpg" width = "400px"><br>
-<br><i>This is not a pipe. But <mono>%>%</mono> is!</i>
-</p>
-
-]
-
-
-
----
-
-# The Pipe!  <high>`%>%`</high>
-
-.pull-left4[
-
-```{r}
-#  Vector of `scores`
-score <- c(8, 4, 6, 3, 7, 3)
-score
-
-# Mean: Base-R-way
-mean(score)
-
-# Mean: Tidyverse-style (with %>%)
-score %>%  # AND THEN 
-  mean()  
-```
-
-
-]
-
-.pull-right55[
-
-<p align="center">
-  <img src="image/pipe.png" height = "400px">
-</p>
-
-]
-
----
-
-# The Pipe! <high>`%>%`</high>
-
-.pull-left4[
-
-```{r}
-#  Vector of `scores`
-score <- c(8, 4, 6, 3, 7, 3)
-score
-
-# Mean: Base-R-way
-round(mean(score), digits = 1)
-
-# Mean: Tidyverse-style (with %>%)
-score %>%     # AND THEN
-  mean() %>%  # AND THEN
-  round(digits = 1)
-```
-
-]
-
-.pull-right55[
-
-<p align="center">
-  <img src="image/pipe.png" height = "400px">
+<img src="image/wrangling.png" height = "530px">
 </p>
 
 ]
@@ -245,46 +394,42 @@ score %>%     # AND THEN
 
 .pull-left4[
 
-# 2 dirty data sets
+# 2 'dirty' data sets
 
-### Goals
-
-<b>1</b> <i>Rename</i> - Give meaningful <high>variable names</high>.<br><br>
-<b>2</b> <i>Recode</i> - Use appropriate <high>units</high> and <high>labels</high> for nominal variables.<br><br>
-<b>3</b> <i>Join</i> - <high>Combine</high> datasets.<br><br>
-<b>4</b> <i>Sort</i> - <high>Sort</high> tibble by age. <br><br>
-<b>5</b> <i>Filter</i> - Select relevant <high>cases</high>. <br><br>
-<b>6</b> <i>Select</i> - Select relevant <high>variables</high>.<br><br>
-<b>7</b> <i>Gather</i> - Change to <high>long format</high>.<br><br>
-
+<ul>
+  <li class="m1"><span><high>Rename</high>: Add intuitive column names</span></li>
+  <li class="m2"><span><high>Recode</high>: Change to appropriate units.</span></li>
+  <li class="m3"><span><high>Join</high>: Join datasets.</span></li>
+  <li class="m4"><span><high>Sort</high>: Sort datasets.</span></li>
+  <li class="m5"><span><high>Filter</high>: Select relevant cases.</span></li>
+  <li class="m6"><span><high>Select</high>: Select relevant variables.</span></li>
+</ul>
 
 ]
 
 .pull-right45[
 
-<br><br2>
+<br>
 
 ```{r, echo = F}
 patients <- tibble(id = c(1, 2, 3, 4, 5),
-                   X1 = c(37, 65, 57, 34, 45),
-                   X2 = c(1, 2, 2, 1, 2))
+                    X1 = c(37, 65, 57, 34, 45),
+                    X2 = c(1, 2, 2, 1, 2))
 
 ```
 
 ```{r}
-# patients tibble
 patients
 ```
 
 
 ```{r, echo = F}
-results <- tibble(id = c(4, 92, 1, 2, 99),
-                  t_1 = c(100, 134, 123, 143, 102),
-                  t_2 = c(105, 150, 135, 140,68))
+results  <- tibble(id = c(4, 92, 1, 2, 99),
+                     t_1 = c(100, 134, 123, 143, 102),
+                     t_2 = c(105, 150, 135, 140,68))
 ```
 
 ```{r}
-# results tibble
 results
 ```
 
@@ -293,44 +438,178 @@ results
 
 ---
 
-# Transformation
+# The mighty `tidyverse`
+
+The [`tidyverse`](https://www.tidyverse.org/) is a collection of high-performing, user-friendly R packages, created explicitly for efficient data analytics. 
+1. `ggplot2` for graphics
+2. <high><mono>dplyr</mono> for data wrangling</high>.
+3. <high><mono>tidyr</mono> for data wrangling</high>.
+4. `readr` for data I/O.
+5. `purrr` for function programming.
+6. `tibble` for modern `data.frame`s.
+<br><br>
+
+<table style="cellspacing:0; cellpadding:0; border:none;">
+  <col width="15%">
+  <col width="15%">
+  <col width="15%">
+  <col width="15%">
+  <col width="15%">
+  <col width="15%">
+  <tr>
+    <td bgcolor="white">
+    <img src="image/hex-ggplot2.png" height=160px style="opacity:.2"></img>
+    </td>
+        <td bgcolor="white">
+    <img src="image/hex-dplyr.png"height=160px></img>
+    </td>
+    <td bgcolor="white">
+    <img src="image/hex-tidyr.png"height=160px></img>
+    </td>
+    <td bgcolor="white">
+    <img src="image/hex-readr.png"height=160px style="opacity:.2"></img>
+    </td>
+    <td bgcolor="white">
+    <img src="image/hex-purrr.png"height=160px style="opacity:.2"></img>
+    </td>
+    <td bgcolor="white">
+    <img src="image/hex-tibble.png"height=160px style="opacity:.2"></img>
+    </td>
+  </tr>
+</table>
+
+---
+
+# <mono>`%>%`</mono>
+
+.pull-left45[
+
+<ul>
+  <li class="m1"><span>The preferred way of using `dplyr` includes a <high>novel operator</high>, the pipe <highm>%>%</highm>.</span></li>
+</ul>
+
+<br>
+
+<p align="center">
+  <img src="image/pipe.jpg" width = "300px"><br>
+<font style="font-size:10px">from <a href="https://upload.wikimedia.org/wikipedia/en/thumb/b/b9/MagrittePipe.jpg">wikimedia.org</a></font>
+</p>
+
+]
+
+.pull-right45[
+
+
+```{r}
+# Numerical vector
+score <- c(8, 4, 6, 3, 7, 3)
+score
+
+# mean: Base-R-style
+mean(score)
+
+# mean: dplyr-style
+score %>%  
+  mean()  
+```
+
+
+]
+
+
+
+---
+
+# `%>%`
+
+.pull-left45[
+
+<ul>
+  <li class="m1"><span>The preferred way of using `dplyr` includes a <high>novel operator</high>, the pipe <highm>%>%</highm>.</span></li>
+</ul>
+
+<br>
+
+<p align="center">
+  <img src="image/pipe.jpg" width = "300px"><br>
+<font style="font-size:10px">from <a href="https://upload.wikimedia.org/wikipedia/en/thumb/b/b9/MagrittePipe.jpg">wikimedia.org</a></font>
+</p>
+
+
+]
+
+.pull-right45[
+
+<p align="center">
+  <img src="image/pipe.png" height = "400px">
+</p>
+
+]
+
+---
+
 
 .pull-left4[
 
-Transformation functions are used to <high>alter the content</high> of a `tibble`.
+# Transform
 
-<br2>
-
-| Function| Description|
-|:-------------|:----|
-| `rename()` | <high>Change names</high> of variables |
-| `mutate()`|   <high>Create variable</high> from existing variables|
-| `case_when()`|  <high>Recode values</high> from a vector to another|
-| `left_join()` | <high>Combine tibbbles</high> |
+<ul>
+  <li class="m1"><span><high>Rename</high>: Choose intuitive column names.
+  <br><br>
+  <ul class="level">
+    <li><span><mono>rename()</mono></span></li>
+  </ul>
+  </span></li>
+  <li class="m2"><span><high>Recode</high>: Choose appropriate units and labels. 
+  <br><br>
+  <ul class="level">
+    <li><span><mono>mutate()</mono></span></li>
+    <li><span><mono>case_when()</mono></span></li>
+  </ul>
+  </span></li>
+  <li class="m3"><span><high>Join</high>: Join datasets
+  <br><br>
+  <ul class="level">
+    <li><span><mono>left_join()</mono></span></li>
+  </ul>
+  </span></li>
+</ul>
 
 ]
 
-.pull-right5[
+.pull-right45[
+
+<br>
 
 ```{r, echo = F}
-options(tibble.width = 60)   # Baselers data
+patients <- tibble(id = c(1, 2, 3, 4, 5),
+                    X1 = c(37, 65, 57, 34, 45),
+                    X2 = c(1, 2, 2, 1, 2))
+
 ```
 
 ```{r}
-patients   # patients data
+patients
 ```
 
 
-]
+```{r, echo = F}
+results  <- tibble(id = c(4, 92, 1, 2, 99),
+                   t_1 = c(100, 134, 123, 143, 102),
+                   t_2 = c(105, 150, 135, 140,68))
+```
 
+```{r}
+results
+```
+
+]
 
 ---
 
 # `rename()` 
 
-.pull-left4[
-
-<high>Change variable names</high> with `rename()`.
+.pull-left45[
 
 ```{r, eval = FALSE, echo = TRUE}
 patients %>%
@@ -338,22 +617,17 @@ patients %>%
          NEW = OLD)
 ```
 
-```{r}
-patients  # Original
-```
 ]
 
-.pull-right5[
-
-Change `X1` to `age`, and `X2` to `arm`.
+.pull-right45[
 
 ```{r}
-# 0) Start with patients data
+# Starte mit Datensatz
 patients %>% 
 
-# 1) Change variable names with rename()
-  rename(age = X1,  # New = Old
-         arm = X2)  # New = Old
+# Ändere Spaltennamen
+  rename(age = X1,
+         condition = X2)
 ```
 
 
@@ -363,34 +637,29 @@ patients %>%
 
 # `mutate()` 
 
-.pull-left4[
-
-Create <high>new variables</high>, or <high>change existing ones</high>, with `mutate()`.
+.pull-left45[
 
 ```{r, eval = FALSE}
 tibble %>%
   mutate(
-   NEW1 = DEFINITION1,
-   NEW2 = DEFINITION2,
-   NEW3 = DEFINITION3,
+   NAME1 = DEFINITION1,
+   NAME2 = DEFINITION2,
+   NAME3 = DEFINITION3,
    ...
   )
 ```
 ]
 
-.pull-right5[
-
-Calculate two new variables `age_months` and `age_decades`.
+.pull-right45[
 
 ```{r, warning = FALSE}
 patients %>% 
-
   rename(age = X1, 
-         arm = X2) %>%   # AND THEN...
+         condition = X2) %>%
   
-# Create new variables with mutate()
-  mutate(age_months = age * 12,
-         age_decades = age / 10)
+# Kreiere neue Variablen
+  mutate(monate = age * 12,
+         dekaden = age / 10)
 ```
 
 ]
@@ -399,113 +668,150 @@ patients %>%
 
 # `case_when()`
 
-.pull-left4[
-
-Use `case_when()` with `mutate()` to define <high>new variables based on logical conditions</high>.
+.pull-left45[
 
 ```{r, eval = FALSE}
-# Using mutate(case_when())
 tibble %>%
   mutate(
-    NEW = case_when(
-      COND1 ~ VAL1,
-      COND2 ~ VAL2
-    ))
+    NAME = case_when(
+      LOGICAL1 ~ VALUE1,
+      LOGICAL2 ~ VALUE2,
+      ...
+      )
+    )
 
 ```
 
 
 ]
 
-.pull-right55[
-
-Create `arm_lab` that carries `'placebo'` for `arm == 1` and `'drug'` for `arm == 2`.
+.pull-right45[
 
 ```{r}
 patients %>% 
-
   rename(age = X1, 
-         arm = X2) %>%
+         condition = X2) %>%
   
-  # Create arm_lab from arm
-  mutate(arm_lab = case_when(arm == 1 ~ "placebo",
-                             arm == 2 ~ "drug"))
+# Create cond_label from condition
+  mutate(cond_label = case_when(
+    condition == 1 ~ "placebo",
+    condition == 2 ~ "medication"))
 ```
 
 ]
 
-
 ---
 
-# Joining data
+# Join datasets
  
 <p align="center">
-  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/joining_data.png" height="450px">
+  <img src="image/joining_data.png" height="450px">
 </p> 
 
 
 ---
 
-# `left_join()`
+# `inner_join()`
 
-.pull-left35[
-
-Use `left_join()` to <high>combine two data frames</high> based on one or more key variables.
+.pull-left4[
 
 ```{r, eval = FALSE}
-# Join tibble_2 to tibble_1
-#   matched by KEY
-tibble_1 %>%
-  left_join(tibble_2, 
-      by = c("KEY"))
+TIBBLE1 %>%
+  inner_join(TIBBLE2, 
+             by = c("KEY"))
 ```
-
-Other `*_join()` functions: `right_join()`, `full_join()`, `inner_join()`, `anti_join()`, `semi_join()`.
 
 ]
 
-.pull-right6[
+.pull-right5[
 
 ```{r,error=TRUE}
-# Join patients with results to create combined
-combined <- patients %>% 
-  rename(age = X1, arm = X2) %>%
-  mutate(arm_lab = case_when(arm == 1 ~ "placebo",
-                              arm == 2 ~ "drug")) %>%
+patients %>% 
+  rename(age = X1, condition = X2) %>%
+  mutate(cond_label = case_when(
+    condition == 1 ~ "placebo",
+    condition == 2 ~ "medication")) %>%
   
-# Join with results with left_join()
+  # Verbinde mit ergebnisse
+  inner_join(ergebnisse, by = "id")
+```
+]
+
+---
+
+# `left_join()`
+
+.pull-left4[
+
+```{r, eval = FALSE}
+TIBBLE1 %>%
+  left_join(TIBBLE2, 
+            by = c("KEY"))
+```
+
+]
+
+.pull-right5[
+
+```{r,error=TRUE}
+patients %>% 
+  rename(age = X1, condition = X2) %>%
+  mutate(cond_label = case_when(
+    condition == 1 ~ "placebo",
+    condition == 2 ~ "medication")) %>%
+  
+  # Verbinde mit ergebnisse
+  left_join(ergebnisse, by = "id")
+```
+]
+
+---
+
+# Organize
+
+.pull-left4[
+
+<ul>
+  <li class="m4"><span><high>Sortieren</high>: Sort data.
+  <br><br>
+  <ul class="level">
+    <li><span><mono>arrange()</mono></span></li>
+  </ul>
+  </span></li>
+  <li class="m5"><span><high>Filtern</high>: Select relevant cases.
+  <br><br>
+  <ul class="level">
+    <li><span><mono>slice()</mono></span></li>
+    <li><span><mono>filter()</mono></span></li>
+  </ul>
+  </span></li>
+  <li class="m6"><span><high>Auswählen</high>: Select relevant variables.
+  <br><br>
+  <ul class="level">
+    <li><span><mono>select()</mono></span></li>
+  </ul>
+  </span></li>
+</ul>
+
+]
+
+.pull-right55[
+
+```{r,echo=FALSE}
+patient_results = patients %>% 
+  rename(age = X1, condition = X2) %>%
+  mutate(cond_label = case_when(
+    condition == 1 ~ "placebo",
+    condition == 2 ~ "medication")) %>%
+  
+  # Join with results
   left_join(results, by = "id")
 ```
 
-```{r, eval = TRUE}
-# Show combined data set
-combined 
-```
-
-]
-
----
-
-# Organisation
-
-.pull-left4[
-
-Organisation functions help you change the organisation of your data by <high>sorting rows</high> by variables, <high>filter rows</high> based on criteria, <high>select variables</high> (etc).
-
-| Function| Description|
-|:--------|:----|:-------------|
-| `arrange()` |<high>Sort rows</high> by variables|
-| `slice()`|   <high>Select rows</high> by location|
-| `filter()` | <high>Select rows</high> by criteria|
-| `select()`|   <high>Select variables</high>|
-
-]
-
-.pull-right55[
 
 ```{r}
-# combined tibble
-combined
+# Joined tibble
+patient_results
 ```
 
 
@@ -517,31 +823,25 @@ combined
 
 .pull-left4[
 
-Use `arrange()` to <high>sort rows</high> in increasing or decreasing (using `desc()`) order of one or more variables.
-
 ```{r, echo = TRUE, eval = FALSE}
+# Sort ascending
 tibble %>%
-  arrange(A, B)
-```
+  arrange(VAR1, VAR2)
 
-To sort in descending order, use `desc()`
-
-```{r, echo = TRUE, eval = FALSE}
+# Sort descending (with desc())
 tibble %>%
-  arrange(desc(A), B)
+  arrange(desc(VAR1), VAR2)
 ```
 
 ]
 
-.pull-right55[
-
-Sort by `arm`.
-
+.pull-right5[
 ```{r}
-combined %>%
-  arrange(arm)   # Sort by arm
+patient_results %>%
+  
+  # Sort according to condition
+  arrange(condition)
 ```
-
 
 ]
 
@@ -551,30 +851,24 @@ combined %>%
 
 .pull-left4[
 
-Use `arrange()` to <high>sort rows</high> in increasing or decreasing (using `desc()`) order of one or more variables.
-
 ```{r, echo = TRUE, eval = FALSE}
+# Sort ascending
 tibble %>%
-  arrange(A, B)
-```
+  arrange(VAR1, VAR2)
 
-To sort in descending order, use `desc()`
-
-```{r, echo = TRUE, eval = FALSE}
+# Sort descending (with desc())
 tibble %>%
-  arrange(desc(A), B)
+  arrange(desc(VAR1), VAR2)
 ```
-
 ]
 
-.pull-right55[
-
-
-Sort by `arm` and then `age`.
+.pull-right5[
 
 ```{r}
-combined %>%
-  arrange(arm, age)  # Sort by arm then age
+patient_results %>%
+  
+  # Sort according to both
+  arrange(condition, age) 
 ```
 
 ]
@@ -587,28 +881,26 @@ combined %>%
 
 .pull-left4[
 
-Use `slice()` to <high>select rows</high> (or remove) by row number.
+```{r, eval = F}
+# Slice with sequence
+patient_results %>%
+  slice(INDEX_START:INDEX_STOP)
 
-Use `c()`, `a:b`, or `seq()` to create row numbers
-
-```{r}
-# Integer vector
-c(2, 6, 10)
-
-# Integer vector of 0 to 5
-0:5
+# Slice with vector  
+patient_results %>%
+  slice(c(INDEX1, INDEX2, ...))
 ```
 
 
 ]
 
-.pull-right55[
-
-Select rows `3` and `5`.
+.pull-right5[
 
 ```{r}
-# Rows 3 and 5 only
-combined %>%
+patient_results %>%
+  arrange(condition, age) %>%
+
+# Lines 3 and 5 
   slice(c(3, 5))
 ```
 
@@ -621,28 +913,25 @@ combined %>%
 
 .pull-left4[
 
-Use `slice()` to <high>select rows</high> (or remove) by row number.
+```{r, eval = F}
+# Slice with sequence
+patient_results %>%
+  slice(INDEX_START:INDEX_STOP)
 
-Use `c()`, `a:b`, or `seq()` to create row numbers
-
-```{r}
-# Integer vector
-c(2, 6, 10)
-
-# Integer vector of 0 to 5
-0:5
+# Slice with vector  
+patient_results %>%
+  slice(c(INDEX1, INDEX2, ...))
 ```
 
 ]
 
-.pull-right55[
-
-
-Select rows `1` through `4`.
+.pull-right5[
 
 ```{r}
+patient_results %>%
+  arrange(condition, age) %>%
+
 # First 4 rows
-combined %>%
   slice(1:4)
 ```
 
@@ -654,26 +943,22 @@ combined %>%
 
 .pull-left4[
 
-Use `filter()` to <high>select rows</high> (or remove) based on logical statements.
-
-<high>Chain</high> logical comparison operators with `&` (AND) and `|` (OR).
-
-<high>`==`</high> - is equal to<br>
-<high>`<`</high>, <high>`>`</high> - smaller/greater than<br>
-<high>`≤`</high>, <high>`≥`</high> - smaller/greater than or equal<br>
-<high>`&`</high>, <high>`&&`</high> - logical AND<br>
-<high>`|`</high>, <high>`||`</high> - logical OR<br>
-
+```{r, eval = F}
+patient_results %>%
+  filter(VAR1 == VALUE1,
+         VAR2 > VALUE2,
+         VAR3 < VALUE3,
+         VAR4 == VALUE4 | VAR5 < VALUE5)
+```
 ]
 
-.pull-right55[
-
-Select <i>only</i> patients over `30`.
+.pull-right5[
 
 ```{r}
-# Filter patients older than 30
-combined %>%
-  filter(age > 30)
+patient_results %>%
+  
+  # Patients with age > 35
+  filter(age > 35)
 ```
 
 ]
@@ -685,26 +970,23 @@ combined %>%
 
 .pull-left4[
 
-Use `filter()` to <high>select rows</high> (or remove) based on logical statements.
-
-<high>Chain</high> logical comparison operators with `&` (AND) and `|` (OR).
-
-<high>`==`</high> - is equal to<br>
-<high>`<`</high>, <high>`>`</high> - smaller/greater than<br>
-<high>`<=`</high>, <high>`>=`</high> - smaller/greater than or equal<br>
-<high>`&`</high>, <high>`&&`</high> - logical AND<br>
-<high>`|`</high>, <high>`||`</high> - logical OR<br>
+```{r, eval = F}
+patient_results %>%
+  filter(VAR1 == VALUE1,
+         VAR2 > VALUE2,
+         VAR3 < VALUE3,
+         VAR4 == VALUE4 | VAR5 < VALUE5)
+```
 
 ]
 
-.pull-right55[
-
-Select <i>only</i> patients over `30` given arm is `'drug'`.
+.pull-right5[
 
 ```{r}
-# Filter patients older than 30 given drug
-combined %>%
-  filter(age > 30 & arm_lab == "drug")
+# Age larger 35 & cond_label is medication
+patient_results %>%
+  filter(age > 35,
+         cond_label == "medication")
 ```
 
 ]
@@ -716,31 +998,25 @@ combined %>%
 
 .pull-left4[
 
-Use `select()` to <high>select variables</high> (and remove all others)
-
 ```{r, eval = FALSE}
-# Select variables A, B
+# Select variables
 tibble %>% 
-  select(A, B)
-```
+  select(VAR1, VAR2)
 
-<high>Remove variables</high> with `-`.
-
-```{r, eval = FALSE}
-# Select everything BUT A
+# Select all but  one variable
 tibble %>% 
-  select(-A)
+  select(-VAR1)
 ```
 
 ]
 
-.pull-right55[
-
-Select variables `id` and `arm`.
+.pull-right5[
 
 ```{r}
-combined %>%
-  select(id, arm) # Select id and arm variables
+patient_results %>%
+  
+  # Select id and condition
+  select(id, condition)
 ```
 
 ]
@@ -751,150 +1027,364 @@ combined %>%
 
 .pull-left4[
 
-Use `select()` to <high>select variables</high> (and remove all others)
-
 ```{r, eval = FALSE}
-# Select variables A, B
+# Select variables
 tibble %>% 
-  select(A, B)
-```
+  select(VAR1, VAR2)
 
-<high>Remove variables</high> with `-`.
-
-```{r, eval = FALSE}
-# Select everything BUT A
+# Select all but one variable
 tibble %>% 
-  select(-A)
+  select(-VAR1)
 ```
 
 
 ]
 
-.pull-right55[
-
-Select everything <i>except</i> id
+.pull-right5[
 
 ```{r}
-
-combined %>%
-  select(-id) # Everything BUT id
+patient_results %>%
+  
+  # Everything but id
+  select(-id)
 ```
+
+]
+
+---
+
+# `starts_with()`
+
+.pull-left4[
+
+```{r, eval = FALSE}
+# Select variables
+tibble %>% 
+  select(starts_with("PATTERN"))
+
+```
+
+
+]
+
+.pull-right5[
+
+```{r}
+patient_results %>%
+  
+  # Select variables starting with "t"
+  select(starts_with("t"))
+
+```
+
+]
+
+---
+
+# `contains()`
+
+.pull-left4[
+
+
+```{r, eval = FALSE}
+# Select variables
+tibble %>% 
+  select(contains("PATTERN"))
+
+```
+
+]
+
+.pull-right5[
+
+```{r}
+patient_results %>%
+  
+  # Select variables that contain "-"
+  select(contains("_"))
+
+```
+
+]
+
+---
+
+# `pivot_longer()`
+
+.pull-left4[
+
+```{r, eval = F}
+# wide to long
+tibble %>% 
+  pivot_longer(cols = VARS,
+               names_to = NAME1,
+               values_to = NAME2)
+```
+
+]
+
+.pull-right5[
+
+```{r}
+# wide to long
+patient_results %>% 
+  filter(cond_label == "placebo")
+
+```
+]
+
+---
+
+# `pivot_longer()`
+
+.pull-left4[
+
+```{r, eval = F}
+# wide to long
+DATA %>% 
+  pivot_longer(cols = VARS,
+               names_to = NAME1,
+               values_to = NAME2)
+```
+
+]
+
+.pull-right5[
+
+```{r}
+# wide to long
+patient_results %>% 
+  filter(cond_label == "placebo") %>%
+  pivot_longer(cols = c("t_1", "t_2"),
+               names_to = "zeit",
+               values_to = "messung")
+```
+
+]
+
+---
+
+
+# `pivot_wider()`
+
+.pull-left4[
+
+```{r, eval = F}
+# long to wide
+tibble %>% 
+  pivot_wider(names_from = VAR1,
+              values_from = VAR2)
+```
+]
+
+.pull-right5[
+
+```{r, echo = FALSE}
+# long to wide
+patient_results_lang <- patient_results %>% 
+  filter(cond_label == "placebo") %>%
+  pivot_longer(cols = c("t_1", "t_2"),
+               names_to = "zeit",
+               values_to = "messung")
+```
+
+```{r}
+# long to wide
+patient_results_lang
+```
+
+]
+
+---
+
+
+# `pivot_wider()`
+
+.pull-left4[
+
+```{r, eval = F}
+# long to wide
+tibble %>% 
+  pivot_wider(names_from = VAR1,
+              values_from = VAR2)
+```
+]
+
+.pull-right5[
+
+```{r, echo = FALSE}
+# long to wide
+patient_results_lang <- patient_results %>% 
+  filter(cond_label == "placebo") %>%
+  pivot_longer(cols = c("t_1", "t_2"),
+               names_to = "zeit",
+               values_to = "messung")
+```
+
+```{r}
+# long to wide
+patient_results_lang %>%
+    pivot_wider(names_from = "zeit",
+                values_from = "messung")
+```
+
+]
+
+---
+
+# Aggregate
+
+.pull-left4[
+
+<ul>
+  <li class="m1"><span><high>Aggregate</high>
+  <br><br>
+  <ul class="level">
+    <li><span><mono>summarise()</mono></span></li>
+    <li><span><mono>summarise_if()</mono></span></li>
+    <li><span><mono>group_by(), summarise()</mono></span></li>
+    <li><span><mono>n(), first(), last(), nth()</mono></span></li>
+    <li><span><mono>pull()</mono></span></li>
+  </ul>
+  </span></li>
+</ul>
+
+]
+
+.pull-right5[
+
+```{r, echo=F}
+options(tibble.width=40, tibble.print_max=5, tibble.print_min=5, tibble.max_extra_cols=10)
+```
+
+```{r}
+patient_results
+```
+
 
 ]
 
 
 ---
 
-# Long and wide formats
+
+
+# `summarise()`
 
 .pull-left4[
 
-Some functions require data to be in a certain shape, that is to be either in a wide or a long format.
 
-Use <high>`gather()`</high> and <high>`spread()`</high> from the `tidyr` package to change a tibble between <high>wide</high> and <high>long</high> formats.
+```{r, echo = TRUE, eval = FALSE}
+tibble %>%
+  summarise(
+    NAME1 = SUMMARY_FUN(VAR1),
+    NAME2 = SUMMARY_FUN(VAR2)
+  )
+```
 
-<br>
-
-| Function | Result |
-|:----------|:-------|
-|`gather()`|<high>wide &#8594; long</high> format|
-|`spread()`|<high>long &#8594; wide</high> format|
 
 ]
 
-.pull-right55[
+.pull-right5[
+
+```{r}
+patient_results %>%
+  
+  # descriptive stats
+  summarise(
+    mean_age = mean(age),
+    median_t1 = median(t_1, 
+                       na.rm = TRUE)
+  )
+```
+
+
+]
+
+---
+
+# Grouped Aggregation
 
 <p align="center">
-<img src="image/longwide.png" height=420px>
-</p>
+  <img src="image/summarsed_data_diagram.png" height="470px">
+</p> 
 
-]
 
 ---
 
-# `gather()`
+# `group_by()`, `summarise()`
 
-.pull-left45[
+.pull-left4[
 
-```{r}
-# Show original data (wide)
-combined
+```{r, eval = F}
+tibble %>%
+  group_by(GROUP_VAR) %>%
+  summarise(
+    NAME1 = SUMMARY_FUN(VAR1),
+    NAME2 = SUMMARY_FUN(VAR2)
+  )
 ```
+
 
 ]
 
-.pull-right45[
+.pull-right5[
 
 ```{r}
-# "Gather" wide data to long
-combined %>% 
-  gather(time,  # New group variable
-         value, # New target variable
-         -id)   # Omit id
-```
-
-]
-
----
-
-# `gather()`
-
-.pull-left45[
-
-
-```{r}
-# Show original data (wide)
-combined
-```
-
-]
-
-.pull-right45[
-
-
-```{r}
-# "Gather" wide data to long
-combined %>% 
-  gather(time,  # New group variable
-         value, # New target variable
-         -id, -age, -arm, -arm_lab) # Omit variables
+patient_results %>%
+  
+  # Group according to cond
+  group_by(cond_label) %>%
+  
+  # Descriptive stats
+  summarise(
+    mean_age = mean(age),
+    median_t1 = median(t_1, 
+                       na.rm = TRUE)
+  )
 ```
 
 ]
 
 ---
 
-# `spread()`
+# `n()`
 
-.pull-left45[
+.pull-left4[
 
-```{r}
-# Show long data
-combined %>% 
-  gather(time,  # New group variable
-         value, # New target variable
-         -id, -age, -arm, -arm_lab) # Omit variables
+```{r, eval = F}
+tibble %>%
+  group_by(GRUPPEN_VAR) %>%
+  summarise(
+    NAME1 = SUMMARY_FUN(VAR1),
+    NAME2 = SUMMARY_FUN(VAR2)
+  )
 ```
 
 
 ]
 
-.pull-right45[
+.pull-right5[
+
+```{r, echo=F}
+options(tibble.width=50, tibble.print_max=5, tibble.print_min=5, tibble.max_extra_cols=10)
+```
+
 
 ```{r}
-# "Gather" wide data to long
-long_combined = combined %>% 
-  gather(time,  # New group variable
-         value, # New target variable
-         -id, -age, -arm, -arm_lab) # Omit variables
-         
-# "Spread" long data to wide
-long_combined %>%
-  spread(time,   # Old group variable
-         value)  # Old target variable
+patient_results %>%
+  
+  # Group according to cond
+  group_by(cond_label) %>%
+  
+  # Descriptive stats
+  summarise(
+    N = n()
+  )
 ```
 
 ]
+
 
 ---
 

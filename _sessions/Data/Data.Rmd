@@ -63,7 +63,7 @@ options(htmltools.dir.version = FALSE)
 options(width=110)
 options(digits = 4)
 require(tidyverse)
-baselers = readr::read_csv('../_data/baselers.csv')
+baselers = readr::read_csv('1_Data/baselers.csv')
 ```
 
 

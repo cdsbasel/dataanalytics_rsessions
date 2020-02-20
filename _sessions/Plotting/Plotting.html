@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
   <head>
     <title>Plotting</title>
-    <meta charset="utf-8">
-    <meta name="author" content="R for Data Science   Basel R Bootcamp" />
+    <meta charset="utf-8" />
+    <meta name="author" content=" Data Analytics for Psychology and Business" />
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link rel="stylesheet" href="baselrbootcamp.css" type="text/css" />
   </head>
@@ -12,7 +12,7 @@
 class: center, middle, inverse, title-slide
 
 # Plotting
-### R for Data Science<br> <a href='https://therbootcamp.github.io'> Basel R Bootcamp </a> <br> <a href='https://therbootcamp.github.io/R4DS_2019Feb/'> <i class='fas fa-clock' style='font-size:.9em;'></i> </a>  <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;' ></i> </a>  <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a>  <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a>
+### <a href='https://cdsbasel.github.io/dataanalytics/'> Data Analytics for Psychology and Business </a> <br> <a href='https://cdsbasel.github.io/dataanalytics/menu/materials.html'> <i class='fas fa-clock' style='font-size:.9em;'></i> </a>  <a href='https://cdsbasel.github.io/dataanalytics/'> <i class='fas fa-home' style='font-size:.9em;' ></i> </a>  <a href='mailto:rui.mata@unibas.ch'> <i class='fas fa-envelope' style='font-size: .9em;'></i>
 ### February 2019
 
 ---
@@ -25,16 +25,16 @@ layout: true
     &lt;span&gt; 
       &lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png" height=14 style="vertical-align: middle"/&gt;
     &lt;/span&gt;
-    &lt;a href="https://therbootcamp.github.io/"&gt;
+    &lt;a href="https://cdsbasel.github.io/dataanalytics/"&gt;
       &lt;span style="padding-left:82px"&gt; 
         &lt;font color="#7E7E7E"&gt;
-          www.therbootcamp.com
+          cdsbasel.github.io/dataanalytics/
         &lt;/font&gt;
       &lt;/span&gt;
     &lt;/a&gt;
-    &lt;a href="https://therbootcamp.github.io/"&gt;
+    &lt;a href="https://cdsbasel.github.io/dataanalytics/"&gt;
       &lt;font color="#7E7E7E"&gt;
-       R For Data Science | February 2019
+       Data Analytics for Psychology and Business | February 2019
       &lt;/font&gt;
     &lt;/a&gt;
     &lt;/span&gt;
@@ -51,47 +51,43 @@ layout: true
 
 
 
-.pull-left4[
-&lt;br&gt;&lt;br&gt;&lt;br&gt;
-&gt; ### As good as R is for statistics, it's as good if not better for data visualisation
-&gt; ### Nathaniel D. Phillips
-]
-
-.pull-right6[
+&lt;p align="center"&gt;
 &lt;br&gt;
-&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/ggplotgallery.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="image/plots.png" height="540px"&gt;
+&lt;br&gt;
+&lt;font style="font-size:10px"&gt;from &lt;a href="http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html"&gt;r-statistics.co&lt;/a&gt;&lt;/font&gt;
+&lt;/p&gt;
 
-]
+
 
 ---
 
 
-.pull-left45[
+.pull-left4[
 
-# Base R Plotting
+# `base` Plotting
 
-The &lt;high&gt;classic framework&lt;/high&gt; of plotting.
-
-Contains separate &lt;high&gt;function for each 'type'&lt;/high&gt; of plot.
-
-E.g. `barplot()` for a bar plot, `boxplot()` for a box plot, and `plot()` for a scatterplot. 
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;The &lt;high&gt;traditional&lt;/high&gt; approach for plotting.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;&lt;high&gt;Separate functons&lt;/high&gt; for different plots&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;br&gt;
 
 
 ```r
 # Histogram in base R
-hist(x = baselers$age,
-     xlab = "Age",
-     ylab = "Frequency",
-     main = "Baselers Age")
+hist(x = basel$alter,
+     xlab = "Alter",
+     ylab = "Häufigkeit",
+     main = "Histogramm Alter")
 ```
 
 ]
 
 .pull-right5[
 &lt;br&gt;&lt;br&gt;&lt;br&gt;
-&lt;img src="Plotting_files/figure-html/unnamed-chunk-5-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Plotting_files/figure-html/unnamed-chunk-4-1.png" style="display: block; margin: auto;" /&gt;
 
 ]
 
@@ -100,67 +96,165 @@ hist(x = baselers$age,
 ---
 
 
-.pull-left45[
+.pull-left4[
 
-# Base R Plotting
+# `base` Plotting
 
-The &lt;high&gt;classic framework&lt;/high&gt; of plotting.
-
-Contains separate &lt;high&gt;function for each 'type'&lt;/high&gt; of plot.
-
-E.g. `barplot()` for a bar plot, `boxplot()` for a box plot, and `plot()` for a scatterplot. 
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;The &lt;high&gt;traditional&lt;/high&gt; approach for plotting.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;&lt;high&gt;Separate functons&lt;/high&gt; for different plots&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;br&gt;
+
 
 
 
 ```r
 # Boxplot in base R
-boxplot(formula = height ~ sex,
-        data = baselers,
-        xlab = "Sex",
-        ylab = "Height",
-        main = "Box plot")
+boxplot(formula = groesse ~ geschlecht,
+        data = basel,
+        xlab = "Geschlecht",
+        ylab = "Groesse",
+        main = "Box plot Groesse")
 ```
 
 ]
 
-.pull-right45[
+.pull-right5[
 &lt;br&gt;&lt;br&gt;&lt;br&gt;
-&lt;img src="Plotting_files/figure-html/unnamed-chunk-7-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Plotting_files/figure-html/unnamed-chunk-6-1.png" style="display: block; margin: auto;" /&gt;
 
 ]
 
 ---
 
 
-.pull-left45[
+.pull-left4[
 
-# Base R Plotting
+# `base` Plotting
 
-The &lt;high&gt;classic framework&lt;/high&gt; of plotting.
-
-Contains separate &lt;high&gt;function for each 'type'&lt;/high&gt; of plot.
-
-E.g. `barplot()` for a bar plot, `boxplot()` for a box plot, and `plot()` for a scatterplot. 
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;The &lt;high&gt;traditional&lt;/high&gt; approach for plotting.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;&lt;high&gt;Separate functons&lt;/high&gt; for different plots&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;br&gt;
 
 
 
+
 ```r
 # Scatterplot in base R
-plot(x = baselers$height,
-     y = baselers$income,
+plot(x = basel$groesse,
+     y = basel$einkommen,
      xlab = "Height",
-     ylab = "Income",
-     main = "Scatterplot")
+     ylab = "Einkommen",
+     main = "Scatterplot Groesse x Einkommen")
 ```
 
 ]
 
-.pull-right45[
+.pull-right5[
 &lt;br&gt;&lt;br&gt;&lt;br&gt;
+&lt;img src="Plotting_files/figure-html/unnamed-chunk-8-1.png" style="display: block; margin: auto;" /&gt;
+
+]
+
+
+---
+
+# Probleme mit Base R plotting
+
+.pull-left4[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;&lt;high&gt;Aesthetics&lt;/high&gt; are outdated.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Pretty plots = &lt;high&gt;lots of code.&lt;/high&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m3"&gt;&lt;span&gt;Relatively &lt;high&gt;inflexible&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]
+
+.pull-right5[
+
+&lt;p align="center"&gt;
+&lt;br&gt;
+&lt;img src="image/outdated.jpeg"&gt;
+&lt;br&gt;
+&lt;font style="font-size:10px"&gt;from &lt;a href="https://www.healthhosts.com/4-signs-your-website-is-outdated/"&gt;healthhosts.com&lt;/a&gt;&lt;/font&gt;
+&lt;/p&gt;
+
+]
+
+---
+
+# The mighty `tidyverse`
+
+The [`tidyverse`](https://www.tidyverse.org/) is a collection of high-performing, user-friendly R packages, created explicitly for efficient data analytics. 
+1. &lt;high&gt;&lt;mono&gt;`ggplot2`&lt;/mono&gt; for graphics&lt;/high&gt;.
+2. dplyr for data wrangling.
+3. tidyr for data wrangling.
+4. `readr` for data I/O.
+5. `purrr` for function programming.
+6. `tibble` for modern `data.frame`s.
+&lt;br&gt;&lt;br&gt;
+
+&lt;table style="cellspacing:0; cellpadding:0; border:none;"&gt;
+  &lt;col width="15%"&gt;
+  &lt;col width="15%"&gt;
+  &lt;col width="15%"&gt;
+  &lt;col width="15%"&gt;
+  &lt;col width="15%"&gt;
+  &lt;col width="15%"&gt;
+  &lt;tr&gt;
+    &lt;td bgcolor="white"&gt;
+    &lt;img src="image/hex-ggplot2.png" height=160px&gt;&lt;/img&gt;
+    &lt;/td&gt;
+        &lt;td bgcolor="white"&gt;
+    &lt;img src="image/hex-dplyr.png"height=160px style="opacity:.2"&gt;&lt;/img&gt;
+    &lt;/td&gt;
+    &lt;td bgcolor="white"&gt;
+    &lt;img src="image/hex-tidyr.png"height=160px style="opacity:.2"&gt;&lt;/img&gt;
+    &lt;/td&gt;
+    &lt;td bgcolor="white"&gt;
+    &lt;img src="image/hex-readr.png"height=160px style="opacity:.2"&gt;&lt;/img&gt;
+    &lt;/td&gt;
+    &lt;td bgcolor="white"&gt;
+    &lt;img src="image/hex-purrr.png"height=160px style="opacity:.2"&gt;&lt;/img&gt;
+    &lt;/td&gt;
+    &lt;td bgcolor="white"&gt;
+    &lt;img src="image/hex-tibble.png"height=160px style="opacity:.2"&gt;&lt;/img&gt;
+    &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+
+
+
+---
+
+# Modular graphics in &lt;mono&gt;ggplot2&lt;/mono&gt;
+
+.pull-left45[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;&lt;high&gt;data&lt;/high&gt;: The dataset&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;&lt;high&gt;mapping&lt;/high&gt;: The structure of the plot&lt;/span&gt;&lt;/li&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;What should axes represent?&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;What should color/size represent?&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;li class="m3"&gt;&lt;span&gt;&lt;high&gt;geoms&lt;/high&gt;: Objects drawn within plot&lt;/high&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m4"&gt;&lt;span&gt;&lt;high&gt;labs&lt;/high&gt;: Plot annotation&lt;/high&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m5"&gt;&lt;span&gt;&lt;high&gt;themes&lt;/high&gt;: Aesthetic design&lt;/high&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m6"&gt;&lt;span&gt;&lt;high&gt;facets&lt;/high&gt;: Plot facets &lt;/high&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m7"&gt;&lt;span&gt;&lt;high&gt;scales&lt;/high&gt;: Scaling of axes&lt;/high&gt;&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+]
+
+
+.pull-right45[
+
 &lt;img src="Plotting_files/figure-html/unnamed-chunk-9-1.png" style="display: block; margin: auto;" /&gt;
 
 ]
@@ -168,92 +262,43 @@ plot(x = baselers$height,
 
 ---
 
-# Problems with Base R plotting
-
-.pull-left35[
-
-- Default plots look pretty &lt;high&gt;outdated&lt;/high&gt;.&lt;br&gt;
-
-- Plots can quickly require a &lt;high&gt;LOT of code&lt;/high&gt;.&lt;br&gt;
-
-- Can't store plots as &lt;high&gt;objects&lt;/high&gt; to reference and update later&lt;br&gt;
-
-&lt;p align="center"&gt;&lt;high&gt;Solution: `ggplot2` &lt;/high&gt;&lt;/p&gt;
-
-&lt;img src="https://www.r-graph-gallery.com/wp-content/uploads/2014/09/ggplot_hex.jpg" width="45%" style="display: block; margin: auto;" /&gt;
-
-
-
-]
-
-.pull-right55[
-
-This plot would take &lt;high&gt;a lot of code in Base R&lt;/high&gt; but &lt;high&gt;just 10 lines of code&lt;/high&gt;, 5 of which controlling the labels, in `ggplot2`.
-
-&lt;img src="Plotting_files/figure-html/unnamed-chunk-11-1.png" style="display: block; margin: auto;" /&gt;
-
-
-]
-
----
-
-# Grammar of Graphics in `ggplot2`
+# Part 1: Wir kreieren diesen Plot
 
 .pull-left45[
 
-The &lt;high&gt;Grammar of graphics&lt;/high&gt; breaks down plots into several key pieces:
-
-| Aesthetics| Description|
-|:------|:----|
-| Data| What dataframe contains the data?|
-| axes| What does the x-axis, y-axis, color (etc) represent?|
-| color| What does color represent? |
-| size | What does size represent? |
-| geometries| What kind of geometric object do you want to plot?|
-| facets| Should there be groups of plots?|
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;&lt;high&gt;data&lt;/high&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;The &lt;mono&gt;mpg&lt;/mono&gt; dataset&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;&lt;high&gt;mapping&lt;/high&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;Engine displacement onto x-axis&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;Miles per gallon onto y-axis&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;Color according to vehicle class&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;li class="m3"&gt;&lt;span&gt;&lt;high&gt;geoms&lt;/high&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;Plot data as points&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;Add regression line&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;li class="m4"&gt;&lt;span&gt;&lt;high&gt;labs&lt;/high&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;Annotation of axes and titles&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;li class="m5"&gt;&lt;span&gt;&lt;high&gt;themes&lt;/high&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;black-white aesthetics&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+  
+&lt;/ul&gt;
 
 ]
 
 
 .pull-right45[
 
-&lt;img src="Plotting_files/figure-html/unnamed-chunk-12-1.png" style="display: block; margin: auto;" /&gt;
-
-]
-
-
----
-
-# Our goal: Create this plot
-
-.pull-left45[
-
-&lt;high&gt;Data&lt;/high&gt;
-
-- Use the `mpg` tibble
-
-&lt;high&gt;Aesthetics&lt;/high&gt;
-
-- Engine displacement (`disp`) on the x axis
-- Highway miles per gallon (`hwy`) on the y-axis
-- Color plotting elements by the `class` of car
-
-&lt;high&gt;Geometric objects&lt;/high&gt;
-
-- Show data as points
-- Add a regression line
-
-&lt;high&gt;Labels and themes&lt;/high&gt;
-
-- Add plotting labels
-- Use a black and white plotting theme
-
-]
-
-
-.pull-right45[
-
-&lt;img src="Plotting_files/figure-html/unnamed-chunk-13-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Plotting_files/figure-html/unnamed-chunk-10-1.png" style="display: block; margin: auto;" /&gt;
 
 
 ]
@@ -266,13 +311,15 @@ The &lt;high&gt;Grammar of graphics&lt;/high&gt; breaks down plots into several 
 
 .pull-left45[
 
-To &lt;high&gt;create a ggplot2 object&lt;/high&gt;, use the `ggplot()` function
-
-`ggplot()` has two main arguments:
-
-- `data` - A data frame (aka `tibble`)
-- `mapping` - A call to `aes()`
-
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;All plots start with &lt;highm&gt;ggplot()&lt;/highm&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;2 central arguments&lt;/span&gt;&lt;/li&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;data&lt;/mono&gt; | The dataset (&lt;mono&gt;tibble&lt;/mono&gt;)&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;mapping&lt;/mono&gt; | The plot structure defined using &lt;mono&gt;aes()&lt;/mono&gt;
+  &lt;/ul&gt;
+  &lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
 ]
 
 
@@ -283,31 +330,29 @@ To &lt;high&gt;create a ggplot2 object&lt;/high&gt;, use the `ggplot()` function
 ggplot(data = mpg)
 ```
 
-&lt;img src="Plotting_files/figure-html/unnamed-chunk-14-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Plotting_files/figure-html/unnamed-chunk-11-1.png" style="display: block; margin: auto;" /&gt;
 
 ]
 
 
 ---
 
-# `ggplot()`
+# `aes()`
 
 
 .pull-left45[
 
-An &lt;high&gt;aesthetic mapping&lt;/high&gt; is a visual property of the objects in your plot. 
-
-Use `aes()` to assign columns in your dataframe to properties in your plot.
-
-Common aesthetics are...
-
-| aesthetics| Description|
-|:------|:----|
-|     `x`, `y`|    Data mapped to coordinates|
-|     `color`, `fill`|    Border and fill colors|
-|     `alpha`| Transparency|
-|    `size`|  Size|
-|    `shape`|  Shape|
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;&lt;highm&gt;aes()&lt;/highm&gt; defines the structure for the &lt;mono&gt;mapping&lt;/mono&gt; argument&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Central arguments:&lt;/span&gt;&lt;/li&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;x,y&lt;/mono&gt; | Defines axes&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;color,fill&lt;/mono&gt; | Defines colors&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;alpha&lt;/mono&gt; | Defines transparency&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;size&lt;/mono&gt; | Defines size&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;shape&lt;/mono&gt; | Defines object sbapes (e.g. circles or squares)&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/ul&gt;
 
 ]
 
@@ -319,26 +364,30 @@ ggplot(data = mpg,
        mapping = aes(x = displ, y = hwy))
 ```
 
-&lt;img src="Plotting_files/figure-html/unnamed-chunk-15-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Plotting_files/figure-html/unnamed-chunk-12-1.png" style="display: block; margin: auto;" /&gt;
 
 ]
 
 ---
 
-# Adding elements to plots with `+`
+# &lt;mono&gt;+&lt;/mono&gt;
 
 .pull-left45[
 
-Once you have specified the `data` argument, and global aesthetics with `mapping = aes()`, &lt;high&gt;add additional elements to the plot with `+`&lt;/high&gt;.
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;The &lt;highm&gt;+&lt;/highm&gt; operator extents plots with additional modules.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
-The `+` operator works just like the pipe `%&gt;%` in `dplyr`. &lt;high&gt;It just means "and then..."&lt;/high&gt;
+&lt;br&gt;
 
 
 ```r
 ggplot(data = mpg,
        mapping = aes(x = displ,
-                     y = hwy)) + #and then
-       geom_point() 
+                     y = hwy)) + 
+  
+  # Plotte Daten als Punkte
+  geom_point() 
 ```
 
 ]
@@ -347,7 +396,7 @@ ggplot(data = mpg,
 .pull-right45[
 
 
-&lt;img src="Plotting_files/figure-html/unnamed-chunk-17-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Plotting_files/figure-html/unnamed-chunk-14-1.png" style="display: block; margin: auto;" /&gt;
 
 
 ]
@@ -355,30 +404,27 @@ ggplot(data = mpg,
 
 ---
 
-# Geometric objects (`geom`)
+# `geom_*()`
 
+.pull-left45[
 
-.pull-left4[
-
-A &lt;high&gt;`geom`&lt;/high&gt; is a geometric object in a plot that represents data
-
-To add a geom to a plot, just include ` + geom_X()` where X is the type of geom.
-
-Common geoms are...
-
-| geom| output|
-|:------|:----|
-|     `geom_point()`|    Points|
-|     `geom_bar()`|    Bar|
-|     `geom_boxplot()`| Boxplot
-|     `geom_count()`| Points with size reflecting frequency|
-|     `geom_smooth()`|  Smoothed line|
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;&lt;highm&gt;geom_*()&lt;/highm&gt; functions define the geometric objects used to represent the data.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Some common &lt;mono&gt;geoms&lt;/mono&gt;:&lt;/span&gt;&lt;/li&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;geom_point()&lt;/mono&gt; | for points&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;geom_bar()&lt;/mono&gt; | for bars&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;geom_boxplot()&lt;/mono&gt; | for box-plots &lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;geom_count()&lt;/mono&gt; | for points scaled according to frequency&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;geom_smooth()&lt;/mono&gt; | for curves&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/ul&gt;
 
 ]
 
 .pull-right45[
 
-&lt;img src="Plotting_files/figure-html/unnamed-chunk-18-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Plotting_files/figure-html/unnamed-chunk-15-1.png" style="display: block; margin: auto;" /&gt;
 
 
 ]
@@ -387,6 +433,47 @@ Common geoms are...
 
 ---
 
+
+.pull-left45[
+
+&lt;br&gt;
+## `geom_count()`
+&lt;br&gt;
+
+
+```r
+ggplot(data = mpg,
+  mapping = aes(x = displ, y = hwy)) + 
+  geom_count()
+```
+
+&lt;img src="Plotting_files/figure-html/unnamed-chunk-16-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+
+
+
+]
+
+.pull-right45[
+
+&lt;br&gt;
+## `geom_bar()`
+&lt;br&gt;
+
+
+```r
+ggplot(data = mpg,
+  mapping = aes(x = class)) + 
+  geom_bar()
+```
+
+&lt;img src="Plotting_files/figure-html/unnamed-chunk-17-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+]
+
+
+
+---
 
 .pull-left45[
 
@@ -402,10 +489,10 @@ ggplot(data = mpg,
   geom_boxplot()
 ```
 
-&lt;img src="Plotting_files/figure-html/unnamed-chunk-19-1.png" style="display: block; margin: auto;" /&gt;
-
+&lt;img src="Plotting_files/figure-html/unnamed-chunk-18-1.png" style="display: block; margin: auto;" /&gt;
 
 ]
+
 
 .pull-right45[
 
@@ -421,51 +508,27 @@ ggplot(data = mpg,
   geom_violin()
 ```
 
-&lt;img src="Plotting_files/figure-html/unnamed-chunk-20-1.png" width="100%" style="display: block; margin: auto;" /&gt;
-
+&lt;img src="Plotting_files/figure-html/unnamed-chunk-19-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 
 ]
 
-
-
 ---
+
+# What's missing?
 
 .pull-left45[
 
-&lt;br&gt;
-## `geom_bar()`
-&lt;br&gt;
-
-
-```r
-ggplot(data = mpg,
-  mapping = aes(x = class)) + 
-  geom_bar()
-```
-
-&lt;img src="Plotting_files/figure-html/unnamed-chunk-21-1.png" width="100%" style="display: block; margin: auto;" /&gt;
-
+&lt;img src="Plotting_files/figure-html/unnamed-chunk-20-1.png" style="display: block; margin: auto;" /&gt;
 
 ]
 
 
 .pull-right45[
 
-&lt;br&gt;
-## `geom_count()`
-&lt;br&gt;
-
-
-```r
-ggplot(data = mpg,
-  mapping = aes(x = displ,
-                y = hwy)) + 
-  geom_count()
-```
-
-&lt;img src="Plotting_files/figure-html/unnamed-chunk-22-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="Plotting_files/figure-html/unnamed-chunk-21-1.png" style="display: block; margin: auto;" /&gt;
 
 ]
+
 
 
 
@@ -473,70 +536,55 @@ ggplot(data = mpg,
 
 # `aes()`
 
+
 .pull-left45[
 
-&lt;high&gt;`color`&lt;/high&gt; geoms according to a variable. 
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;&lt;highm&gt;aes()&lt;/highm&gt; defines the structure for the &lt;mono&gt;mapping&lt;/mono&gt; argument&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;2 arguments:&lt;/span&gt;&lt;/li&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;x,y&lt;/mono&gt; | Defines axes&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;color,fill&lt;/mono&gt; | Defines colors&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/ul&gt;
+
 
 
 ```r
 ggplot(data = mpg,
-       mapping = aes(x = displ,
+       mapping = aes(x = displ, 
                      y = hwy,
-                     color = class)) + 
+                     
+                     # Farbe gemäss Klasse
+                     color = class)) +
   geom_point()
 ```
-
-
-&lt;p align="center"&gt; `mpg`&lt;/p&gt;
-
-<<<<<<< HEAD
-| displ| hwy|class      | year|
-|-----:|---:|:----------|----:|
-|   4.0|  26|subcompact | 2008|
-|   3.0|  26|compact    | 1999|
-|   4.0|  18|pickup     | 2008|
-|   5.2|  16|suv        | 1999|
-|   1.8|  29|midsize    | 1999|
-=======
-| displ| hwy|class   | year|
-|-----:|---:|:-------|----:|
-|   2.8|  24|compact | 1999|
-|   4.6|  17|pickup  | 2008|
-|   3.0|  24|minivan | 1999|
-|   2.5|  27|compact | 2008|
-|   3.8|  26|midsize | 1999|
->>>>>>> 3cc52a1dac335e7680d9f718c232a32e01b7cf2b
 
 
 ]
 
 .pull-right45[
 
-&lt;br&gt;
-&lt;img src="Plotting_files/figure-html/unnamed-chunk-25-1.png" style="display: block; margin: auto;" /&gt;
-
+&lt;img src="Plotting_files/figure-html/unnamed-chunk-23-1.png" style="display: block; margin: auto;" /&gt;
 
 ]
 
 ---
 
-
-# What's next?
+# What's missing?
 
 .pull-left45[
 
-&lt;img src="Plotting_files/figure-html/unnamed-chunk-26-1.png" style="display: block; margin: auto;" /&gt;
-
+&lt;img src="Plotting_files/figure-html/unnamed-chunk-24-1.png" style="display: block; margin: auto;" /&gt;
 
 ]
 
 
 .pull-right45[
 
-&lt;img src="Plotting_files/figure-html/unnamed-chunk-27-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Plotting_files/figure-html/unnamed-chunk-25-1.png" style="display: block; margin: auto;" /&gt;
 
 ]
-
 
 ---
 
@@ -544,20 +592,60 @@ ggplot(data = mpg,
 
 .pull-left45[
 
-`geom_smooth()` adds a &lt;high&gt;smoothed line&lt;/high&gt;.
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;&lt;highm&gt;geom_smooth()&lt;/highm&gt; fits curves to the data and adds them to the plot.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Central arguments:&lt;/span&gt;&lt;/li&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;method&lt;/mono&gt; | Type of model fitted to data&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;color&lt;/mono&gt; | Color&lt;/high&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/ul&gt;
 
-Change how the line is created with `method` (e.g., `method = "lm"`).
-
-Color the line with `col`.
-
-&lt;br&gt;
 
 ```r
 ggplot(data = mpg, 
        mapping = aes(x = displ, y = hwy,
                      col = class)) +
   geom_point() + 
+  
+  # Add curve
   geom_smooth(col = "blue")
+```
+
+]
+
+.pull-right45[
+
+
+&lt;img src="Plotting_files/figure-html/unnamed-chunk-27-1.png" style="display: block; margin: auto;" /&gt;
+
+]
+
+---
+
+# `geom_smooth()`
+
+.pull-left45[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;&lt;highm&gt;geom_smooth()&lt;/highm&gt; fits curves to the data and adds them to the plot.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Central arguments:&lt;/span&gt;&lt;/li&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;method&lt;/mono&gt; | Type of model fitted to data&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;color&lt;/mono&gt; | Color&lt;/high&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/ul&gt;
+
+
+```r
+ggplot(data = mpg, 
+       mapping = aes(x = displ, y = hwy,
+                     col = class)) +
+  geom_point() + 
+  
+  # Add curve
+  geom_smooth(col = "blue",
+              method = "lm")
 ```
 
 ]
@@ -571,25 +659,56 @@ ggplot(data = mpg,
 
 ---
 
-# `geom_smooth()`
+# Inheritance
 
 .pull-left45[
 
-`geom_smooth()` adds a &lt;high&gt;smoothed line&lt;/high&gt;.
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;&lt;highm&gt;geom&lt;/highm&gt;s inherit their settings from &lt;mono&gt;mapping&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Vererbte Settings can be &lt;high&gt;overruled&lt;/high&gt; using the &lt;mono&gt;geom&lt;/mono&gt;s own arguments.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
-Change how the line is created with `method` (e.g., `method = "lm"`).
 
-Color the line with `col`.
-
-&lt;br&gt;
 
 ```r
 ggplot(data = mpg, 
        mapping = aes(x = displ, y = hwy,
                      col = class)) +
   geom_point() + 
-  geom_smooth(col = "blue",
-              method = "lm")
+  geom_smooth() 
+```
+
+]
+
+.pull-right45[
+
+&lt;p align="center"&gt;
+&lt;br&gt;
+&lt;img src="image/question.png" height=280px&gt;
+&lt;br&gt;
+&lt;font style="font-size:10px"&gt;from &lt;a href="http://catchingfire.ca/the-power-of-a-question-mark/"&gt;catchingfire.ca&lt;/a&gt;&lt;/font&gt;
+&lt;/p&gt;
+]
+
+---
+
+# Inheritance
+
+.pull-left45[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;&lt;highm&gt;geom&lt;/highm&gt;s inherit their settings from &lt;mono&gt;mapping&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Vererbte Settings can be &lt;high&gt;overruled&lt;/high&gt; using the &lt;mono&gt;geom&lt;/mono&gt;s own arguments.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+```r
+ggplot(data = mpg, 
+       mapping = aes(x = displ, y = hwy,
+                     col = class)) +
+  geom_point() + 
+  geom_smooth() 
 ```
 
 ]
@@ -597,57 +716,26 @@ ggplot(data = mpg,
 .pull-right45[
 
 
-&lt;img src="Plotting_files/figure-html/unnamed-chunk-31-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Plotting_files/figure-html/unnamed-chunk-32-1.png" style="display: block; margin: auto;" /&gt;
 
 ]
 
 ---
 
-# Overriding aesthetics
+# What's missing?
 
 .pull-left45[
-
-If you add additional plotting aesthetics, they will &lt;high&gt;override&lt;/high&gt; the general plotting aesthetics.
-
-This is what happens, when you don't override...
-
-&lt;br&gt;
-
-```r
-ggplot(data = mpg, 
-       mapping = aes(x = displ, y = hwy,
-                     col = class)) +
-  geom_point() + 
-  geom_smooth() # no overriding
-```
-
-]
-
-.pull-right45[
-
 
 &lt;img src="Plotting_files/figure-html/unnamed-chunk-33-1.png" style="display: block; margin: auto;" /&gt;
 
 ]
 
 
----
-
-# What's next?
-
-.pull-left45[
+.pull-right45[
 
 &lt;img src="Plotting_files/figure-html/unnamed-chunk-34-1.png" style="display: block; margin: auto;" /&gt;
 
 ]
-
-
-.pull-right45[
-
-&lt;img src="Plotting_files/figure-html/unnamed-chunk-35-1.png" style="display: block; margin: auto;" /&gt;
-
-]
-
 
 ---
 
@@ -655,75 +743,71 @@ ggplot(data = mpg,
 
 .pull-left45[
 
-You can add &lt;high&gt;labels&lt;/high&gt; to a plot with the `labs()` function
-
-`labs()` arguments are ...
-
-- `title` - Main title
-- `subtitle` - Subtitle
-- `caption` - Caption below
-
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;&lt;highm&gt;labs()&lt;/highm&gt; defines all annotation of the plot.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Central arguments:&lt;/span&gt;&lt;/li&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;x,y&lt;/mono&gt; | annotation of axes&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;title, subtitle&lt;/mono&gt; | title and subtitle&lt;/high&gt;&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;caption&lt;/mono&gt; | caption&lt;/high&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/ul&gt;
 
 
 ```r
 ggplot(...) +
-  labs(x = "Engine Displ...",
-       y = "Highway miles...",
-       title = "MPG data",
-       subtitle = "Cars with ...",
-       caption = "Source...")
+  labs(x = "Engine displacement in liters",
+       y = "Highway miles per gallon",
+       title = "MPG dataset",
+       subtitle = "Cars with higher Eng...",
+       caption = "Source: MPG dataset...")
 ```
 
 ]
 
 
 .pull-right45[
+
+&lt;img src="Plotting_files/figure-html/unnamed-chunk-36-1.png" style="display: block; margin: auto;" /&gt;
+
+]
+
+
+---
+
+# What's missing?
+
+.pull-left45[
 
 &lt;img src="Plotting_files/figure-html/unnamed-chunk-37-1.png" style="display: block; margin: auto;" /&gt;
 
 ]
 
 
----
-
-# What's next?
-
-.pull-left45[
+.pull-right45[
 
 &lt;img src="Plotting_files/figure-html/unnamed-chunk-38-1.png" style="display: block; margin: auto;" /&gt;
 
 ]
 
-
-.pull-right45[
-
-&lt;img src="Plotting_files/figure-html/unnamed-chunk-39-1.png" style="display: block; margin: auto;" /&gt;
-
-]
-
-
-
 ---
 
-# Themes with `theme_XX()`
+# Formatierung mit `theme_*()`
 
 .pull-left45[
 
-A plotting &lt;high&gt;theme&lt;/high&gt; controls many aspects of its &lt;high&gt;overall look&lt;/high&gt;, from the background, to the grid lines, to the label font to the spacing between plot labels and the plotting space.
-
-Themes built into `ggplot2`
-
-`theme_bw()`&lt;br&gt;
-`theme_minimal()`&lt;br&gt;
-`theme_classic()`&lt;br&gt;
-`theme_light()`&lt;br&gt;
-`theme_void()`
-
-Themes from the `ggthemes` package
-
-`theme_excel()`&lt;br&gt;
-`theme_economist()`&lt;br&gt;
-etc.
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Mit &lt;highm&gt;theme()&lt;/highm&gt; können alle Aspekte eines Plots mit einem vorgefertigten Satz an Einstellungen ästhetisch formatiert werden.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Einige &lt;mono&gt;theme&lt;/mono&gt;s:&lt;/span&gt;&lt;/li&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;theme_gray()&lt;/mono&gt;&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;theme_classic()&lt;/mono&gt;&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;theme_void()&lt;/mono&gt;&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;theme_excel() (&lt;mono&gt;ggthemes&lt;/mono&gt;)&lt;/mono&gt;&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;theme_economist() (&lt;mono&gt;ggthemes&lt;/mono&gt;)&lt;/mono&gt;&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;theme_bw()&lt;/mono&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/ul&gt;
 
 ]
 
@@ -731,37 +815,31 @@ etc.
 
 
 ```r
-ggplot(...) + 
-  theme_gray() # The Default theme
+ggplot(...) + theme_gray()
 ```
 
-&lt;img src="Plotting_files/figure-html/unnamed-chunk-41-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Plotting_files/figure-html/unnamed-chunk-40-1.png" style="display: block; margin: auto;" /&gt;
 
 ]
 
 ---
 
-# Themes with `theme_XX()`
+# Formatierung mit `theme_*()`
 
 .pull-left45[
 
-A plotting &lt;high&gt;theme&lt;/high&gt; controls many aspects of its &lt;high&gt;overall look&lt;/high&gt;, from the background, to the grid lines, to the label font to the spacing between plot labels and the plotting space.
-
-Themes built into `ggplot2`
-
-`theme_bw()`&lt;br&gt;
-`theme_minimal()`&lt;br&gt;
-`theme_classic()`&lt;br&gt;
-`theme_light()`&lt;br&gt;
-`theme_void()`
-
-Themes from the `ggthemes` package
-
-`theme_excel()`&lt;br&gt;
-`theme_economist()`&lt;br&gt;
-etc.
-
-
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Mit &lt;highm&gt;theme()&lt;/highm&gt; können alle Aspekte eines Plots mit einem vorgefertigten Satz an Einstellungen ästhetisch formatiert werden.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Einige &lt;mono&gt;theme&lt;/mono&gt;s:&lt;/span&gt;&lt;/li&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;theme_gray()&lt;/mono&gt;&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;theme_classic()&lt;/mono&gt;&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;theme_void()&lt;/mono&gt;&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;theme_excel() (&lt;mono&gt;ggthemes&lt;/mono&gt;)&lt;/mono&gt;&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;theme_economist() (&lt;mono&gt;ggthemes&lt;/mono&gt;)&lt;/mono&gt;&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;theme_bw()&lt;/mono&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/ul&gt;
 
 ]
 
@@ -769,37 +847,31 @@ etc.
 
 
 ```r
-ggplot(...) + 
-  theme_light()
+ggplot(...) + theme_classic()
 ```
 
-&lt;img src="Plotting_files/figure-html/unnamed-chunk-43-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Plotting_files/figure-html/unnamed-chunk-42-1.png" style="display: block; margin: auto;" /&gt;
 
 ]
 
 ---
 
-# Themes with `theme_XX()`
+# Formatierung mit `theme_*()`
 
 .pull-left45[
 
-A plotting &lt;high&gt;theme&lt;/high&gt; controls many aspects of its &lt;high&gt;overall look&lt;/high&gt;, from the background, to the grid lines, to the label font to the spacing between plot labels and the plotting space.
-
-Themes built into `ggplot2`
-
-`theme_bw()`&lt;br&gt;
-`theme_minimal()`&lt;br&gt;
-`theme_classic()`&lt;br&gt;
-`theme_light()`&lt;br&gt;
-`theme_void()`
-
-Themes from the `ggthemes` package
-
-`theme_excel()`&lt;br&gt;
-`theme_economist()`&lt;br&gt;
-etc.
-
-
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Mit &lt;highm&gt;theme()&lt;/highm&gt; können alle Aspekte eines Plots mit einem vorgefertigten Satz an Einstellungen ästhetisch formatiert werden.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Einige &lt;mono&gt;theme&lt;/mono&gt;s:&lt;/span&gt;&lt;/li&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;theme_gray()&lt;/mono&gt;&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;theme_classic()&lt;/mono&gt;&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;theme_void()&lt;/mono&gt;&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;theme_excel() (&lt;mono&gt;ggthemes&lt;/mono&gt;)&lt;/mono&gt;&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;theme_economist() (&lt;mono&gt;ggthemes&lt;/mono&gt;)&lt;/mono&gt;&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;theme_bw()&lt;/mono&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/ul&gt;
 
 ]
 
@@ -807,76 +879,31 @@ etc.
 
 
 ```r
-ggplot(...) + 
-  theme_void()
+ggplot(...) + theme_void()
 ```
 
-&lt;img src="Plotting_files/figure-html/unnamed-chunk-45-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Plotting_files/figure-html/unnamed-chunk-44-1.png" style="display: block; margin: auto;" /&gt;
 
 ]
 
 ---
 
-# Themes with `theme_XX()`
+# Formatierung mit `theme_*()`
 
 .pull-left45[
 
-A plotting &lt;high&gt;theme&lt;/high&gt; controls many aspects of its &lt;high&gt;overall look&lt;/high&gt;, from the background, to the grid lines, to the label font to the spacing between plot labels and the plotting space.
-
-Themes built into `ggplot2`
-
-`theme_bw()`&lt;br&gt;
-`theme_minimal()`&lt;br&gt;
-`theme_classic()`&lt;br&gt;
-`theme_light()`&lt;br&gt;
-`theme_void()`
-
-Themes from the `ggthemes` package
-
-`theme_excel()`&lt;br&gt;
-`theme_economist()`&lt;br&gt;
-etc.
-
-
-
-]
-
-.pull-right45[
-
-
-
-```r
-ggplot(...) + 
-  theme_excel()
-```
-
-&lt;img src="Plotting_files/figure-html/unnamed-chunk-47-1.png" style="display: block; margin: auto;" /&gt;
-
-]
-
-
----
-
-# Themes with `theme_XX()`
-
-.pull-left45[
-
-A plotting &lt;high&gt;theme&lt;/high&gt; controls many aspects of its &lt;high&gt;overall look&lt;/high&gt;, from the background, to the grid lines, to the label font to the spacing between plot labels and the plotting space.
-
-Themes built into `ggplot2`:
-
-`theme_bw()`&lt;br&gt;
-`theme_minimal()`&lt;br&gt;
-`theme_classic()`&lt;br&gt;
-`theme_light()`&lt;br&gt;
-`theme_void()`
-
-Themes from the `ggthemes` package
-
-`theme_excel()`&lt;br&gt;
-`theme_economist()`&lt;br&gt;
-etc.
-
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Mit &lt;highm&gt;theme()&lt;/highm&gt; können alle Aspekte eines Plots mit einem vorgefertigten Satz an Einstellungen ästhetisch formatiert werden.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Einige &lt;mono&gt;theme&lt;/mono&gt;s:&lt;/span&gt;&lt;/li&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;theme_gray()&lt;/mono&gt;&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;theme_classic()&lt;/mono&gt;&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;theme_void()&lt;/mono&gt;&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;theme_excel() (&lt;mono&gt;ggthemes&lt;/mono&gt;)&lt;/mono&gt;&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;theme_economist() (&lt;mono&gt;ggthemes&lt;/mono&gt;)&lt;/mono&gt;&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;theme_bw()&lt;/mono&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/ul&gt;
 
 ]
 
@@ -884,37 +911,31 @@ etc.
 
 
 ```r
-ggplot(...) + 
-  theme_economist()
+ggplot(...) + theme_excel()
 ```
 
-&lt;img src="Plotting_files/figure-html/unnamed-chunk-49-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Plotting_files/figure-html/unnamed-chunk-46-1.png" style="display: block; margin: auto;" /&gt;
 
 ]
 
-
 ---
 
-# Themes with `theme_XX()`
+# Formatierung mit `theme_*()`
 
 .pull-left45[
 
-A plotting &lt;high&gt;theme&lt;/high&gt; controls many aspects of its &lt;high&gt;overall look&lt;/high&gt;, from the background, to the grid lines, to the label font to the spacing between plot labels and the plotting space.
-
-Themes built into `ggplot2`:
-
-`theme_bw()`&lt;br&gt;
-`theme_minimal()`&lt;br&gt;
-`theme_classic()`&lt;br&gt;
-`theme_light()`&lt;br&gt;
-`theme_void()`
-
-Themes from the `ggthemes` package
-
-`theme_excel()`&lt;br&gt;
-`theme_economist()`&lt;br&gt;
-etc.
-
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Mit &lt;highm&gt;theme()&lt;/highm&gt; können alle Aspekte eines Plots mit einem vorgefertigten Satz an Einstellungen ästhetisch formatiert werden.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Einige &lt;mono&gt;theme&lt;/mono&gt;s:&lt;/span&gt;&lt;/li&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;theme_gray()&lt;/mono&gt;&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;theme_classic()&lt;/mono&gt;&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;theme_void()&lt;/mono&gt;&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;theme_excel() (&lt;mono&gt;ggthemes&lt;/mono&gt;)&lt;/mono&gt;&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;theme_economist() (&lt;mono&gt;ggthemes&lt;/mono&gt;)&lt;/mono&gt;&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;theme_bw()&lt;/mono&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/ul&gt;
 
 ]
 
@@ -922,35 +943,68 @@ etc.
 
 
 ```r
-ggplot(...) + 
-  theme_bw()
+ggplot(...) + theme_economist()
 ```
 
-&lt;img src="Plotting_files/figure-html/unnamed-chunk-51-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Plotting_files/figure-html/unnamed-chunk-48-1.png" style="display: block; margin: auto;" /&gt;
 
 ]
 
 ---
 
-# Final result!
+# Formatierung mit `theme_*()`
 
+.pull-left45[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Mit &lt;highm&gt;theme()&lt;/highm&gt; können alle Aspekte eines Plots mit einem vorgefertigten Satz an Einstellungen ästhetisch formatiert werden.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Einige &lt;mono&gt;theme&lt;/mono&gt;s:
+  &lt;br&gt;&lt;br&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;theme_gray()&lt;/mono&gt;&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;theme_classic()&lt;/mono&gt;&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;theme_void()&lt;/mono&gt;&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;theme_excel() (&lt;mono&gt;ggthemes&lt;/mono&gt;)&lt;/mono&gt;&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;theme_economist() (&lt;mono&gt;ggthemes&lt;/mono&gt;)&lt;/mono&gt;&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;theme_bw()&lt;/mono&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+]
+
+.pull-right45[
+
+
+```r
+ggplot(...) + theme_bw()
+```
+
+&lt;img src="Plotting_files/figure-html/unnamed-chunk-50-1.png" style="display: block; margin: auto;" /&gt;
+
+]
+
+
+---
+
+# Et voila!
 
 .pull-left45[
 
 
 ```r
 ggplot(data = mpg, 
-       mapping = aes(x = displ, 
-                     y = hwy, 
+       mapping = aes(x = displ, y = hwy, 
                      col = class)) +
   geom_point() + 
   geom_smooth(col = "blue", 
               method = "lm")+
-  labs(x = "Engine Displ. in Liters",
-       y = "Highway miles per gallon",
-       title = "MPG data",
-       subtitle = "Cars with higher...",
-       caption = "Source: mpg data...") + 
+  labs(
+    x = "Engine displacement in liters",
+    y = "Highway miles per gallon",
+    title = "MPG dataset",
+    subtitle = "Cars with higher Eng...",
+    caption = "Source: MPG dataset...") + 
   theme_bw()
 ```
 
@@ -959,7 +1013,75 @@ ggplot(data = mpg,
 
 .pull-right45[
 
-&lt;img src="Plotting_files/figure-html/unnamed-chunk-53-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Plotting_files/figure-html/unnamed-chunk-52-1.png" style="display: block; margin: auto;" /&gt;
+
+]
+
+---
+
+# Part 2: Going crazy
+
+.pull-left45[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Create and alter a &lt;highm&gt;gg&lt;/highm&gt; -object.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Split plot in &lt;highm&gt;facet&lt;/highm&gt;s&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m3"&gt;&lt;span&gt;Use &lt;highm&gt;theme&lt;/highm&gt;s to alter all aesthetics aspects of your plot&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m4"&gt;&lt;span&gt;Create your own &lt;highm&gt;theme&lt;/highm&gt;s.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m5"&gt;&lt;span&gt;Save your plot as &lt;highm&gt;.pdf&lt;/highm&gt; or &lt;highm&gt;.png&lt;/highm&gt;.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+]
+
+
+.pull-right45[
+
+&lt;p align="center"&gt;
+&lt;img src="image/button.jpeg" height="420px"&gt;&lt;br&gt;
+&lt;font style="font-size:10px"&gt;from &lt;a href="http://www.lonniemillsap.com/?p=1779"&gt;lonniemillsap.com&lt;/a&gt;&lt;/font&gt;
+&lt;/p&gt;
+
+]
+
+
+
+---
+
+# The &lt;mono&gt;gg&lt;/mono&gt; object
+
+.pull-left45[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;The &lt;mono&gt;ggplot&lt;/mono&gt; function generates a &lt;high&gt;&lt;mono&gt;gg&lt;/mono&gt; object&lt;/high&gt; that can be assigned&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;&lt;mono&gt;gg&lt;/mono&gt; objects can be &lt;high&gt;altered or extended&lt;/high&gt; using &lt;mono&gt;+&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m3"&gt;&lt;span&gt;Running the object generates the plot.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+```r
+# Assign plot
+my_plot &lt;- ggplot(data = mpg,
+                    aes(x = displ,y = hwy)) + 
+  geom_point() + theme_bw()
+
+# Show class
+class(my_plot)
+```
+
+```
+[1] "gg"     "ggplot"
+```
+
+]
+
+.pull-right45[
+
+
+```r
+my_plot 
+```
+
+&lt;img src="Plotting_files/figure-html/unnamed-chunk-54-1.png" style="display: block; margin: auto;" /&gt;
 
 ]
 
@@ -969,27 +1091,26 @@ ggplot(data = mpg,
 
 .pull-left45[
 
-&lt;b&gt;1&lt;/b&gt; ggplot returns an object of the class `gg`.&lt;br&gt;
-&lt;b&gt;2&lt;/b&gt; You can assign the result of `ggplot` to an &lt;high&gt;object&lt;/high&gt;.&lt;br&gt;
-&lt;b&gt;3&lt;/b&gt; Evaluating the object will show the plot.&lt;br&gt;
-&lt;b&gt;4&lt;/b&gt; You can even edit existing &lt;high&gt;`ggplot` objects&lt;/high&gt;.&lt;br&gt;
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;The &lt;mono&gt;ggplot&lt;/mono&gt; function generates a &lt;high&gt;&lt;mono&gt;gg&lt;/mono&gt; object&lt;/high&gt; that can be assigned&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;&lt;mono&gt;gg&lt;/mono&gt; objects can be &lt;high&gt;altered or extended&lt;/high&gt; using &lt;mono&gt;+&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m3"&gt;&lt;span&gt;Running the object generates the plot.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 
 ```r
-# Create myplot
-myplot &lt;- ggplot(data = mpg, 
-       mapping = aes(x = displ,y = hwy, 
-                     col = class)) +
-  geom_point() + 
-  labs(x = "Engine Displacement in ...",
-       y = "Highway miles per gallon",
-       title = "MPG data",
-       subtitle = "Cars with higher ...",
-       caption = "Source: mpg data ...") + 
-  theme_bw()
+# Assign plot
+my_plot &lt;- ggplot(data = mpg,
+                    aes(x = displ,y = hwy)) + 
+  geom_point() + theme_bw()
+
+# show class
+class(my_plot)
 ```
 
-
+```
+[1] "gg"     "ggplot"
+```
 
 ]
 
@@ -997,49 +1118,41 @@ myplot &lt;- ggplot(data = mpg,
 
 
 ```r
-# Evaluate myplot
-myplot
+my_plot + geom_smooth()
 ```
 
 &lt;img src="Plotting_files/figure-html/unnamed-chunk-56-1.png" style="display: block; margin: auto;" /&gt;
 
 ]
 
+
 ---
 
-# The &lt;mono&gt;gg&lt;/mono&gt; object
+# `facet_*()`
 
 .pull-left45[
 
-&lt;b&gt;1&lt;/b&gt; ggplot returns an object of the class `gg`.&lt;br&gt;
-&lt;b&gt;2&lt;/b&gt; You can assign the result of `ggplot` to an &lt;high&gt;object&lt;/high&gt;.&lt;br&gt;
-&lt;b&gt;3&lt;/b&gt; Evaluating the object will show the plot.&lt;br&gt;
-&lt;b&gt;4&lt;/b&gt; You can even edit existing &lt;high&gt;`ggplot` objects&lt;/high&gt;.&lt;br&gt;
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Facetting creates the &lt;high&gt;same plot for groups&lt;/high&gt; defined by a third variable.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Facet functions:&lt;/span&gt;&lt;/li&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;facet_wrap()&lt;/mono&gt;&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;facet_grid()&lt;/mono&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/ul&gt;
 
 
 ```r
-# Create myplot
-myplot &lt;- ggplot(data = mpg, 
-       mapping = aes(x = displ,y = hwy, 
-                     col = class)) +
-  geom_point() + 
-  labs(x = "Engine Displacement in ...",
-       y = "Highway miles per gallon",
-       title = "MPG data",
-       subtitle = "Cars with higher ...",
-       caption = "Source: mpg data ...") + 
-  theme_bw()
+# Without facetting
+ggplot(data = mpg, 
+       mapping = aes(x = displ, 
+                     y = hwy)) + 
+  geom_point() + theme_bw()
 ```
 
 ]
 
 .pull-right45[
-
-
-```r
-myplot + # add geom
-  geom_smooth(col = "blue", method = "lm") 
-```
 
 &lt;img src="Plotting_files/figure-html/unnamed-chunk-58-1.png" style="display: block; margin: auto;" /&gt;
 
@@ -1051,16 +1164,23 @@ myplot + # add geom
 
 .pull-left45[
 
-Faceting = &lt;high&gt;same plot for different groups&lt;/high&gt;.
-
-To facet plots, use, e.g., `facet_wrap()`.
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Facetting creates the &lt;high&gt;same plot for groups&lt;/high&gt; defined by a third variable.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Facet functions:&lt;/span&gt;&lt;/li&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;facet_wrap()&lt;/mono&gt;&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;facet_grid()&lt;/mono&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/ul&gt;
 
 
 ```r
-# Without faceting
-myplot + 
-  geom_smooth(col = "blue", 
-              method = "lm") 
+# Without facetting
+ggplot(data = mpg, 
+       mapping = aes(x = displ, 
+                     y = hwy)) + 
+  geom_point() + theme_bw() +
+  facet_wrap(~ class)
 ```
 
 ]
@@ -1073,23 +1193,28 @@ myplot +
 
 ---
 
-# `facet_wrap()`
+# `facet_grid()`
 
 .pull-left45[
 
-Faceting = &lt;high&gt;same plot for different groups&lt;/high&gt;.
-
-To facet plots, use, e.g., `facet_wrap()`.
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Facetting creates the &lt;high&gt;same plot for groups&lt;/high&gt; defined by a third variable.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Facet functions:&lt;/span&gt;&lt;/li&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;facet_wrap()&lt;/mono&gt;&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;facet_grid()&lt;/mono&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/ul&gt;
 
 
 ```r
-# With faceting
-myplot +
-  geom_smooth(col = "blue", 
-              method = "lm")  +
-  facet_wrap(~ class)  # Tilde first
+# Without facetting
+ggplot(data = mpg, 
+       mapping = aes(x = displ, 
+                     y = hwy)) + 
+  geom_point() + theme_bw() +
+  facet_grid(drv ~ class) 
 ```
-
 
 ]
 
@@ -1099,15 +1224,231 @@ myplot +
 
 ]
 
+
 ---
 
-# `ggsave()`
+# `theme()`
 
 .pull-left45[
 
-To create an &lt;high&gt;image file&lt;/high&gt; of a plot (e.g., `.jpg`, `.pdf`, `.png`), use the `ggsave()` function.
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;&lt;high&gt;87 arguments in &lt;mono&gt;theme()&lt;/mono&gt;&lt;/high&gt; can be used to alter all aesthetic aspects of a plot.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Requires helper functions:&lt;/span&gt;&lt;/li&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;element_rect()&lt;/mono&gt; | for areas&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;element_line()&lt;/mono&gt; | for lines&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;element_text()&lt;/mono&gt; | for text&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;element_blank()&lt;/mono&gt; | for removals&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/ul&gt;
 
-&lt;u&gt;Arguments&lt;/u&gt;
+
+```r
+# Use theme
+my_plot + 
+  theme(argument = element_*(), 
+        argument = element_*(),
+        ...)
+```
+
+]
+
+
+.pull-right45[
+
+&lt;p align="center"&gt;
+&lt;img src="image/theme.png"&gt;
+&lt;/p&gt;
+]
+
+---
+
+# Background
+
+.pull-left45[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Arguments for the background:&lt;/span&gt;&lt;/li&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;panel.background&lt;/mono&gt; | for the inner background&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;plot.background&lt;/mono&gt; | for the outer background&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/ul&gt;
+
+
+```r
+# Change background
+my_plot + 
+  theme(
+    panel.background = 
+      element_rect(fill = 'tomato'), 
+    plot.background = 
+      element_rect(fill = 'burlywood'))
+```
+
+]
+
+
+.pull-right45[
+
+&lt;img src="Plotting_files/figure-html/unnamed-chunk-65-1.png" style="display: block; margin: auto;" /&gt;
+
+]
+
+---
+
+# Grid
+
+.pull-left45[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Arbguments for the grid:&lt;/span&gt;&lt;/li&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;panel.grid.major&lt;/mono&gt; | larger grid lines&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;panel.grid.minor&lt;/mono&gt; | smaller grid lines&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/ul&gt;
+
+
+```r
+# Change grid
+my_plot + 
+  theme(
+    panel.grid.major = 
+      element_line(colour = "salmon"),
+    panel.grid.minor = 
+      element_line(colour = "seagreen"))
+```
+
+]
+
+
+.pull-right45[
+
+&lt;img src="Plotting_files/figure-html/unnamed-chunk-67-1.png" style="display: block; margin: auto;" /&gt;
+
+]
+
+---
+
+# Raster
+
+.pull-left45[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Arbguments for the grid:&lt;/span&gt;&lt;/li&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;panel.grid.major&lt;/mono&gt; | larger grid lines&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;panel.grid.minor&lt;/mono&gt; | smaller grid lines&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/ul&gt;
+
+
+```r
+# Change grid
+my_plot + 
+  theme(
+    panel.grid.major = 
+      element_line(colour = "salmon",
+                   size = 3),
+    panel.grid.minor = 
+      element_line(colour = "seagreen",
+                   size = 1.5))
+```
+
+]
+
+
+.pull-right45[
+
+&lt;img src="Plotting_files/figure-html/unnamed-chunk-69-1.png" style="display: block; margin: auto;" /&gt;
+
+]
+
+---
+
+# Axes
+
+.pull-left45[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Arguments for axes:&lt;/span&gt;&lt;/li&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;axis.line.x&lt;/mono&gt; | x-axis&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;axis.line.y&lt;/mono&gt; | y-axis&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;axis.title.x&lt;/mono&gt; | x-axis title&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;axis.title.y&lt;/mono&gt; | y-axis title&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/ul&gt;
+
+
+```r
+# Change axes
+my_plot + 
+  theme(
+    axis.line.x = 
+      element_line(colour = "deeppink", 
+                   size = 3.5, 
+                   lineend = "butt"),
+    axis.line.y = 
+      element_line(colour = "deeppink", 
+                   size = 3.5))
+```
+
+]
+
+
+.pull-right45[
+
+&lt;img src="Plotting_files/figure-html/unnamed-chunk-71-1.png" style="display: block; margin: auto;" /&gt;
+
+]
+
+---
+
+# Axes
+
+.pull-left45[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Arguments for axes:&lt;/span&gt;&lt;/li&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;axis.line.x&lt;/mono&gt; | x-axis&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;axis.line.y&lt;/mono&gt; | y-axis&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;axis.title.x&lt;/mono&gt; | x-axis title&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;axis.title.y&lt;/mono&gt; | y-axis title&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/ul&gt;
+
+
+```r
+# Change axes titles
+my_plot + 
+  theme(
+    axis.title.x = 
+      element_text(family = "Comic Sans MS", 
+                   size = 30),
+    axis.title.y = 
+      element_text(family = "Comic Sans MS", 
+                   size = 30))
+```
+
+]
+
+.pull-right45[
+
+&lt;img src="Plotting_files/figure-html/unnamed-chunk-73-1.png" style="display: block; margin: auto;" /&gt;
+
+]
+
+
+---
+
+.pull-left45[
+
+# Further arguments &lt;font style="font-size:16px"&gt; (incomplete)&lt;/font&gt;
+
+&lt;u&gt;&lt;mono&gt;theme()&lt;/mono&gt;&lt;/u&gt;
 
 &lt;table style="width:100%"&gt;
   &lt;tr&gt;
@@ -1115,38 +1456,601 @@ To create an &lt;high&gt;image file&lt;/high&gt; of a plot (e.g., `.jpg`, `.pdf`
     &lt;td&gt; &lt;b&gt;Description&lt;/b&gt; &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-    &lt;td&gt; &lt;mono&gt;filename&lt;/mono&gt; &lt;/td&gt;
-    &lt;td&gt; Name of the to-be-created file (including extension) &lt;/td&gt;
+    &lt;td&gt; &lt;mono&gt;axis.title.*&lt;/mono&gt; &lt;/td&gt;
+    &lt;td&gt; Everything concerning axes titles &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-    &lt;td&gt; &lt;mono&gt;device&lt;/mono&gt; &lt;/td&gt;
-    &lt;td&gt; File type (e.g.; "pdf", "jpeg", "png") &lt;/td&gt;
+    &lt;td&gt; &lt;mono&gt;axis.ticks.*&lt;/mono&gt; &lt;/td&gt;
+    &lt;td&gt; Everything concerning axes tick marks &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-    &lt;td&gt; &lt;mono&gt;path&lt;/mono&gt; &lt;/td&gt;
-    &lt;td&gt; Folder to store image in &lt;/td&gt;
+    &lt;td&gt; &lt;mono&gt;axis.line.*&lt;/mono&gt; &lt;/td&gt;
+    &lt;td&gt; Everything concerning axis lines &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-    &lt;td&gt; &lt;mono&gt;width&lt;/mono&gt;, &lt;mono&gt;height&lt;/mono&gt;  &lt;/td&gt;
-    &lt;td&gt; Plot width, height (e.g., inches) &lt;/td&gt;
+    &lt;td&gt; &lt;mono&gt;legend.*&lt;/mono&gt; &lt;/td&gt;
+    &lt;td&gt; Everything concerning legends &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt; &lt;mono&gt;panel.*&lt;/mono&gt; &lt;/td&gt;
+    &lt;td&gt; Everything concerning the inner plot region &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt; &lt;mono&gt;plot.*&lt;/mono&gt; &lt;/td&gt;
+    &lt;td&gt; Everything concerning the outer plot region &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt; &lt;mono&gt;strip.*&lt;/mono&gt; &lt;/td&gt;
+    &lt;td&gt; Everything concerning the facet headers &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+
+]
+
+.pull-right45[
+
+&lt;br&gt;
+
+&lt;u&gt;&lt;mono&gt;element_rect()&lt;/mono&gt;&lt;/u&gt;
+
+&lt;table style="width:100%"&gt;
+  &lt;tr&gt;
+    &lt;td&gt; &lt;b&gt;Argument&lt;/b&gt; &lt;/td&gt;
+    &lt;td&gt; &lt;b&gt;Description&lt;/b&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt; &lt;mono&gt;fill&lt;/mono&gt; &lt;/td&gt;
+    &lt;td&gt; Color for filling areas &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt; &lt;mono&gt;colour&lt;/mono&gt; &lt;/td&gt;
+    &lt;td&gt; Color for borders &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;u&gt;&lt;mono&gt;element_line()&lt;/mono&gt;&lt;/u&gt;
+
+&lt;table style="width:100%"&gt;
+  &lt;tr&gt;
+    &lt;td&gt; &lt;b&gt;Argument&lt;/b&gt; &lt;/td&gt;
+    &lt;td&gt; &lt;b&gt;Description&lt;/b&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt; &lt;mono&gt;size&lt;/mono&gt; &lt;/td&gt;
+    &lt;td&gt; Line sizes &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt; &lt;mono&gt;linetype&lt;/mono&gt; &lt;/td&gt;
+    &lt;td&gt; Type of line &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;u&gt;&lt;mono&gt;element_text()&lt;/mono&gt;&lt;/u&gt;
+
+&lt;table style="width:100%"&gt;
+  &lt;tr&gt;
+    &lt;td&gt; &lt;b&gt;Argument&lt;/b&gt; &lt;/td&gt;
+    &lt;td&gt; &lt;b&gt;Description&lt;/b&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt; &lt;mono&gt;face&lt;/mono&gt; &lt;/td&gt;
+    &lt;td&gt; Font type (e.g., italic or bold) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt; &lt;mono&gt;colour&lt;/mono&gt; &lt;/td&gt;
+    &lt;td&gt; Font color  &lt;/td&gt;
   &lt;/tr&gt;
 &lt;/table&gt;
 
 ]
 
 
-.pull-right5[
+---
+
+# Own themes
+
+.pull-left45[
 
 
 ```r
-# Create myplot object
-myplot &lt;- myplot +
-  geom_smooth(col = "blue", method = "lm") +
-  facet_wrap(~ class)
+my_theme &lt;- theme(
+  panel.background = 
+    element_rect(fill = 'tomato'), 
+  plot.background = 
+    element_rect(fill = 'burlywood'),
+  panel.grid.major = element_line(
+    colour = "salmon", size = 3),
+  panel.grid.minor = element_line(
+    colour = "seagreen", size = 1.5),
+  axis.line.x = element_line(
+    colour = "deeppink", size = 3.5, 
+    lineend = "butt"),
+  axis.line.y = element_line(
+    colour = "deeppink", size = 3.5),
+  axis.title.x = element_text(
+    family = "Comic Sans MS", size = 30),
+  axis.title.y = element_text(
+    family = "Comic Sans MS", size = 30))
+```
 
-# Create "myplot.pdf", from myplot
-ggsave(filename = "myplot.pdf",
-       plot = myplot,
+]
+
+.pull-right45[
+
+
+
+
+```r
+my_plot
+```
+
+&lt;img src="Plotting_files/figure-html/unnamed-chunk-76-1.png" style="display: block; margin: auto;" /&gt;
+
+]
+
+---
+
+# Own themes
+
+.pull-left45[
+
+
+```r
+my_theme &lt;- theme(
+  panel.background = 
+    element_rect(fill = 'tomato'), 
+  plot.background = 
+    element_rect(fill = 'burlywood'),
+  panel.grid.major = element_line(
+    colour = "salmon", size = 3),
+  panel.grid.minor = element_line(
+    colour = "seagreen", size = 1.5),
+  axis.line.x = element_line(
+    colour = "deeppink", size = 3.5, 
+    lineend = "butt"),
+  axis.line.y = element_line(
+    colour = "deeppink", size = 3.5),
+  axis.title.x = element_text(
+    family = "Comic Sans MS", size = 30),
+  axis.title.y = element_text(
+    family = "Comic Sans MS", size = 30))
+```
+
+]
+
+.pull-right45[
+
+
+
+
+```r
+my_plot + my_theme
+```
+
+&lt;img src="Plotting_files/figure-html/unnamed-chunk-79-1.png" style="display: block; margin: auto;" /&gt;
+
+]
+
+---
+
+# `scale_*()`
+
+.pull-left45[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;&lt;mono&gt;scale_*()&lt;/mono&gt; funcgions adjust all sizes and lengths.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Types of &lt;mono&gt;scale_*()&lt;/mono&gt; functions:&lt;/span&gt;&lt;/li&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;scale_xy_*&lt;/mono&gt; | Scale axes&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;scale_color_*, scale_color_*&lt;/mono&gt; | Scale colors&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;scale_size_*&lt;/mono&gt; | Scale sizes&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;scale_alpha_*&lt;/mono&gt; | Scale transparency&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;...&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/ul&gt;
+
+]
+
+.pull-right45[
+
+
+
+
+```r
+my_plot
+```
+
+&lt;img src="Plotting_files/figure-html/unnamed-chunk-81-1.png" style="display: block; margin: auto;" /&gt;
+
+
+]
+
+---
+
+# `scale_x_continuous()`
+
+.pull-left45[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;&lt;mono&gt;scale_*()&lt;/mono&gt; funcgions adjust all sizes and lengths.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Types of &lt;mono&gt;scale_*()&lt;/mono&gt; functions:&lt;/span&gt;&lt;/li&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;scale_xy_*&lt;/mono&gt; | Scale axes&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;scale_color_*, scale_color_*&lt;/mono&gt; | Scale colors&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;scale_size_*&lt;/mono&gt; | Scale sizes&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;scale_alpha_*&lt;/mono&gt; | Scale transparency&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;...&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/ul&gt;
+
+]
+
+.pull-right45[
+
+
+
+
+```r
+my_plot + 
+  scale_x_continuous(limits = c(1, 30))
+```
+
+&lt;img src="Plotting_files/figure-html/unnamed-chunk-83-1.png" style="display: block; margin: auto;" /&gt;
+
+]
+
+---
+
+# `scale_x_reverse()`
+
+.pull-left45[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;&lt;mono&gt;scale_*()&lt;/mono&gt; funcgions adjust all sizes and lengths.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Types of &lt;mono&gt;scale_*()&lt;/mono&gt; functions:&lt;/span&gt;&lt;/li&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;scale_xy_*&lt;/mono&gt; | Scale axes&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;scale_color_*, scale_color_*&lt;/mono&gt; | Scale colors&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;scale_size_*&lt;/mono&gt; | Scale sizes&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;scale_alpha_*&lt;/mono&gt; | Scale transparency&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;...&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/ul&gt;
+
+]
+
+.pull-right45[
+
+
+
+
+```r
+my_plot + 
+  scale_x_reverse()
+```
+
+&lt;img src="Plotting_files/figure-html/unnamed-chunk-85-1.png" style="display: block; margin: auto;" /&gt;
+
+]
+
+---
+
+# `scale_color_hue()`
+
+.pull-left45[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;&lt;mono&gt;scale_*()&lt;/mono&gt; funcgions adjust all sizes and lengths.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Types of &lt;mono&gt;scale_*()&lt;/mono&gt; functions:&lt;/span&gt;&lt;/li&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;scale_xy_*&lt;/mono&gt; | Scale axes&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;scale_color_*, scale_color_*&lt;/mono&gt; | Scale colors&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;scale_size_*&lt;/mono&gt; | Scale sizes&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;scale_alpha_*&lt;/mono&gt; | Scale transparency&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;...&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/ul&gt;
+
+]
+
+.pull-right45[
+
+
+
+
+```r
+my_plot + 
+  scale_colour_hue(h = c(160, 260))
+```
+
+&lt;img src="Plotting_files/figure-html/unnamed-chunk-87-1.png" style="display: block; margin: auto;" /&gt;
+
+]
+
+---
+
+# `scale_size()`
+
+.pull-left45[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;&lt;mono&gt;scale_*()&lt;/mono&gt; funcgions adjust all sizes and lengths.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Types of &lt;mono&gt;scale_*()&lt;/mono&gt; functions:&lt;/span&gt;&lt;/li&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;scale_xy_*&lt;/mono&gt; | Scale axes&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;scale_color_*, scale_color_*&lt;/mono&gt; | Scale colors&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;scale_size_*&lt;/mono&gt; | Scale sizes&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;scale_alpha_*&lt;/mono&gt; | Scale transparency&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;...&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/ul&gt;
+
+]
+
+.pull-right45[
+
+
+
+
+```r
+my_plot + 
+  scale_size(range = c(1, 15))
+```
+
+&lt;img src="Plotting_files/figure-html/unnamed-chunk-89-1.png" style="display: block; margin: auto;" /&gt;
+
+]
+
+
+
+---
+
+# Multiple plots
+
+.pull-left45[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;The &lt;mono&gt;patchwork&lt;/mono&gt; package delivers a novel Syntax to  join multiple plots in a single one.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;&lt;mono&gt;patchwork&lt;/mono&gt; syntax:&lt;/span&gt;&lt;/li&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;+&lt;/mono&gt; | join plots&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;|&lt;/mono&gt; | join horizontally&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;/&lt;/mono&gt; | join vertically&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;()&lt;/mono&gt; | bind plots&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;&amp;&lt;/mono&gt; | apply to all&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/ul&gt;
+
+
+
+&lt;br&gt;
+
+
+```r
+# Speichere plots
+pretty &lt;- my_plot
+ugly &lt;- my_plot + my_theme
+```
+
+]
+
+.pull-right45[
+
+
+```r
+pretty + ugly
+```
+
+&lt;img src="Plotting_files/figure-html/unnamed-chunk-92-1.png" style="display: block; margin: auto;" /&gt;
+
+]
+
+---
+
+# Multiple plots
+
+.pull-left45[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;The &lt;mono&gt;patchwork&lt;/mono&gt; package delivers a novel Syntax to  join multiple plots in a single one.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;&lt;mono&gt;patchwork&lt;/mono&gt; syntax:&lt;/span&gt;&lt;/li&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;+&lt;/mono&gt; | join plots&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;|&lt;/mono&gt; | join horizontally&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;/&lt;/mono&gt; | join vertically&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;()&lt;/mono&gt; | bind plots&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;&amp;&lt;/mono&gt; | apply to all&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/ul&gt;
+
+
+
+&lt;br&gt;
+
+
+```r
+# Speichere plots
+pretty &lt;- my_plot
+ugly &lt;- my_plot + my_theme
+```
+
+]
+
+.pull-right45[
+
+
+```r
+pretty | ugly + pretty
+```
+
+&lt;img src="Plotting_files/figure-html/unnamed-chunk-95-1.png" style="display: block; margin: auto;" /&gt;
+
+]
+
+---
+
+# Multiple plots
+
+.pull-left45[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;The &lt;mono&gt;patchwork&lt;/mono&gt; package delivers a novel Syntax to  join multiple plots in a single one.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;&lt;mono&gt;patchwork&lt;/mono&gt; syntax:&lt;/span&gt;&lt;/li&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;+&lt;/mono&gt; | join plots&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;|&lt;/mono&gt; | join horizontally&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;/&lt;/mono&gt; | join vertically&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;()&lt;/mono&gt; | bind plots&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;&amp;&lt;/mono&gt; | apply to all&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/ul&gt;
+
+
+
+&lt;br&gt;
+
+
+```r
+# Speichere plots
+pretty &lt;- my_plot
+ugly &lt;- my_plot + my_theme
+```
+
+]
+
+.pull-right45[
+
+
+```r
+(pretty+pretty) / (pretty+pretty)
+```
+
+&lt;img src="Plotting_files/figure-html/unnamed-chunk-98-1.png" style="display: block; margin: auto;" /&gt;
+
+]
+
+---
+
+# Multiple plots
+
+.pull-left45[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;The &lt;mono&gt;patchwork&lt;/mono&gt; package delivers a novel Syntax to  join multiple plots in a single one.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;&lt;mono&gt;patchwork&lt;/mono&gt; syntax:&lt;/span&gt;&lt;/li&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;+&lt;/mono&gt; | join plots&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;|&lt;/mono&gt; | join horizontally&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;/&lt;/mono&gt; | join vertically&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;()&lt;/mono&gt; | bind plots&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;&amp;&lt;/mono&gt; | apply to all&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/ul&gt;
+
+
+
+&lt;br&gt;
+
+
+```r
+# Speichere plots
+pretty &lt;- my_plot
+ugly &lt;- my_plot + my_theme
+```
+
+]
+
+.pull-right45[
+
+
+```r
+(pretty+pretty) / (pretty+pretty) &amp;
+  my_theme
+```
+
+&lt;img src="Plotting_files/figure-html/unnamed-chunk-101-1.png" style="display: block; margin: auto;" /&gt;
+
+]
+
+---
+
+# Multiple plots
+
+.pull-left45[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;The &lt;mono&gt;patchwork&lt;/mono&gt; package delivers a novel Syntax to  join multiple plots in a single one.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;&lt;mono&gt;patchwork&lt;/mono&gt; syntax:&lt;/span&gt;&lt;/li&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;+&lt;/mono&gt; | join plots&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;|&lt;/mono&gt; | join horizontally&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;/&lt;/mono&gt; | join vertically&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;()&lt;/mono&gt; | bind plots&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;&amp;&lt;/mono&gt; | apply to all&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/ul&gt;
+
+
+
+&lt;br&gt;
+
+
+```r
+# Speichere plots
+pretty &lt;- my_plot
+ugly &lt;- my_plot + my_theme
+```
+
+]
+
+.pull-right45[
+
+
+```r
+(pretty+pretty) / (pretty+pretty) +
+  plot_annotation(tag_levels = "A") &amp; 
+  theme(legend.position = "none") 
+```
+
+&lt;img src="Plotting_files/figure-html/unnamed-chunk-104-1.png" style="display: block; margin: auto;" /&gt;
+
+]
+
+---
+
+# `ggsave()`
+
+.pull-left45[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Create &lt;high&gt;graphic files&lt;/high&gt; with &lt;mono&gt;ggsave()&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;&lt;mono&gt;ggsave&lt;/mono&gt; arguments:&lt;/span&gt;&lt;/li&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;filename&lt;/mono&gt; | name of file&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;device&lt;/mono&gt; | z.B. &lt;mono&gt;".pdf"&lt;/mono&gt; or &lt;mono&gt;".png"&lt;/mono&gt;&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;path&lt;/mono&gt; | path to folder&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;height, width&lt;/mono&gt; | height, width&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;unit&lt;/mono&gt; | Unit for height, width&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;dpi&lt;/mono&gt; | Resolution per unit&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/ul&gt;
+
+]
+
+
+.pull-right45[
+
+
+```r
+# Create plot
+my_plot &lt;- ggplot(data = mpg,
+                 aes(x = displ, y = hwy)) + 
+            geom_point() + 
+            mytheme
+
+# Save "my_plot.pdf"
+ggsave(filename = "my_plot",
+       plot = my_plot,
        device = "pdf",
        path = "figures",
        width = 6, 
@@ -1161,48 +2065,35 @@ ggsave(filename = "myplot.pdf",
 
 .pull-left45[
 
-To create an &lt;high&gt;image file&lt;/high&gt; of a plot (e.g., `.jpg`, `.pdf`, `.png`), use the `ggsave()` function.
-
-&lt;u&gt;Arguments&lt;/u&gt;
-
-&lt;table style="width:100%"&gt;
-  &lt;tr&gt;
-    &lt;td&gt; &lt;b&gt;Argument&lt;/b&gt; &lt;/td&gt;
-    &lt;td&gt; &lt;b&gt;Description&lt;/b&gt; &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-    &lt;td&gt; &lt;mono&gt;filename&lt;/mono&gt; &lt;/td&gt;
-    &lt;td&gt; Name of the to-be-created file (including extension) &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-    &lt;td&gt; &lt;mono&gt;device&lt;/mono&gt; &lt;/td&gt;
-    &lt;td&gt; File type (e.g.; "pdf", "jpeg", "png") &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-    &lt;td&gt; &lt;mono&gt;path&lt;/mono&gt; &lt;/td&gt;
-    &lt;td&gt; Folder to store image in &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-    &lt;td&gt; &lt;mono&gt;width&lt;/mono&gt;, &lt;mono&gt;height&lt;/mono&gt;  &lt;/td&gt;
-    &lt;td&gt; Plot width, height (e.g., inches) &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/table&gt;
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Create &lt;high&gt;graphic files&lt;/high&gt; with &lt;mono&gt;ggsave()&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;&lt;mono&gt;ggsave&lt;/mono&gt; arguments:&lt;/span&gt;&lt;/li&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;filename&lt;/mono&gt; | name of file&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;device&lt;/mono&gt; | z.B. &lt;mono&gt;".pdf"&lt;/mono&gt; or &lt;mono&gt;".png"&lt;/mono&gt;&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;path&lt;/mono&gt; | path to folder&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;height, width&lt;/mono&gt; | height, width&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;unit&lt;/mono&gt; | Unit for height, width&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;mono&gt;dpi&lt;/mono&gt; | Resolution per unit&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/ul&gt;
 
 ]
 
 
-.pull-right5[
+.pull-right45[
 
 
 ```r
-# Create myplot object
-myplot &lt;- myplot +
-  geom_smooth(col = "blue", method = "lm") +
-  facet_wrap(~ class)
+# Create plot
+my_plot &lt;- ggplot(data = mpg,
+                 aes(x = displ, y = hwy)) + 
+            geom_point() + 
+            mytheme
 
-# Create "myplot.png", from myplot
-ggsave(filename = "myplot.png",
-       plot = myplot,
+# Save "my_plot.pdf"
+ggsave(filename = "my_plot",
+       plot = my_plot,
        device = "png",
        path = "figures",
        width = 6, 
@@ -1213,12 +2104,16 @@ ggsave(filename = "myplot.png",
 
 
 
+
+
+
 ---
 
 class: middle, center
 
-&lt;h1&gt;&lt;a href="https://therbootcamp.github.io/R4DS_2019Feb/_sessions/Plotting/Plotting_practical.html"&gt;Practical&lt;/a&gt;&lt;/h1&gt;
+&lt;h1&gt;&lt;a href="https://therbootcamp.github.io/EDA_2020Feb/_sessions/Plotting/Plotting_practical.html"&gt;Practical&lt;/a&gt;&lt;/h1&gt;
     </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
 "highlightStyle": "github",
@@ -1229,16 +2124,57 @@ class: middle, center
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));
 });
-(function() {
-  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
   if (!r) return;
   s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
   d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
 })();</script>
 
 <script>
 (function() {
-  var i, text, code, codes = document.getElementsByTagName('code');
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
   for (i = 0; i < codes.length;) {
     code = codes[i];
     if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
@@ -1252,14 +2188,15 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     }
     i++;
   }
-})();
+};
+slideshow._releaseMath(document);
 </script>
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
 (function () {
   var script = document.createElement('script');
   script.type = 'text/javascript';
-  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
   if (location.protocol !== 'file:' && /^https?:/.test(script.src))
     script.src  = script.src.replace(/^https?:/, '');
   document.getElementsByTagName('head')[0].appendChild(script);
