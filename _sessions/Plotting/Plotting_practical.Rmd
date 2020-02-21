@@ -478,7 +478,7 @@ mcdonalds_gg + theme(XX = element_text(size = XX))
 mcdonalds_gg + theme(axis.title = element_text(size = 14))
 ```
 
-3. Now in addition give the facet headers a grey (e.g., `grey75`) backround and its border to `'white'` using the `strip.background` argument and `element_rect()` and change the color of the header text to white (using `strip.text()`). 
+3. Now in addition give the facet headers a grey (e.g., `grey75`) backround and its border to `'white'` using the `strip.background` argument and `element_rect()` and change the color of the header text to white (using `strip.text`). 
 
 ```{r, eval = FALSE, echo = TRUE}
 mcdonalds_gg + theme(XX = element_text(XX = XX),

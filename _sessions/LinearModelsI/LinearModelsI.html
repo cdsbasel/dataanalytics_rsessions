@@ -1,0 +1,1606 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <title>Statistics</title>
+    <meta charset="utf-8" />
+    <meta name="author" content=" Data Analytics for Psychology and Business" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="baselrbootcamp.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Statistics
+### <a href='https://cdsbasel.github.io/dataanalytics/'> Data Analytics for Psychology and Business </a> <br> <a href='https://cdsbasel.github.io/dataanalytics/menu/materials.html'> <i class='fas fa-clock' style='font-size:.9em;'></i> </a>  <a href='https://cdsbasel.github.io/dataanalytics/'> <i class='fas fa-home' style='font-size:.9em;' ></i> </a>  <a href='mailto:rui.mata@unibas.ch'> <i class='fas fa-envelope' style='font-size: .9em;'></i>
+### February 2019
+
+---
+
+
+layout: true
+
+&lt;div class="my-footer"&gt;
+  &lt;span style="text-align:center"&gt;
+    &lt;span&gt; 
+      &lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png" height=14 style="vertical-align: middle"/&gt;
+    &lt;/span&gt;
+    &lt;a href="https://therbootcamp.github.io/"&gt;
+      &lt;span style="padding-left:82px"&gt; 
+        &lt;font color="#7E7E7E"&gt;
+          www.therbootcamp.com
+        &lt;/font&gt;
+      &lt;/span&gt;
+    &lt;/a&gt;
+    &lt;a href="https://therbootcamp.github.io/"&gt;
+      &lt;font color="#7E7E7E"&gt;
+       Statistics with R | April 2019
+      &lt;/font&gt;
+    &lt;/a&gt;
+    &lt;/span&gt;
+  &lt;/div&gt; 
+
+---
+
+
+
+
+
+
+# Linear Models
+
+.pull-left5[
+
+Linear models are, by far, &lt;high&gt;the most important models in all of statistics&lt;/high&gt;.
+
+Many statistical tests you may know of are special types of linear models.
+
+Why are linear models so great?
+
+- They are &lt;high&gt;easy to interpret&lt;/high&gt;.
+- They can &lt;high&gt;approximate non-linear&lt;/high&gt; data well.
+- They are &lt;high&gt;easy to calculate&lt;/high&gt; and implement (just addition and multiplication!).
+- They &lt;high&gt;just work&lt;/high&gt;!
+
+]
+
+.pull-right45[
+
+`$$\Large income = 885 + age \times 149.3$$`
+
+&lt;img src="LinearModelsI_files/figure-html/unnamed-chunk-2-1.png" style="display: block; margin: auto;" /&gt;
+
+
+]
+
+---
+
+# What is a linear model?
+
+.pull-left5[
+
+A linear model is &lt;high&gt;just addition and multiplication&lt;/high&gt; and can be written in the following forms: 
+
+&lt;br&gt;
+
+&lt;center&gt;&lt;u&gt;Version 1&lt;/u&gt;&lt;center&gt;
+
+`$$\huge y = \beta_{0} + \beta_{1}x_{1} + \beta_{2} x_{2} +  ... + \beta_{n}x_{n} + \epsilon$$`
+
+&lt;br&gt;
+
+&lt;center&gt;&lt;u&gt;Version 2&lt;/u&gt;&lt;center&gt;
+
+
+`$$\huge y = \beta_{0} + \sum_{i=1}^{n}\beta_{i}x_{i}+ \epsilon$$`
+
+
+]
+
+
+.pull-right4[
+
+&lt;p align = "center"&gt;
+  &lt;img src="image/math.jpg"&gt;&lt;br&gt;
+  &lt;font style="font-size:10px"&gt;
+    from &lt;a href="https://66.media.tumblr.com/6e401f0cffebf9c7440894d4fa6c48b2/tumblr_o0af44kS071u7w7kwo1_1280.jpg"&gt; media.tumblr.com&lt;/a&gt;
+  &lt;/font&gt;
+&lt;/p&gt;
+
+]
+
+---
+
+# Simple Linear Regression
+
+.pull-left45[
+
+
+&lt;high&gt;Definition&lt;/high&gt;: Simple linear regression is a linear model with one predictor `\(x\)`, and where the error term `\(\epsilon\)` is Normally distributed.
+
+
+&lt;br&gt;
+
+`$$\huge y=\beta_{0} + \beta_{1} x + \epsilon$$`
+
+&lt;br&gt;
+
+&lt;table style="cellspacing:0; cellpadding:0; border:none" width=100%&gt;
+  &lt;col width="30%"&gt;
+  &lt;col width="30%"&gt;
+  &lt;col width="40%"&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;b&gt;Parameter&lt;/b&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;b&gt;Description&lt;/b&gt;
+  &lt;/td&gt; 
+  &lt;td bgcolor="white"&gt;
+    &lt;b&gt;In words&lt;/b&gt;
+  &lt;/td&gt; 
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &amp;#x3B2;&lt;sub&gt;0&lt;/sub&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    Intercept
+  &lt;/td&gt; 
+  &lt;td bgcolor="white"&gt;
+    When x = 0, what is the predicted value for y?
+  &lt;/td&gt; 
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &amp;#x3B2;&lt;sub&gt;1&lt;/sub&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    Coefficient for x
+  &lt;/td&gt; 
+  &lt;td bgcolor="white"&gt;
+    For every increase of 1 in x, how does y change?
+  &lt;/td&gt; 
+&lt;/tr&gt;
+&lt;/table&gt;
+
+
+]
+
+
+.pull-right45[
+
+
+&lt;img src="LinearModelsI_files/figure-html/unnamed-chunk-3-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+
+&lt;center&gt;&lt;u&gt;Formula&lt;/u&gt;&lt;/center&gt;
+
+`$$\Large income = 885 + 149.3 \times age  + \epsilon$$`
+
+&lt;center&gt;&lt;u&gt;Coefficients&lt;/u&gt;&lt;/center&gt;
+
+`$$\Large \beta_{0} = 885, \beta_{age} = 149.3$$`
+
+]
+
+---
+
+# Multiple Linear Regression
+
+.pull-left5[
+
+&lt;high&gt;Definition&lt;/high&gt;: Multiple linear regression is a linear model with many predictors `\(x_{1},  x_{2}, .... x_{n}\)`, and where the error term `\(\epsilon\)` is Normally distributed.
+
+&lt;br&gt;
+
+`$$\LARGE y=\beta_{0} + \beta_{1}x_{1} + \beta_{2} x_{2}+...+ \beta_{n} x_{n} + \epsilon$$`
+&lt;br&gt;
+
+&lt;table style="cellspacing:0; cellpadding:0; border:none" width=100%&gt;
+  &lt;col width="25%"&gt;
+  &lt;col width="25%"&gt;
+  &lt;col width="50%"&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;b&gt;Parameter&lt;/b&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;b&gt;Description&lt;/b&gt;
+  &lt;/td&gt; 
+  &lt;td bgcolor="white"&gt;
+    &lt;b&gt;In words&lt;/b&gt;
+  &lt;/td&gt; 
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &amp;#x3B2;&lt;sub&gt;0&lt;/sub&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    Intercept
+  &lt;/td&gt; 
+  &lt;td bgcolor="white"&gt;
+    When all x values are 0, what is the predicted value for y?
+  &lt;/td&gt; 
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &amp;#x3B2;&lt;sub&gt;1&lt;/sub&gt;, &amp;#x3B2;&lt;sub&gt;2&lt;/sub&gt;, ...
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    Coefficient for x&lt;sub&gt;1&lt;/sub&gt;, x&lt;sub&gt;2&lt;/sub&gt;, ...
+  &lt;/td&gt; 
+  &lt;td bgcolor="white"&gt;
+     For every increase of 1 in coefficient for x&lt;sub&gt;1&lt;/sub&gt;, x&lt;sub&gt;2&lt;/sub&gt;, ... how does y change?
+  &lt;/td&gt; 
+&lt;/tr&gt;
+&lt;/table&gt;
+
+
+]
+
+
+.pull-right45[
+
+
+&lt;img src="LinearModelsI_files/figure-html/unnamed-chunk-4-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+&lt;br&gt;&lt;center&gt;&lt;u&gt;Formula&lt;/u&gt;&lt;/center&gt;
+
+`$$\large income = 1628 + 147  \times age - 4.1 \times height + \epsilon$$`
+
+&lt;center&gt;&lt;u&gt;Coefficients&lt;/u&gt;&lt;/center&gt;
+
+`$$\large \beta_{0} = 1628, \beta_{age} = 147, \beta_{weight}=-4.1$$`
+
+
+]
+
+
+
+---
+
+# Estimating coefficients
+
+.pull-left45[
+
+How do we estimate the 'right' coefficients in a linear model? &lt;high&gt;Which of the four would be a good fit?&lt;/high&gt;
+
+
+
+
+&lt;img src="LinearModelsI_files/figure-html/unnamed-chunk-6-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+`$$\Large income = \beta_{0} + \beta_{1} \times age + \epsilon$$`
+]
+
+.pull-right5[
+
+&lt;img src="LinearModelsI_files/figure-html/unnamed-chunk-7-1.png" width="95%" style="display: block; margin: auto;" /&gt;
+
+]
+
+
+
+---
+
+# Estimating coefficients
+
+.pull-left45[
+
+How do we estimate the 'right' coefficients in a linear model? &lt;high&gt;Which of the four would be a good fit?&lt;/high&gt;
+
+
+
+&lt;img src="LinearModelsI_files/figure-html/unnamed-chunk-9-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+`$$\Large income = -0.254 + 0.167 \times age + \epsilon$$`
+]
+
+.pull-right5[
+
+
+&lt;img src="LinearModelsI_files/figure-html/unnamed-chunk-10-1.png" width="95%" style="display: block; margin: auto;" /&gt;
+
+]
+
+
+---
+
+
+
+.pull-left45[
+
+# Estimating coefficients
+
+How do we estimate the 'right' coefficients in a linear model?
+
+Find the values that minimise &lt;high&gt;Mean Squared Error&lt;/high&gt; (MSE).
+
+MSE:  The average squared distance between the prediction and the data.
+
+&lt;br&gt;
+
+`$$\Large MSE = \frac{1}{N}\sum_{i=1}^{n}(y_{i}-  Prediction_{i})^2$$`
+&lt;!-- `$$\LARGE = \frac{1}{N}\sum_{i=1}^{n}(Y_{i}-  (\beta_{0} + \beta_{1}x_{1}))^2$$` --&gt;
+
+
+]
+
+.pull-right5[
+
+&lt;br&gt;
+
+&lt;img src="LinearModelsI_files/figure-html/unnamed-chunk-11-1.png" width="67%" style="display: block; margin: auto;" /&gt;
+
+
+
+| id| age| income| Prediction|     SE|
+|--:|---:|------:|----------:|------:|
+|  1|  24|    4.0|      3.730| 0.0729|
+|  2|  27|    4.2|      4.228| 0.0008|
+|  3|  31|    5.1|      4.892| 0.0433|
+|  4|  44|    6.3|      7.050| 0.5625|
+|  5|  65|   10.9|     10.536| 0.1325|
+|  |  |   |      &lt;b&gt;MSE&lt;/b&gt;| &lt;b&gt;0.16&lt;/b&gt;|
+
+
+]
+
+---
+
+# R&lt;sup&gt;2&lt;/sup&gt; (R-Squared)
+
+.pull-left45[
+
+R-Squared `\(R^{2}\)` is the most common method of calculating the &lt;high&gt;overall performance&lt;/high&gt; of a model.
+
+&lt;br&gt;
+
+`$$\huge R^{2} = 1 - \frac{SS_{res}}{SS_{tot}}$$`
+
+
+&lt;table style="cellspacing:0; cellpadding:0; border:none; padding-top:10px" width=100%&gt;
+  &lt;col width="15%"&gt;
+  &lt;col width="85%"&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;b&gt;R&lt;sup&gt;2&lt;/sup&gt;&lt;/b&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;b&gt;Interpretation&lt;/b&gt;
+  &lt;/td&gt; 
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    0
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    Model explains no variance in y.
+  &lt;/td&gt; 
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+   .5
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    Model explains half the variance in y.
+  &lt;/td&gt; 
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+   1
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    Model explains &lt;i&gt;all&lt;/i&gt; half the variance in y.
+  &lt;/td&gt; 
+&lt;/tr&gt;
+&lt;/table&gt;
+
+]
+
+.pull-right5[
+
+&lt;p align="center"&gt; 
+  &lt;img src="image/r2_vis.png"&gt;
+  &lt;font style="font-size:10px"&gt; from &lt;a   href='https://en.wikipedia.org/wiki/Coefficient_of_determination'&gt;Wikipedia&lt;/a&gt;&lt;/font&gt;
+  &lt;/a&gt;
+&lt;/p&gt;
+]
+
+---
+
+# R&lt;sup&gt;2&lt;/sup&gt; (R-Squared)
+
+.pull-left45[
+
+R-Squared `\(R^{2}\)` is the most common method of calculating the &lt;high&gt;overall performance&lt;/high&gt; of a model.
+
+&lt;br&gt;
+
+`$$\huge R^{2} = 1 - \frac{SS_{res}}{SS_{tot}}$$`
+
+
+&lt;table style="cellspacing:0; cellpadding:0; border:none; padding-top:10px" width=100%&gt;
+  &lt;col width="15%"&gt;
+  &lt;col width="85%"&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;b&gt;R&lt;sup&gt;2&lt;/sup&gt;&lt;/b&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;b&gt;Interpretation&lt;/b&gt;
+  &lt;/td&gt; 
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    0
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    Model explains no variance in y.
+  &lt;/td&gt; 
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+   .5
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    Model explains half the variance in y.
+  &lt;/td&gt; 
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+   1
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    Model explains &lt;i&gt;all&lt;/i&gt; half the variance in y.
+  &lt;/td&gt; 
+&lt;/tr&gt;
+&lt;/table&gt;
+
+]
+
+.pull-right5[
+
+&lt;p align="center"&gt;&lt;i&gt;2 Models with different R2 values&lt;/i&gt;&lt;/p&gt;
+
+&lt;img src="LinearModelsI_files/figure-html/unnamed-chunk-13-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+]
+
+---
+class: middle, center
+
+# How to fit and and dissect linear models in R
+
+## with `glm()`
+
+---
+
+# Key Functions
+
+.pull-left35[
+
+&lt;font style="font-size:20px"&gt;&lt;u&gt;Fitting&lt;/u&gt;&lt;/p&gt;
+
+&lt;table style="cellspacing:0; cellpadding:0; border:none; padding-top:10px" width=100%&gt;
+  &lt;col width="40%"&gt;
+  &lt;col width="60%"&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;b&gt;Function&lt;/b&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;b&gt;Description&lt;/b&gt;
+  &lt;/td&gt; 
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;mono&gt;glm(formula, data)&lt;/mono&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    Fit a linear model to data and calculate best coefficients
+  &lt;/td&gt; 
+&lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;font style="font-size:20px"&gt;&lt;u&gt;Evaluation&lt;/u&gt;&lt;/p&gt;
+
+&lt;table style="cellspacing:0; cellpadding:0; border:none; padding-top:10px" width=100%&gt;
+  &lt;col width="40%"&gt;
+  &lt;col width="60%"&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;b&gt;Function&lt;/b&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;b&gt;Description&lt;/b&gt;
+  &lt;/td&gt; 
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+   &lt;mono&gt;coef(mod)&lt;/mono&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    Get coefficients from a model
+  &lt;/td&gt; 
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+   &lt;mono&gt;fitted(mod)&lt;/mono&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    Get fitted results.
+  &lt;/td&gt; 
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+   &lt;mono&gt;resid(mod)&lt;/mono&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    Get residuals (errors)
+  &lt;/td&gt; 
+&lt;/tr&gt;
+&lt;/table&gt;
+
+]
+
+.pull-right6[
+
+
+```r
+# Create a model income_glm
+
+# Y = income
+# X1 = age, X2 = children
+
+income_glm &lt;- glm(formula = income ~ age + children,
+                  data = baselers)
+```
+
+&lt;br&gt;
+
+| id| income| age| children|
+|--:|------:|---:|--------:|
+|  1|   6300|  44|        2|
+|  2|  10900|  65|        2|
+
+]
+
+
+---
+
+# Key Functions
+
+.pull-left35[
+
+
+&lt;font style="font-size:20px"&gt;&lt;u&gt;Fitting&lt;/u&gt;&lt;/p&gt;
+
+&lt;table style="cellspacing:0; cellpadding:0; border:none; padding-top:10px" width=100%&gt;
+  &lt;col width="40%"&gt;
+  &lt;col width="60%"&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;b&gt;Function&lt;/b&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;b&gt;Description&lt;/b&gt;
+  &lt;/td&gt; 
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;mono&gt;glm(formula, data)&lt;/mono&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    Fit a linear model to data and calculate best coefficients
+  &lt;/td&gt; 
+&lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;font style="font-size:20px"&gt;&lt;u&gt;Evaluation&lt;/u&gt;&lt;/p&gt;
+
+&lt;table style="cellspacing:0; cellpadding:0; border:none; padding-top:10px" width=100%&gt;
+  &lt;col width="40%"&gt;
+  &lt;col width="60%"&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;b&gt;Function&lt;/b&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;b&gt;Description&lt;/b&gt;
+  &lt;/td&gt; 
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+   &lt;mono&gt;coef(mod)&lt;/mono&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    Get coefficients from a model
+  &lt;/td&gt; 
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+   &lt;mono&gt;fitted(mod)&lt;/mono&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    Get fitted results.
+  &lt;/td&gt; 
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+   &lt;mono&gt;resid(mod)&lt;/mono&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    Get residuals (errors)
+  &lt;/td&gt; 
+&lt;/tr&gt;
+&lt;/table&gt;
+
+]
+
+.pull-right6[
+
+
+
+```r
+# Print income_glm
+
+income_glm
+```
+
+```
+## 
+## Call:  glm(formula = income ~ age + children, data = baselers)
+## 
+## Coefficients:
+## (Intercept)          age     children  
+##       932.1        150.3        -39.3  
+## 
+## Degrees of Freedom: 850 Total (i.e. Null);  848 Residual
+## Null Deviance:	    6.98e+09 
+## Residual Deviance: 1.29e+09 	AIC: 14500
+```
+
+]
+
+
+---
+
+# Key Functions
+
+.pull-left35[
+
+&lt;font style="font-size:20px"&gt;&lt;u&gt;Fitting&lt;/u&gt;&lt;/p&gt;
+
+&lt;table style="cellspacing:0; cellpadding:0; border:none; padding-top:10px" width=100%&gt;
+  &lt;col width="40%"&gt;
+  &lt;col width="60%"&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;b&gt;Function&lt;/b&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;b&gt;Description&lt;/b&gt;
+  &lt;/td&gt; 
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;mono&gt;glm(formula, data)&lt;/mono&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    Fit a linear model to data and calculate best coefficients
+  &lt;/td&gt; 
+&lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;font style="font-size:20px"&gt;&lt;u&gt;Evaluation&lt;/u&gt;&lt;/p&gt;
+
+&lt;table style="cellspacing:0; cellpadding:0; border:none; padding-top:10px" width=100%&gt;
+  &lt;col width="40%"&gt;
+  &lt;col width="60%"&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;b&gt;Function&lt;/b&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;b&gt;Description&lt;/b&gt;
+  &lt;/td&gt; 
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+   &lt;mono&gt;coef(mod)&lt;/mono&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    Get coefficients from a model
+  &lt;/td&gt; 
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+   &lt;mono&gt;fitted(mod)&lt;/mono&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    Get fitted results.
+  &lt;/td&gt; 
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+   &lt;mono&gt;resid(mod)&lt;/mono&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    Get residuals (errors)
+  &lt;/td&gt; 
+&lt;/tr&gt;
+&lt;/table&gt;
+
+]
+
+.pull-right6[
+
+
+```r
+# Show summary info
+summary(income_glm)
+```
+
+
+
+```
+## 
+## Call:
+## glm(formula = income ~ age + children, data = baselers)
+## 
+## Deviance Residuals: 
+##    Min      1Q  Median      3Q     Max  
+##  -4303    -817      92     872    3639  
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)   932.08     137.81    6.76  2.5e-11 ***
+## age           150.26       2.46   61.04  &lt; 2e-16 ***
+## children      -39.32      40.22   -0.98     0.33    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## (Dispersion parameter for gaussian family taken to be 1525194)
+```
+
+]
+
+
+---
+
+# Key Functions
+
+.pull-left35[
+
+&lt;font style="font-size:20px"&gt;&lt;u&gt;Fitting&lt;/u&gt;&lt;/p&gt;
+
+&lt;table style="cellspacing:0; cellpadding:0; border:none; padding-top:10px" width=100%&gt;
+  &lt;col width="40%"&gt;
+  &lt;col width="60%"&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;b&gt;Function&lt;/b&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;b&gt;Description&lt;/b&gt;
+  &lt;/td&gt; 
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;mono&gt;glm(formula, data)&lt;/mono&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    Fit a linear model to data and calculate best coefficients
+  &lt;/td&gt; 
+&lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;font style="font-size:20px"&gt;&lt;u&gt;Evaluation&lt;/u&gt;&lt;/p&gt;
+
+&lt;table style="cellspacing:0; cellpadding:0; border:none; padding-top:10px" width=100%&gt;
+  &lt;col width="40%"&gt;
+  &lt;col width="60%"&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;b&gt;Function&lt;/b&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;b&gt;Description&lt;/b&gt;
+  &lt;/td&gt; 
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+   &lt;mono&gt;coef(mod)&lt;/mono&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    Get coefficients from a model
+  &lt;/td&gt; 
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+   &lt;mono&gt;fitted(mod)&lt;/mono&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    Get fitted results.
+  &lt;/td&gt; 
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+   &lt;mono&gt;resid(mod)&lt;/mono&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    Get residuals (errors)
+  &lt;/td&gt; 
+&lt;/tr&gt;
+&lt;/table&gt;
+
+
+]
+
+.pull-right6[
+
+
+
+
+```r
+# Get fitted values (only first 5)
+fitted(income_glm)
+
+# Get residuals (only first 10)
+resid(income_glm)
+```
+
+
+```
+##     1     2     3     4     5 
+##  8817 11143  3937  9529  8517
+```
+
+```
+##      1      2      3      4      5 
+## -117.0 -242.5 1062.8 -329.0 2183.5
+```
+
+&lt;br&gt;
+
+| id| income| age| children|&lt;high&gt;fitted&lt;/high&gt;|&lt;high&gt;resid&lt;/high&gt;|
+|--:|------:|---:|:--------|:----|:-----|
+|  1|   6300|  44|        2|7454|-1153.6|
+|  2|  10900|  65|        2|10588|312.2|
+
+]
+
+
+
+---
+
+# Key Functions
+
+.pull-left35[
+
+&lt;font style="font-size:20px"&gt;&lt;u&gt;Fitting&lt;/u&gt;&lt;/p&gt;
+
+&lt;table style="cellspacing:0; cellpadding:0; border:none; padding-top:10px" width=100%&gt;
+  &lt;col width="40%"&gt;
+  &lt;col width="60%"&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;b&gt;Function&lt;/b&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;b&gt;Description&lt;/b&gt;
+  &lt;/td&gt; 
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;mono&gt;glm(formula, data)&lt;/mono&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    Fit a linear model to data and calculate best coefficients
+  &lt;/td&gt; 
+&lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;font style="font-size:20px"&gt;&lt;u&gt;Evaluation&lt;/u&gt;&lt;/p&gt;
+
+&lt;table style="cellspacing:0; cellpadding:0; border:none; padding-top:10px" width=100%&gt;
+  &lt;col width="40%"&gt;
+  &lt;col width="60%"&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;b&gt;Function&lt;/b&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;b&gt;Description&lt;/b&gt;
+  &lt;/td&gt; 
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+   &lt;mono&gt;rsq(mod)&lt;/mono&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    Get R&lt;sup&gt;2&lt;/sup&gt; value from model.
+  &lt;/td&gt; 
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+   &lt;mono&gt;tidy(mod)&lt;/mono&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    Get tidy results from a model.
+  &lt;/td&gt; 
+&lt;/tr&gt;
+&lt;/table&gt;
+
+]
+
+.pull-right6[
+
+
+```r
+library(rsq)
+library(broom)
+
+# Show R-squared from model
+rsq(income_glm)
+```
+
+```
+## [1] 0.8146
+```
+
+```r
+# Show 'tidy' results from my model
+tidy(income_glm)
+```
+
+```
+## # A tibble: 3 x 5
+##   term        estimate std.error statistic   p.value
+##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+## 1 (Intercept)    932.     138.       6.76  2.51e- 11
+## 2 age            150.       2.46    61.0   1.39e-312
+## 3 children       -39.3     40.2     -0.978 3.29e-  1
+```
+
+]
+
+
+
+---
+
+# Data Collection Example
+
+&lt;br&gt;
+
+.pull-left45[
+
+&lt;p align = "center"&gt;
+&lt;img src="image/example1.png" width=450px&gt;&lt;br&gt;
+&lt;/p&gt;
+
+]
+
+.pull-right45[
+
+&lt;p align = "center"&gt;
+&lt;img src="image/example2.png" width=450px&gt;&lt;br&gt;
+&lt;/p&gt;
+
+]
+
+---
+
+
+# [IID](https://en.wikipedia.org/wiki/Independent_and_identically_distributed_random_variables) Assumption
+
+.pull-left45[
+Previous regression models assumed that the data points are independent and identically distributed (&lt;high&gt;iid&lt;/high&gt;).
+
+* &lt;high&gt;Independent&lt;/high&gt;: The occurrence of one value does not affect the occurrence of another value.
+* &lt;high&gt;Identically distributed&lt;/high&gt;: All data points stem from the same probability distribution.
+
+
+Previously considered models are &lt;high&gt;not robust&lt;/high&gt; to violations of the independence assumption.
+
+
+]
+
+.pull-right45[
+
+&lt;img src="image/iid_plot.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+
+]
+
+---
+
+# Examples of Data Where the IID Assumption Is Violated
+
+
+.pull-left55[
+
+&lt;br&gt;
+
+- Test of student performance in the PISA study (&lt;high&gt;students within classes within schools within countries&lt;/high&gt;).
+- Test of a drug in a clinical trial over multiple sites (&lt;high&gt;patients within doctors within sites&lt;/high&gt;).
+- Test of the best design or taste of different versions of a product with &lt;high&gt;multiple ratings from the same persons&lt;/high&gt;.
+
+
+*Failure to run the correct statistical model might lead to missleading results, such as overestimation of an effect.*
+
+
+]
+
+.pull-right35[
+
+
+&lt;p align = "center"&gt;
+&lt;img src="image/pisa.png" height=100px&gt;&lt;br&gt;
+&lt;font style="font-size:10px"&gt;from &lt;a href="https://de.wikipedia.org/wiki/PISA-Studien"&gt;wikipedia.org&lt;/a&gt;&lt;/font&gt;
+&lt;/p&gt;
+
+&lt;p align = "center"&gt;
+&lt;img src="image/multi-arm-trial.jpg" height=100px&gt;&lt;br&gt;
+&lt;font style="font-size:10px"&gt;from &lt;a href="https://www.mssociety.org.uk/research/latest-research/latest-research-news-and-blogs/first-multi-drug-clinical-trial-in-ms-successfully-completed"&gt;mssociety.org.uk&lt;/a&gt;&lt;/font&gt;
+&lt;/p&gt;
+
+&lt;p align = "center"&gt;
+&lt;img src="image/sweets.jpg" height=100px&gt;&lt;br&gt;
+&lt;font style="font-size:10px"&gt;from &lt;a href="https://londonist.com/london/free-and-cheap/this-5-metre-high-pick-n-mix-wall-has-half-a-tonne-of-free-sweets"&gt;londonist.com&lt;/a&gt;&lt;/font&gt;
+&lt;/p&gt;
+
+
+
+]
+---
+
+
+# Example - Clinical Trial Over Multiple Sites
+
+.pull-left45[
+&lt;br&gt;
+
+Let's assume we want to evaluate the effect of a drug (in different doses). We have data of a clinical trial over three sites.
+
+Here's how we would run a regression over all sites (but is it a good idea to do so?):
+
+
+
+
+]
+
+.pull-right45[
+
+&lt;br&gt;
+
+
+&lt;p align="center"&gt;
+&lt;img src="LinearModelsI_files/figure-html/unnamed-chunk-23-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;/p&gt;
+
+]
+
+---
+
+# Example - Clinical Trial Over Multiple Sites
+
+.pull-left45[
+
+
+Let's assume we want to evaluate the effect of a drug (in different doses). We have data of a clinical trial over three sites.
+
+Here's how we would run one regression per site (but is it a good idea to do so?):
+
+
+
+
+]
+
+.pull-right45[
+
+&lt;br&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="LinearModelsI_files/figure-html/unnamed-chunk-25-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;/p&gt;
+
+]
+
+
+---
+
+# Mixed Effects Model
+
+.pull-left5[
+
+A better way of analysing data where the IID assumption is violated than running separate regressions is to use mixed effects models.
+
+Mixed effects models combine two kinds of effects that serve different purposes:
+
+&lt;high&gt;Fixed effects&lt;/high&gt;
+
+* The main effects/ interactions we want to quantify.
+
+&lt;high&gt;Random effects&lt;/high&gt;
+
+* Account for the dependencies in the data.
+* The effects of the population we want to generalize over. 
+
+
+
+
+
+
+]
+
+.pull-right45[
+
+&lt;br&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="LinearModelsI_files/figure-html/unnamed-chunk-27-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;/p&gt;
+
+]
+
+---
+
+# Fixed Effects
+
+.pull-left5[
+
+&lt;br&gt;
+
+Fixed effects represent the overall effect (main effect or interaction) of a predictor. For example the effect of a treatment.
+
+So far we only considered "fixed effects only" models (e.g., simple regression, t-tests, ANOVA).
+
+
+
+
+]
+
+.pull-right45[
+
+&lt;br&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="LinearModelsI_files/figure-html/unnamed-chunk-29-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;/p&gt;
+
+]
+
+---
+
+# Example Data
+
+.pull-left45[
+
+In this introduction we will work with the following data:
+
+You are a researcher and want to gauge whether alcohol influences movie ratings on [Rotten Tomatoes](https://www.rottentomatoes.com/).
+
+You let two subjects rate two movies once when they are sober and once when they've had 4 beers (we'll call this drunk; more alcohol would count as binge drinking and you don't get ethics approval for that.)
+
+* Repeated measures (i.e., within subjects design)
+* The same two movies at all time points for both participants
+
+
+]
+
+.pull-right45[
+
+
+&lt;img src="image/dat_plot.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+
+
+
+]
+
+
+
+---
+
+
+# Fixed Effects Only Model
+
+&lt;img src="image/FE_plot.png" width="70%" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+# Random Effects
+
+.pull-left45[
+With random effects, we can &lt;high&gt;account for "random"" variability&lt;/high&gt; in the data that comes from different sources that introduce dependency in the data. We are usually not interested in the concrete instantiation of a particular level.
+
+Random effects:
+
+* are often part of what we want to generalize over
+* are always categorical variables (&lt;high&gt;factors&lt;/high&gt;)
+* are thought to be randomly drawn from the population 
+
+*"By specifying random effects in our model, we are able to factor out the idiosyncasies of our sample and obtain a more general estimate of the fixed effects of interest."*
+&lt;font style="font-size:10px"&gt;&lt;a href="http://davidkellen.org/wp-content/uploads/2017/04/introduction-mixed-models.pdf"&gt;Singmann &amp; Kellen, 2017
+
+
+]
+
+.pull-right45[
+
+
+&lt;img src="image/MEM_example.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+]
+
+
+---
+
+# Random Effects - Intercepts and Slopes
+
+.pull-left45[
+
+
+We can differentiate two kinds of random effects:
+
+&lt;high&gt;Random Intercepts&lt;/high&gt;&lt;br&gt;
+* Estimated average deviations of each random effects factor level from the grand mean.
+    
+    
+&lt;high&gt;Random Slopes&lt;/high&gt;&lt;br&gt;
+* Estimated deviations of each random effects factor level from the fixed effect slopes.
+
+**Note:**
+When estimating random intercepts, only &lt;high&gt;one additional parameter&lt;/high&gt; is estimated: The &lt;high&gt;variance&lt;/high&gt; of the normal distribution the random intercepts are thought to stem from.
+
+]
+
+.pull-right45[
+
+&lt;img src="image/RI_example.png" width="65%" style="display: block; margin: auto;" /&gt;
+
+&lt;img src="image/MEM_example.png" width="65%" style="display: block; margin: auto;" /&gt;
+
+
+]
+
+
+---
+
+# Random Intercepts Model
+
+.pull-left45[
+
+
+&lt;img src="image/subj_RI_plot.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;p align = "center"&gt;
+&lt;figcaption align = "center" style="display: block; margin: auto;"&gt;By-Subject Random Intercepts&lt;/figcaption&gt;
+&lt;/p&gt;
+
+
+]
+
+.pull-right45[
+
+
+&lt;img src="image/mov_RI_plot.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;p align = "center"&gt;
+&lt;figcaption align = "center" style="display: block; margin: auto;"&gt;By-Movie Random Intercepts&lt;/figcaption&gt;
+&lt;/p&gt;
+
+]
+
+
+---
+
+# Random Intercepts and Slopes Model
+
+.pull-left45[
+
+
+&lt;img src="image/subj_RI_RS_plot.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;p align = "center"&gt;
+&lt;figcaption align = "center" style="display: block; margin: auto;"&gt;By-Subject Random Intercepts and Slopes&lt;/figcaption&gt;
+&lt;/p&gt;
+
+
+]
+
+.pull-right45[
+
+
+&lt;img src="image/mov_RI_RS_plot.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;p align = "center"&gt;
+&lt;figcaption align = "center" style="display: block; margin: auto;"&gt;By-Movie Random Intercepts and Slopes&lt;/figcaption&gt;
+&lt;/p&gt;
+
+
+]
+
+
+---
+
+# Crossed Random Effects Model
+
+&lt;img src="image/cr_RI_RS_plot.png" width="70%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Mixed Effects Model - Equations (In Case You Like Them)
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+&lt;img src="image/Cr_RI_RS.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Crossed vs. Nested Random Effects
+&lt;br&gt;
+.pull-left35[
+&lt;img src="image/crossed_RE.png" width="85%" style="display: block; margin: auto;" /&gt;
+&lt;p align = "center"&gt;
+&lt;figcaption align = "center" style="display: block; margin: auto;"&gt;Crossed Random Effects&lt;/figcaption&gt;
+&lt;/p&gt;
+
+&lt;br&gt;&lt;br&gt;
+
+Crossed random effects are all multiple random effects structures that are not nested.
+
+]
+
+.pull-right55[
+
+&lt;img src="image/nested_RE.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;p align = "center"&gt;
+&lt;figcaption align = "center" style="display: block; margin: auto;"&gt;Nested Random Effects&lt;/figcaption&gt;
+&lt;/p&gt;
+
+&lt;br&gt;&lt;br&gt;
+
+Every level of the nested factor only appears within a single level of the higher order factor.
+
+]
+
+
+---
+
+# Selecting the Random Effects Structure
+
+.pull-left45[
+
+Specifying the correct random effects structure is important. Failure to do so can result in inflated Type I errors or loss of power.
+
+It has been argued that one should specify the &lt;high&gt;maximal random effects structure justified by the design&lt;/high&gt; (maximal model; [Barr et al., 2014](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3881361/pdf/nihms533954.pdf)).
+
+But specifying the random effects structure when it is not apparent in the data can be overconservative. We will use a compromise and run a &lt;high&gt;backwards selection procedure&lt;/high&gt; (see [Matuschek, Kliegl, Vasishth, Baayen, &amp; Bates, 2017](https://www.sciencedirect.com/science/article/pii/S0749596X17300013)).
+
+]
+
+.pull-right45[
+
+&lt;br&gt;
+
+&lt;p align = "center"&gt;
+&lt;img src="image/maximum_minimum.jpg" height=200px&gt;&lt;br&gt;
+&lt;font style="font-size:10px"&gt;from &lt;a href="https://www.shutterstock.com/de/search/maximum.+minimum.?studio=1"&gt;shutterstock.com&lt;/a&gt;&lt;/font&gt;
+&lt;/p&gt;
+
+
+]
+
+
+---
+
+# Fitting Mixed Effects Models in R
+
+.pull-left45[
+
+&lt;br&gt;
+
+Several packages exist to run mixed effects models in R. Here are some of them:
+
+| Package| Function|
+|:------|:----|
+| [lme4](https://CRAN.R-project.org/package=lme4)| `glmer()`, `lmer()`|
+| [afex](https://CRAN.R-project.org/package=afex)| `mixed()`|
+| [rstanarm](https://CRAN.R-project.org/package=rstanarm)| `stan_glmer()`,  `stan_lmer()` |
+
+
+]
+
+.pull-right5[
+
+&lt;br&gt;
+
+
+
+
+
+]
+
+---
+
+# Specifying Random Effects in &lt;high&gt;lme4&lt;/high&gt;
+
+
+
+Random effects are specified with a new element to the formulas:
+
+
+| Formula | Meaning |
+|:----------|:-------------------|
+| `(1 `&amp;#124;` S)` | Random intercepts by `S` |
+| `(1 `&amp;#124;` S) + (1 `&amp;#124;` I)` | Random intercepts by `S` and `I`|
+| `(X1 `&amp;#124;` S)` OR `(1 + X1`&amp;#124;` S)`| Random intercepts by `S` and random slopes for `X1` by `S` with correlations  |
+| `(X1 * X2 `&amp;#124;` S)`| Random intercepts by `S` and random slopes for `X1`, `X2`, and their interaction `X1:X2` by `S` with correlations  |
+| `(0 + X1 `&amp;#124;` S)`| Random slopes for `X1` by `S`, no random intercepts |
+| `(X1 `&amp;#124;&amp;#124;` S)`| Random intercepts by `S` and random slopes for `X1` by `S` no correlations |
+| `(1 `&amp;#124;` S/C)` OR `(1 `&amp;#124;` S) + (1 `&amp;#124;` S:C)`| Random intercepts by `S` and `C` with `C` nested under `S` |
+
+---
+
+# Fitting Mixed Effects Models in R - An Example
+
+.pull-left45[
+
+&lt;br&gt;
+
+We want to predict the &lt;high&gt;Tomatometer&lt;/high&gt; rating with &lt;high&gt;State&lt;/high&gt; as fixed effect and with by-Subjects (&lt;high&gt;ID&lt;/high&gt;) and by-Item (&lt;high&gt;Movie&lt;/high&gt;) random slopes and intercepts. 
+
+
+&lt;p align = "center"&gt;
+&lt;img src="image/interstellar.png" height=200px&gt;&lt;br&gt;
+&lt;font style="font-size:10px"&gt;from &lt;a href="https://www.rottentomatoes.com/m/interstellar_2014"&gt;rottentomatoes.com&lt;/a&gt;&lt;/font&gt;
+&lt;/p&gt;
+
+
+
+]
+
+.pull-right5[
+
+&lt;br&gt;
+
+*What do you think is the correct model specification?*
+
+
+
+]
+
+
+---
+
+# Fitting Mixed Effects Models in R - An Example
+
+.pull-left45[
+
+&lt;br&gt;
+
+We want to predict the &lt;high&gt;Tomatometer&lt;/high&gt; rating with &lt;high&gt;State&lt;/high&gt; as fixed effect and with by-Subjects (&lt;high&gt;ID&lt;/high&gt;) and by-Item (&lt;high&gt;Movie&lt;/high&gt;) random slopes and intercepts. 
+
+&lt;p align = "center"&gt;
+&lt;img src="image/interstellar.png" height=200px&gt;&lt;br&gt;
+&lt;font style="font-size:10px"&gt;from &lt;a href="https://www.rottentomatoes.com/m/interstellar_2014"&gt;rottentomatoes.com&lt;/a&gt;&lt;/font&gt;
+&lt;/p&gt;
+
+]
+
+.pull-right5[
+
+&lt;br&gt;
+
+*Here is how we would specify the model:*
+
+
+
+
+
+]
+
+
+---
+
+# `lmer()` Output
+
+
+&lt;img src="image/lmer_output.png" width="58%" style="display: block; margin: auto;" /&gt;
+
+---
+
+class: middle, center
+
+&lt;h1&gt;&lt;a href="https://therbootcamp.github.io/SwR_2019Apr/_sessions/MixedModels/MixedModels_practical.html"&gt;Practical&lt;/a&gt;&lt;/h1&gt;
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
