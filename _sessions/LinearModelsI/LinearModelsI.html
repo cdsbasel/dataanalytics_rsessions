@@ -654,11 +654,11 @@ income_glm
 ## 
 ## Coefficients:
 ## (Intercept)          age     children  
-##       932.1        150.3        -39.3  
+##      967.70       148.07         5.61  
 ## 
-## Degrees of Freedom: 850 Total (i.e. Null);  848 Residual
-## Null Deviance:	    6.98e+09 
-## Residual Deviance: 1.29e+09 	AIC: 14500
+## Degrees of Freedom: 860 Total (i.e. Null);  858 Residual
+## Null Deviance:	    6.7e+09 
+## Residual Deviance: 1.23e+09 	AIC: 14700
 ```
 
 ]
@@ -751,17 +751,17 @@ summary(income_glm)
 ## 
 ## Deviance Residuals: 
 ##    Min      1Q  Median      3Q     Max  
-##  -4303    -817      92     872    3639  
+##  -3718    -796      43     802    3626  
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)   932.08     137.81    6.76  2.5e-11 ***
-## age           150.26       2.46   61.04  &lt; 2e-16 ***
-## children      -39.32      40.22   -0.98     0.33    
+## (Intercept)   967.70     133.92    7.23  1.1e-12 ***
+## age           148.07       2.40   61.69  &lt; 2e-16 ***
+## children        5.61      38.63    0.15     0.88    
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## (Dispersion parameter for gaussian family taken to be 1525194)
+## (Dispersion parameter for gaussian family taken to be 1436628)
 ```
 
 ]
@@ -854,12 +854,12 @@ resid(income_glm)
 
 ```
 ##     1     2     3     4     5 
-##  8817 11143  3937  9529  8517
+##  8821  7357 14607  4971  5130
 ```
 
 ```
-##      1      2      3      4      5 
-## -117.0 -242.5 1062.8 -329.0 2183.5
+##       1       2       3       4       5 
+##  3279.1   742.9   693.2  1128.8 -1130.5
 ```
 
 &lt;br&gt;
@@ -947,7 +947,7 @@ rsq(income_glm)
 ```
 
 ```
-## [1] 0.8146
+## [1] 0.8161
 ```
 
 ```r
@@ -959,9 +959,9 @@ tidy(income_glm)
 ## # A tibble: 3 x 5
 ##   term        estimate std.error statistic   p.value
 ##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
-## 1 (Intercept)    932.     138.       6.76  2.51e- 11
-## 2 age            150.       2.46    61.0   1.39e-312
-## 3 children       -39.3     40.2     -0.978 3.29e-  1
+## 1 (Intercept)   968.      134.       7.23  1.10e- 12
+## 2 age           148.        2.40    61.7   1.17e-317
+## 3 children        5.61     38.6      0.145 8.85e-  1
 ```
 
 ]
