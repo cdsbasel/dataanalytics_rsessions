@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Supervised learning</title>
+
+<script src="SupervisedLearning_practical_files/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="SupervisedLearning_practical_files/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="SupervisedLearning_practical_files/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="SupervisedLearning_practical_files/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="SupervisedLearning_practical_files/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="SupervisedLearning_practical_files/navigation-1.1/tabsets.js"></script>
+<link href="SupervisedLearning_practical_files/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="SupervisedLearning_practical_files/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="practical.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Supervised learning</h1>
+<h4 class="author"><table style='table-layout:fixed;width:100%;border:0;padding:0;margin:0'>
+<col width='10%'>
+<col width='10%'>
+<tr style="border:none">
+<td style="display:block;width:100%;text-align:left;vertical-align:bottom;padding:0;margin:0;border:none" nowrap>
+<a href='https://cdsbasel.github.io/dataanalytics/menu/materials.html'> <i class='fas fa-clock' style='font-size:.9em;' ></i> </a> <a href='https://cdsbasel.github.io/dataanalytics/'> <i class='fas fa-home' style='font-size:.9em;'></i> </a> <a href='mailto:rui.mata@unibas.ch'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a> <a href='https://cdsbasel.github.io/dataanalytics/'> <font style='font-style:normal'>Data Analytics for Psychology and Business</font> </a>
+</td>
+<td style="width:100%;vertical-align:bottom;text-align:right;padding:0;margin:0;border:none">
+<img src='https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png' style='height:15px;width:80px'/>
+</td>
+</tr>
+</table></h4>
+
+</div>
+
+
+<p align="center">
+<img width="100%" src="image/rexthor.png" margin=0><br> <font style="font-size:10px">from <a href="https://xkcd.com/1725/">xkcd.com</a></font>
+</p>
+<div id="section" class="section level1 tabset">
+<h1></h1>
+<div id="overview" class="section level2">
+<h2>Overview</h2>
+<p>By the end of this practical you will know how to:</p>
+<ol style="list-style-type: decimal">
+<li>Fit regression, decision trees and random forests to training data.</li>
+<li>Evaluate model fitting <em>and</em> prediction performance in a test set.</li>
+<li>Compare the fitting and prediction performance of models.</li>
+<li>Use model tuning to improve model performance.</li>
+</ol>
+</div>
+<div id="tasks" class="section level2">
+<h2>Tasks</h2>
+<div id="a---setup" class="section level3">
+<h3>A - Setup</h3>
+<ol style="list-style-type: decimal">
+<li><p>Open your <code>dataanalytics</code> R project. It should already have the folders <code>1_Data</code> and <code>2_Code</code>.</p></li>
+<li><p>Download the <a href="https://www.dropbox.com/s/qggonowa26gx1qv/college.csv?dl=1"><strong>college</strong></a> and place it into your <code>1_Data</code> folder.</p></li>
+<li><p>Open a new R script. At the top of the script, using comments, write your name and the date. Save it as a new file called <code>supervised_learning_practical.R</code> in the <code>2_Code</code> folder.</p></li>
+<li><p>Using <code>library()</code> load the set of packages for this practical listed in the packages section above. If you are missing packages, install them first using <code>install.packages()</code>.</p></li>
+</ol>
+<pre class="r"><code># install.packages(&quot;tidyverse&quot;)
+# install.packages(&quot;caret&quot;)
+# install.packages(&quot;party&quot;)
+# install.packages(&quot;partykit&quot;)
+
+# Load packages necessary for this script
+library(tidyverse)
+library(caret)
+library(party)
+library(partykit)</code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li>Run the code below to load the <code>college</code> as a new object.</li>
+</ol>
+<pre class="r"><code># College data
+college &lt;- read_csv(file = &quot;1_Data/college.csv&quot;)</code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li>Take a look at the first few rows of each dataframe by printing them to the console.</li>
+</ol>
+<pre class="r"><code># Print dataframes to the console
+college</code></pre>
+<ol start="6" style="list-style-type: decimal">
+<li>Explore the data set using <code>View()</code> and <code>names()</code> to get a feel for the variables contained within it. Also see the <em>Dataset</em> tab for feature descriptions.</li>
+</ol>
+</div>
+<div id="b---data-preparation" class="section level3">
+<h3>B - Data preparation</h3>
+<ol style="list-style-type: decimal">
+<li>Before we get started you need to do some data preparation. First order of business: change all character variables to factors using the code below.</li>
+</ol>
+<pre class="r"><code># Convert all character columns to factor
+college &lt;- college %&gt;% mutate_if(is.character, factor)</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Now, before you get started with fitting models, it’s time to split off a test set. Use the code below to apply a 80/20 split. Note the the function <code>createDataPartition</code> needs to be supplied with the criterion, which is the graduation rate (<code>Grad.Rate</code>).</li>
+</ol>
+<pre class="r"><code># split index
+train_index &lt;- createDataPartition(XX$XX, p = .2, list = FALSE)
+
+# train and test sets
+college_train &lt;- XX %&gt;% slice(train_index)
+college_test  &lt;- XX %&gt;% slice(-train_index)</code></pre>
+</div>
+<div id="c---fitting" class="section level3">
+<h3>C - Fitting</h3>
+<ol style="list-style-type: decimal">
+<li>In fitting models, <code>caret</code> needs to be supplied with a <code>trainControl()</code> object. To start with define an object called <code>ctrl_none</code> that sets the training control method to <code>&quot;none&quot;</code>.</li>
+</ol>
+<pre class="r"><code># Set training method to &quot;none&quot; for simple fitting
+ctrl_none &lt;- trainControl(method = &quot;XX&quot;)</code></pre>
+<div id="regression" class="section level4">
+<h4>Regression</h4>
+<ol start="2" style="list-style-type: decimal">
+<li>Using <code>train()</code> fit a regression model called <code>grad_glm</code> predicting <code>Grad.Rate</code> as a function of all features. Specifically,…</li>
+</ol>
+<ul>
+<li>for the <code>form</code> argument, use <code>Grad.Rate ~ .</code>.</li>
+<li>for the <code>data</code> argument, use <code>college_train</code>t.</li>
+<li>for the <code>method</code> argument, use <code>method = &quot;glm&quot;</code>.</li>
+<li>for the <code>trControl</code> argument, use your <code>ctrl_none</code>.</li>
+</ul>
+<pre class="r"><code>grad_glm &lt;- train(form = XX ~ .,
+                  data = XX,
+                  method = &quot;XX&quot;,
+                  trControl = ctrl_none)</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Explore your <code>grad_glm</code> object by looking at <code>grad_glm$finalModel</code> and using <code>summary()</code>, what do you find?</li>
+</ol>
+<pre class="r"><code>grad_glm$XX
+summary(XX)</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>Using <code>predict()</code> save the fitted values of <code>grad_glm</code> object as <code>glm_fit</code>.</li>
+</ol>
+<pre class="r"><code># Save fitted values of regression model
+glm_fit &lt;- predict(XX)</code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li>Print your <code>glm_fit</code> object, look at summary statistics with <code>summary(glm_fit)</code>, and create a histogram with <code>hist()</code> do they make sense?</li>
+</ol>
+<pre class="r"><code># Explore regression model fits
+XX
+summary(XX)
+hist(XX)</code></pre>
+</div>
+<div id="decision-trees" class="section level4">
+<h4>Decision Trees</h4>
+<ol start="6" style="list-style-type: decimal">
+<li>Using <code>train()</code>, fit a decision tree model called <code>grad_rpart</code>. Specifically,…</li>
+</ol>
+<ul>
+<li>for the <code>form</code> argument, use <code>Grad.Rate ~ .</code>.</li>
+<li>for the <code>data</code> argument, use <code>college_train</code>.</li>
+<li>for the <code>method</code> argument, use <code>method = &quot;rpart&quot;</code>.</li>
+<li>for the <code>trControl</code> argument, use your <code>ctrl_none</code>.</li>
+<li>for the <code>tuneGrid</code> argument, use <code>cp = 0.01</code> to specify the value of the complexity parameter. This is a pretty low value which means your trees will be, relatively, complex, i.e., deep.</li>
+</ul>
+<pre class="r"><code>grad_rpart &lt;- train(form = XX ~ .,
+                  data = XX,
+                  method = &quot;XX&quot;,
+                  trControl = XX,
+                  tuneGrid = expand.grid(cp = XX))</code></pre>
+<ol start="7" style="list-style-type: decimal">
+<li><p>Explore your <code>grad_rpart</code> object by looking at <code>grad_rpart$finalModel</code> and plotting it with <code>plot(as.party(grad_rpart$finalModel))</code>, what do you find?</p></li>
+<li><p>Using <code>predict()</code>, save the fitted values of <code>grad_rpart</code> object as <code>_fit</code>.</p></li>
+</ol>
+<pre class="r"><code># Save fitted values of decision tree model
+rpart_fit &lt;- predict(XX)</code></pre>
+<ol start="9" style="list-style-type: decimal">
+<li>Print your <code>rpart_fit</code> object, look at summary statistics with <code>summary()</code>, and create a histogram with <code>hist()</code>. Do they make sense?</li>
+</ol>
+<pre class="r"><code># Explore decision tree fits
+XX
+summary(XX)
+hist(XX)</code></pre>
+</div>
+<div id="random-forests" class="section level4">
+<h4>Random Forests</h4>
+<ol start="10" style="list-style-type: decimal">
+<li>Using <code>train()</code>, fit a random forest model called <code>grad_rf</code>. Speicifically,…</li>
+</ol>
+<ul>
+<li>for the <code>form</code> argument, use <code>Grad.Rate ~ .</code>.</li>
+<li>for the <code>data</code> argument, use <code>college_train</code>.</li>
+<li>for the <code>method</code> argument, use <code>method = &quot;rf&quot;</code>.</li>
+<li>for the <code>trControl</code> argument, use your <code>ctrl_none</code>.</li>
+<li>for the <code>mtry</code> parameter, use <code>mtry</code> = 2. This is a relatively low value, so the forest will be very diverse.</li>
+</ul>
+<pre class="r"><code>grad_rf &lt;- train(form = XX ~ .,  
+                 data = XX,
+                 method = &quot;XX&quot;,
+                 trControl = XX,
+                 tuneGrid = expand.grid(mtry = XX))  </code></pre>
+<ol start="11" style="list-style-type: decimal">
+<li>Using <code>predict()</code>, save the fitted values of <code>grad_rf</code> object as <code>rf_fit</code>.</li>
+</ol>
+<pre class="r"><code># Save fitted values of random forest model
+rf_fit &lt;- predict(XX)</code></pre>
+<ol start="12" style="list-style-type: decimal">
+<li>Print your <code>rf_fit</code> object, look at summary statistics with <code>summary()</code>, and create a histogram with <code>hist()</code>. Do they make sense?</li>
+</ol>
+<pre class="r"><code># Explore random forest fits
+XX
+summary(XX)
+hist(XX)</code></pre>
+</div>
+</div>
+<div id="d---evaluate-fitting-performance" class="section level3">
+<h3>D - Evaluate fitting performance</h3>
+<ol style="list-style-type: decimal">
+<li>Save the true training criterion values (<code>college_train$Grad.Rate</code>) as a vector called <code>criterion_train</code>.</li>
+</ol>
+<pre class="r"><code># Save training criterion values
+criterion_train &lt;- XX$XX</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Using <code>postResample()</code>, determine the fitting performance of each of your models separately. Make sure to set your <code>criterion_train</code> values to the <code>obs</code> argument, and your true model fits <code>XX_fit</code> to the <code>pred</code> argument.</li>
+</ol>
+<pre class="r"><code># Regression
+postResample(pred = XX, obs = XX)
+
+# Decision Trees
+postResample(pred = XX, obs = XX)
+
+# Random Forests
+postResample(pred = XX, obs = XX)</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Which one had the best fit? What was the fitting MAE of each model?</li>
+</ol>
+</div>
+<div id="e---evaluate-prediction-perforamnce" class="section level3">
+<h3>E - Evaluate prediction perforamnce</h3>
+<ol style="list-style-type: decimal">
+<li>Save the criterion values from the test data set <code>college_test$Grad.Rate</code> as a new vector called <code>criterion_test</code>.</li>
+</ol>
+<pre class="r"><code># Save criterion values
+criterion_test &lt;- XX$XX</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Using <code>predict()</code>, save the predicted values of each model for the test data <code>college_test</code> as <code>glm_pred</code>, <code>rpart_pred</code> and <code>rf_pred</code>. Set the <code>newdata</code> argument to the test data.</li>
+</ol>
+<pre class="r"><code># Regression
+glm_pred &lt;- predict(XX, newdata = XX)
+
+# Decision Trees
+rpart_pred &lt;- predict(XX, newdata = XX)
+
+# Random Forests
+rf_pred &lt;- predict(XX, newdata = XX)</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Using <code>postResample()</code>, determine the <em>prediction</em> performance of each of your models against the test criterion <code>criterion_test</code>.</li>
+</ol>
+<pre class="r"><code># Regression
+postResample(pred = XX, obs = XX)
+
+# Decision Trees
+postResample(pred = XX, obs = XX)
+
+# Random Forests
+postResample(pred = XX, obs = XX)</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li><p>How does each model’s <em>prediction or test</em> performance (on the <code>XX_test</code> data) compare to its <em>fitting or training</em> performance (on the <code>XX_train</code> data)? Is it worse? Better? The same? What does the change tell you about the models?</p></li>
+<li><p>Which of the three models has the best prediction performance?</p></li>
+</ol>
+</div>
+<div id="f---tuning" class="section level3">
+<h3>F - Tuning</h3>
+<ol style="list-style-type: decimal">
+<li>Now let’s see whether we can crank out more performance by tuning the models during fitting. To do set, first create a new control object called <code>ctrl_cv</code> that sets the training <code>method</code> to cross validation <code>&quot;cv&quot;</code> and the number of slices to <code>10</code>. Use this new control object to re-fit the three models.</li>
+</ol>
+<pre class="r"><code># Set training method to &quot;none&quot; for simple fitting
+ctrl_cv &lt;- trainControl(method = &quot;XX&quot;, number = XX)</code></pre>
+<div id="lasso-regression" class="section level4">
+<h4>LASSO Regression</h4>
+<ol start="2" style="list-style-type: decimal">
+<li>Before you can fit a lasso regression model, you need to specify which values of the lambda penalty parameter we want to try. Using the code below, create a vector called <code>lambda_vec</code> which contains 100 values spanning a wide range, from very close to 0 to 1,000.</li>
+</ol>
+<pre class="r"><code># Vector of lambda values to try
+lambda_vec &lt;- 10 ^ (seq(-4, 4, length = 100))</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Fit a lasso regression model predicting <code>Grad.Rate</code> as a function of all features. Specifically,…</li>
+</ol>
+<ul>
+<li>set the formula to <code>Grad.Rate ~ .</code>.</li>
+<li>set the data to <code>college_train</code>.</li>
+<li>set the method to <code>&quot;glmnet&quot;</code> for regularized regression.</li>
+<li>set the train control argument to <code>ctrl_cv</code>.</li>
+<li>set the <code>preProcess</code> argument to <code>c(&quot;center&quot;, &quot;scale&quot;)</code> to make sure the variables are standarised when estimating the beta weights, which is specifically necessary for regularized regression.</li>
+<li>set the tuneGrid argument such that <code>alpha</code> is 1 (for lasso regression), and lambda is vector you specified in <code>lambda_vec</code> (see below)</li>
+</ul>
+<pre class="r"><code># lasso regression
+grad_tune_glm &lt;- train(form = XX ~ .,
+                        data = XX,
+                        method = &quot;XX&quot;,
+                        trControl = XX,
+                        preProcess = c(&quot;XX&quot;, &quot;XX&quot;),  
+                        tuneGrid = expand.grid(alpha = 1, 
+                                               lambda = lambda_vec))</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li><p>Print your <code>grad_tune_glm</code> object. What do you see?</p></li>
+<li><p>Plot your <code>grad_tune_glm</code> object. What do you see? Which value of the regularization parameter seems to be the best?</p></li>
+</ol>
+<pre class="r"><code># Plot grad_tune_glm object
+plot(XX)</code></pre>
+<ol start="6" style="list-style-type: decimal">
+<li>What were your final regression model coefficients for the best lambda value? Find them by running the following code.</li>
+</ol>
+<pre class="r"><code># Get coefficients from best lambda value
+coef(grad_tune_glm$finalModel, 
+     grad_tune_glm$bestTune$lambda)</code></pre>
+</div>
+<div id="decision-tree" class="section level4">
+<h4>Decision tree</h4>
+<ol start="7" style="list-style-type: decimal">
+<li><p>Before fitting the decision tree, specify which values of the complexity parameter <code>cp</code> to try. Using the code below, create a vector called <code>cp_vec</code> which contains 100 values between 0 and 1.</p></li>
+<li><p>Fit a decision tree model predicting <code>Grad.Rate</code> as a function of all features. Specifically,…</p></li>
+</ol>
+<ul>
+<li>set the formula to <code>Grad.Rate ~ .</code>.</li>
+<li>set the data to <code>college_train</code>.</li>
+<li>set the method to <code>&quot;rpart&quot;</code>.</li>
+<li>set the train control argument to <code>ctrl_cv</code>.</li>
+<li>set the tuneGrid argument with all <code>cp</code> values you specified in <code>cp_vec</code>.</li>
+</ul>
+<pre class="r"><code># Decision tree 
+grad_tune_rpart &lt;- train(form = XX ~ .,
+                         data = XX,
+                         method = &quot;XX&quot;,
+                         trControl = XX,
+                         tuneGrid = expand.grid(cp = cp_vec))</code></pre>
+<ol start="9" style="list-style-type: decimal">
+<li><p>Print your <code>grad_tune_rpart</code> object. What do you see?</p></li>
+<li><p>Plot your <code>grad_tune_rpart</code> object. What do you see? Which value of the complexity parameter seems to be the best?</p></li>
+</ol>
+<pre class="r"><code># Plot grad_tune_rpart object
+plot(XX)</code></pre>
+<ol start="11" style="list-style-type: decimal">
+<li>Print the best value of <code>cp</code> by running the following code. Does this match what you saw in the plot above?</li>
+</ol>
+<pre class="r"><code># Print best regularisation parameter
+grad_tune_rpart$bestTune$cp</code></pre>
+<ol start="12" style="list-style-type: decimal">
+<li>Plot your final decision tree using the following code:</li>
+</ol>
+<pre class="r"><code># Visualise your trees
+plot(as.party(grad_tune_rpart$finalModel)) </code></pre>
+</div>
+<div id="random-forest" class="section level4">
+<h4>Random forest</h4>
+<ol start="13" style="list-style-type: decimal">
+<li><p>Before fitting a random forest model, specify which values of the diversity parameter <code>mtry</code> to try. Using the code below, create a vector called <code>mtry_vec</code> which is a sequence of numbers from 1 to 10.</p></li>
+<li><p>Fit a random forest model predicting <code>Grad.Rate</code> as a function of all features. Specifically,…</p></li>
+</ol>
+<ul>
+<li>set the formula to <code>Grad.Rate ~ .</code>.</li>
+<li>set the data to <code>college_train</code>.</li>
+<li>set the method to <code>&quot;rf&quot;</code>.</li>
+<li>set the train control argument to <code>ctrl_cv</code>.</li>
+<li>set the tuneGrid argument such that mtry can take on the values you defined in <code>mtry_vec</code>.</li>
+</ul>
+<pre class="r"><code># Random Forest 
+grad_tune_rf &lt;- train(form = XX ~ .,
+                      data = XX,
+                      method = &quot;XX&quot;,
+                      trControl = XX,
+                      tuneGrid = expand.grid(mtry = mtry_vec))</code></pre>
+<ol start="15" style="list-style-type: decimal">
+<li><p>Print your <code>grad_tune_rf</code> object. What do you see?</p></li>
+<li><p>Plot your <code>grad_tune_rf</code> object. What do you see? Which value of the regularization parameter seems to be the best?</p></li>
+</ol>
+<pre class="r"><code># Plot grad_rf object
+plot(XX)</code></pre>
+<ol start="17" style="list-style-type: decimal">
+<li>Print the best value of <code>mtry</code> by running the following code. Does this match what you saw in the plot above?</li>
+</ol>
+<pre class="r"><code># Print best mtry parameter
+grad_tune_rf$bestTune$mtry</code></pre>
+</div>
+</div>
+<div id="f---evaluation-prediction-performance-of-tuned-models" class="section level3">
+<h3>F - Evaluation prediction performance of tuned models</h3>
+<ol style="list-style-type: decimal">
+<li>Using <code>predict()</code>, save the predicted values of each tuned model for the test data <code>college_test</code> as <code>glm_tune_pred</code>, <code>rpart_tune_pred</code> and <code>rf_tune_pred</code>. Set the <code>newdata</code> argument to the test data.</li>
+</ol>
+<pre class="r"><code># Regression
+glm_tune_pred &lt;- predict(XX, newdata = XX)
+
+# Decision Trees
+rpart_tune_pred &lt;- predict(XX, newdata = XX)
+
+# Random Forests
+rf_tune_pred &lt;- predict(XX, newdata = XX)</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Using <code>postResample()</code>, determine the <em>prediction</em> performance of each of your models against the test criterion <code>criterion_test</code>.</li>
+</ol>
+<pre class="r"><code># Regression
+postResample(pred = XX, obs = XX)
+
+# Decision Trees
+postResample(pred = XX, obs = XX)
+
+# Random Forests
+postResample(pred = XX, obs = XX)</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li><p>How does each model’s tuned prediction performance compare to its prediction performance without tuning? Is it worse? Better? The same? What does the change tell you about the models?</p></li>
+<li><p>Which of the three models has the best prediction performance?</p></li>
+</ol>
+</div>
+<div id="x---optional-classification" class="section level3">
+<h3>X - Optional: Classification</h3>
+<ol style="list-style-type: decimal">
+<li>Evaluate which model can best predict, whether a school is <code>Private</code>. Note, it is not necessary to again perform the splitting. Jump right in using the existing <code>college_train</code> and <code>college_test</code> datasets. You can follow the same steps as above. Simply change the criterion to <code>Private</code> and use <code>confusionMatrix()</code> instead of <code>postResample()</code>.</li>
+</ol>
+</div>
+</div>
+<div id="examples" class="section level2">
+<h2>Examples</h2>
+<pre class="r"><code># Fitting, tune evaluating regression, decision trees, and random forests
+
+# Step 0: Load packages-----------
+library(tidyverse)  
+library(caret)    
+library(partykit) 
+library(party)       
+
+# Step 1: Load, Clean, Split, and Explore data ----------------------
+
+# mpg data
+data(mpg)
+
+# Explore data
+data_train        
+View(mpg) 
+dim(mpg)   
+names(mpg) 
+
+# Convert all characters to factor
+mpg &lt;- mpg %&gt;% mutate_if(is.character, factor)
+
+# split index
+train_index &lt;- createDataPartition(mpg$hwy, p = .2, list = FALSE)
+
+# train and test sets
+data_train &lt;- mpg %&gt;% slice(train_index)
+data_test  &lt;- mpg %&gt;% slice(-train_index)
+
+# Step 2: Define training control parameters -------------
+
+# Set method = &quot;none&quot; for now 
+ctrl_none &lt;- trainControl(method = &quot;none&quot;) 
+
+# Step 3: Train model: -----------------------------
+
+# Regression -------
+
+# Fit model
+hwy_glm &lt;- train(form = hwy ~ year + cyl + displ,
+                 data = data_train,
+                 method = &quot;glm&quot;,
+                 trControl = ctrl_none)
+
+# Look at summary information
+hwy_glm$finalModel
+summary(hwy_glm)
+
+# Save fitted values
+glm_fit &lt;- predict(hwy_glm)
+
+#  Calculate fitting accuracies
+postResample(pred = glm_fit, 
+             obs = criterion_train)
+
+# Decision Trees -------
+
+# Fit model
+hwy_rpart &lt;- train(form = hwy ~ year + cyl + displ,
+                data = data_train,
+                method = &quot;rpart&quot;,
+                trControl = ctrl_none,
+                tuneGrid = expand.grid(cp = .01))   # Set complexity parameter
+
+# Look at summary information
+hwy_rpart$finalModel
+plot(as.party(hwy_rpart$finalModel))   # Visualise your trees
+
+# Save fitted values
+rpart_fit &lt;- predict(hwy_rpart)
+
+# Calculate fitting accuracies
+postResample(pred = rpart_fit, obs = criterion_train)
+
+# Random Forests -------
+
+# fit model
+hwy_rf &lt;- train(form = hwy ~ year + cyl + displ,
+                data = data_train,
+                method = &quot;rf&quot;,
+                trControl = ctrl_none,
+                tuneGrid = expand.grid(mtry = 2))   # Set number of features randomly selected
+
+# Look at summary information
+hwy_rf$finalModel
+
+# Save fitted values
+rf_fit &lt;- predict(hwy_rf)
+
+# Calculate fitting accuracies
+postResample(pred = rf_fit, obs = criterion_train)
+
+
+# Step 5: Evaluate prediction ------------------------------
+
+# Define criterion_train
+criterion_test &lt;- data_test$hwy
+
+# Save predicted values
+glm_pred &lt;- predict(hwy_glm, newdata = data_test)
+rpart_pred &lt;- predict(hwy_rpart, newdata = data_test)
+rf_pred &lt;- predict(hwy_rf, newdata = data_test)
+
+#  Calculate fitting accuracies
+postResample(pred = glm_pred, obs = criterion_test)
+postResample(pred = rpart_pred, obs = criterion_test)
+postResample(pred = rf_pred, obs = criterion_test)
+
+# Step 6: Modeling tuning ------------------------------
+
+# Use 10-fold cross validation
+ctrl_cv &lt;- trainControl(method = &quot;cv&quot;, 
+                        number = 10) 
+
+# Lasso
+lambda_vec &lt;- 10 ^ seq(-3, 3, length = 100)
+hwy_lasso &lt;- train(form = hwy ~ year + cyl + displ,
+                   data = data_train,
+                   method = &quot;glmnet&quot;,
+                   trControl = ctrl_cv,
+                   preProcess = c(&quot;center&quot;, &quot;scale&quot;),  
+                   tuneGrid = expand.grid(alpha = 1,  
+                                          lambda = lambda_vec))
+
+# decision tree
+cp_vec &lt;- seq(0, .1, length = 100)
+hwy_rpart &lt;- train(form = hwy ~ year + cyl + displ,
+                   data = data_train,
+                   method = &quot;rpart&quot;,
+                   trControl = ctrl_cv,
+                   tuneGrid = expand.grid(cp = cp_vec))
+
+# decision tree
+mtry_vec &lt;- seq(2, 5, 1)
+hwy_rpart &lt;- train(form = hwy ~ year + cyl + displ,
+                   data = data_train,
+                   method = &quot;rf&quot;,
+                   trControl = ctrl_cv,
+                   tuneGrid = expand.grid(mtry = mtry_vec))
+
+# Step 7: Evaluate tuned models ------------------------------
+
+# you know how ... </code></pre>
+</div>
+<div id="dataset" class="section level2">
+<h2>Dataset</h2>
+<table>
+<thead>
+<tr class="header">
+<th align="left">File</th>
+<th align="left">Rows</th>
+<th align="left">Columns</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><a href="https://www.dropbox.com/s/qggonowa26gx1qv/college.csv?dl=1">college.csv</a></td>
+<td align="left">777</td>
+<td align="left">18</td>
+</tr>
+</tbody>
+</table>
+<p>The <code>college</code> data are taken from the <code>College</code> dataset in the <code>ISLR</code> package. They contain statistics for a large number of US Colleges from the 1995 issue of US News and World Report.</p>
+<div id="variable-description" class="section level4">
+<h4>Variable description</h4>
+<table>
+<colgroup>
+<col width="26%" />
+<col width="73%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Name</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>Private</code></td>
+<td align="left">A factor with levels No and Yes indicating private or public university.</td>
+</tr>
+<tr class="even">
+<td align="left"><code>Apps</code></td>
+<td align="left">Number of applications received.</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>Accept</code></td>
+<td align="left">Number of applications accepted.</td>
+</tr>
+<tr class="even">
+<td align="left"><code>Enroll</code></td>
+<td align="left">Number of new students enrolled.</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>Top10perc</code></td>
+<td align="left">Pct. new students from top 10% of H.S. class.</td>
+</tr>
+<tr class="even">
+<td align="left"><code>Top25perc</code></td>
+<td align="left">Pct. new students from top 25% of H.S. class.</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>F.Undergrad</code></td>
+<td align="left">Number of fulltime undergraduates.</td>
+</tr>
+<tr class="even">
+<td align="left"><code>P.Undergrad</code></td>
+<td align="left">Number of parttime undergraduates.</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>Outstate</code></td>
+<td align="left">Out-of-state tuition.</td>
+</tr>
+<tr class="even">
+<td align="left"><code>Room.Board</code></td>
+<td align="left">Room and board costs.</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>Books</code></td>
+<td align="left">Estimated book costs.</td>
+</tr>
+<tr class="even">
+<td align="left"><code>Personal</code></td>
+<td align="left">Estimated personal spending.</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>PhD</code></td>
+<td align="left">Pct. of faculty with Ph.D.’s.</td>
+</tr>
+<tr class="even">
+<td align="left"><code>Terminal</code></td>
+<td align="left">Pct. of faculty with terminal degree.</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>S.F.Ratio</code></td>
+<td align="left">Student/faculty ratio.</td>
+</tr>
+<tr class="even">
+<td align="left"><code>perc.alumni</code></td>
+<td align="left">Pct. alumni who donate.</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>Expend</code></td>
+<td align="left">Instructional expenditure per student.</td>
+</tr>
+<tr class="even">
+<td align="left"><code>Grad.Rate</code></td>
+<td align="left">Graduation rate.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="functions" class="section level2">
+<h2>Functions</h2>
+<div id="packages" class="section level3">
+<h3>Packages</h3>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Package</th>
+<th align="left">Installation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>tidyverse</code></td>
+<td align="left"><code>install.packages(&quot;tidyverse&quot;)</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>caret</code></td>
+<td align="left"><code>install.packages(&quot;caret&quot;)</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>partykit</code></td>
+<td align="left"><code>install.packages(&quot;partykit&quot;)</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>party</code></td>
+<td align="left"><code>install.packages(&quot;party&quot;)</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="functions-1" class="section level3">
+<h3>Functions</h3>
+<table>
+<colgroup>
+<col width="7%" />
+<col width="12%" />
+<col width="80%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Function</th>
+<th align="left">Package</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>trainControl()</code></td>
+<td align="left"><code>caret</code></td>
+<td align="left">Define modelling control parameters</td>
+</tr>
+<tr class="even">
+<td align="left"><code>train()</code></td>
+<td align="left"><code>caret</code></td>
+<td align="left">Train a model</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>predict(object, newdata)</code></td>
+<td align="left"><code>stats</code></td>
+<td align="left">Predict the criterion values of <code>newdata</code> based on <code>object</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>postResample()</code></td>
+<td align="left"><code>caret</code></td>
+<td align="left">Calculate aggregate model performance in regression tasks</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>confusionMatrix()</code></td>
+<td align="left"><code>caret</code></td>
+<td align="left">Calculate aggregate model performance in classification tasks</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="resources" class="section level2">
+<h2>Resources</h2>
+<div id="cheatsheet" class="section level3">
+<h3>Cheatsheet</h3>
+<figure>
+<center>
+<a href="https://github.com/rstudio/cheatsheets/raw/master/caret.pdf"> <img src="https://www.rstudio.com/wp-content/uploads/2015/01/caret-cheatsheet.png" alt="Trulli" style="width:70%"></a><br> <font style="font-size:10px"> from <a href= "https://github.com/rstudio/cheatsheets/raw/master/caret.pdf</figcaption">github.com/rstudio</a></font>
+</figure>
+</div>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
