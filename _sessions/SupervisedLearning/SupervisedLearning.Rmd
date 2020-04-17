@@ -1543,7 +1543,7 @@ $\alpha \in 0, .5, 1$ and $\lambda \in 1, 2, ..., 100$
 
 class: middle, center
 
-<h1><a href=https://cdsbasel.github.io/dataanalytics/menu/materials.html>Material</a></h1>
+<h1><a href=https://cdsbasel.github.io/dataanalytics/menu/materials.html>Materials</a></h1>
 
 
 
