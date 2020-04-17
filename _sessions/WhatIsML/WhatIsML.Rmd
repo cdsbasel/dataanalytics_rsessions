@@ -40,7 +40,7 @@ layout: true
     </a>
     <a href="https://cdsbasel.github.io/dataanalytics/">
       <font color="#7E7E7E">
-       Data Analytics for Psychology and Business | February 2019
+       Data Analytics for Psychology and Business | April 2019
       </font>
     </a>
     </span>
