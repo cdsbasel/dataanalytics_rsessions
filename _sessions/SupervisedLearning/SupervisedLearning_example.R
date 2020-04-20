@@ -12,7 +12,7 @@ library(party)
 data(mpg)
 
 # Explore data
-data_train        
+mpg        
 View(mpg) 
 dim(mpg)   
 names(mpg) 
@@ -51,7 +51,7 @@ glm_fit <- predict(hwy_glm)
 
 #  Calculate fitting accuracies
 postResample(pred = glm_fit, 
-             obs = criterion_train)
+             obs = data_train$hwy)
 
 # Decision Trees -------
 
@@ -70,7 +70,8 @@ plot(as.party(hwy_rpart$finalModel))   # Visualise your trees
 rpart_fit <- predict(hwy_rpart)
 
 # Calculate fitting accuracies
-postResample(pred = rpart_fit, obs = criterion_train)
+postResample(pred = rpart_fit, 
+             obs = data_train$hwy)
 
 # Random Forests -------
 
@@ -78,8 +79,7 @@ postResample(pred = rpart_fit, obs = criterion_train)
 hwy_rf <- train(form = hwy ~ year + cyl + displ,
                 data = data_train,
                 method = "rf",
-                trControl = ctrl_none,
-                tuneGrid = expand.grid(mtry = 2))   # Set number of features randomly selected
+                trControl = ctrl_none)
 
 # Look at summary information
 hwy_rf$finalModel
@@ -88,7 +88,8 @@ hwy_rf$finalModel
 rf_fit <- predict(hwy_rf)
 
 # Calculate fitting accuracies
-postResample(pred = rf_fit, obs = criterion_train)
+postResample(pred = rf_fit, 
+             obs = data_train$hwy)
 
 
 # Step 5: Evaluate prediction ------------------------------
@@ -105,6 +106,8 @@ rf_pred <- predict(hwy_rf, newdata = data_test)
 postResample(pred = glm_pred, obs = criterion_test)
 postResample(pred = rpart_pred, obs = criterion_test)
 postResample(pred = rf_pred, obs = criterion_test)
+
+
 
 # Step 6: Modeling tuning ------------------------------
 
@@ -130,7 +133,7 @@ hwy_rpart <- train(form = hwy ~ year + cyl + displ,
                    trControl = ctrl_cv,
                    tuneGrid = expand.grid(cp = cp_vec))
 
-# decision tree
+# random forest
 mtry_vec <- seq(2, 5, 1)
 hwy_rpart <- train(form = hwy ~ year + cyl + displ,
                    data = data_train,
@@ -140,4 +143,12 @@ hwy_rpart <- train(form = hwy ~ year + cyl + displ,
 
 # Step 7: Evaluate tuned models ------------------------------
 
-# you know how ... 
+#  Calculate fitting accuracies
+postResample(pred = predict(hwy_lasso, newdata = data_test), 
+             obs = criterion_test)
+postResample(pred = predict(hwy_rpart, newdata = data_test), 
+             obs = criterion_test)
+postResample(pred = predict(hwy_rpart, newdata = data_test), 
+             obs = criterion_test)
+
+
